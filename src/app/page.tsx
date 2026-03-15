@@ -323,13 +323,13 @@ function EPK() {
             <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-8">
               Listen
             </h2>
-            {/* Bandcamp Embed */}
+            {/* Bandcamp Embed — update the album ID once Burned Out! is live on Bandcamp */}
             <div className="bg-grey/50 border border-white/5 p-4 sm:p-6">
               <iframe
                 style={{ border: 0, width: "100%", height: "472px" }}
-                src="https://bandcamp.com/EmbeddedPlayer/album=1721037270/size=large/bgcol=000000/linkcol=ff0000/artwork=small/transparent=true/"
+                src="https://bandcamp.com/EmbeddedPlayer/album=3878240870/size=large/bgcol=000000/linkcol=ff0000/artwork=small/transparent=true/"
                 seamless
-                title="Burned Out! by The Ketamines on Bandcamp"
+                title="The Ketamines on Bandcamp"
               />
               <div className="mt-4 flex flex-wrap gap-4">
                 <a
