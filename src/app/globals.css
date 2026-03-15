@@ -125,6 +125,24 @@ body {
   animation: marquee 30s linear infinite;
 }
 
+@keyframes marquee-slow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-slow-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-slow {
+  display: inline-block;
+  animation: marquee-slow 60s linear infinite;
+}
+.animate-marquee-slow-reverse {
+  display: inline-block;
+  animation: marquee-slow-reverse 60s linear infinite;
+}
+
 /* Glitch effect */
 @keyframes glitch {
   0% {
