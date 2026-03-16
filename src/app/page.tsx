@@ -478,7 +478,7 @@ function Nav() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-      scrolled ? "bg-black/90 backdrop-blur-md border-b border-white/5" : ""
+      scrolled ? "bg-black/90 backdrop-blur-md border-b border-white/5" : "bg-gradient-to-b from-black/80 via-black/50 to-transparent"
     }`}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         <div className="relative w-10 h-10 invert opacity-80 hover:opacity-100 transition-opacity">
@@ -760,35 +760,35 @@ function EPK() {
           <Reveal delay={0.2}>
             <div className="mb-16 space-y-8">
               {/* Key facts as punchy lines */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="border-l-2 border-white/20 pl-5">
-                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">College Charts</div>
-                  <p className="text-base text-offwhite/90"><em className="text-white">You Can&rsquo;t Serve Two Masters</em> &mdash; #2 Nationally</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-white/[0.03] border border-white/5 p-5 hover:border-white/10 transition-colors">
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">College Charts</div>
+                  <p className="text-lg text-offwhite"><em className="text-white font-medium">You Can&rsquo;t Serve Two Masters</em> &mdash; <span className="text-red font-bold">#2 Nationally</span></p>
                 </div>
-                <div className="border-l-2 border-white/20 pl-5">
-                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">SYNCs</div>
-                  <p className="text-base text-offwhite/90">&ldquo;Line By Line&rdquo; for Target</p>
+                <div className="bg-white/[0.03] border border-white/5 p-5 hover:border-white/10 transition-colors">
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">SYNCs</div>
+                  <p className="text-lg text-offwhite">&ldquo;Line By Line&rdquo; for <span className="text-red font-bold">Target</span></p>
                 </div>
-                <div className="border-l-2 border-white/20 pl-5">
-                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Shows Played</div>
-                  <p className="text-base text-offwhite/90">175+ Across North America</p>
+                <div className="bg-white/[0.03] border border-white/5 p-5 hover:border-white/10 transition-colors">
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">Shows Played</div>
+                  <p className="text-lg text-offwhite"><span className="text-red font-bold text-2xl">175+</span> Across North America</p>
                 </div>
-                <div className="border-l-2 border-white/20 pl-5">
-                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Location</div>
-                  <p className="text-base text-offwhite/90">PK lives in Hamilton &middot; James Leroy lives on a farm in Alberta &middot; The current live band is in Toronto</p>
+                <div className="bg-white/[0.03] border border-white/5 p-5 hover:border-white/10 transition-colors">
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">Location</div>
+                  <p className="text-lg text-offwhite">PK lives in Hamilton &middot; James Leroy lives on a farm in Alberta &middot; The current live band is in Toronto</p>
                 </div>
               </div>
 
               {/* Interrelated bands — bold callout */}
-              <div className="border border-white/10 p-5">
-                <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-grey-mid mb-3">Interrelated Bands</div>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 text-base font-bold text-offwhite/90">
+              <div className="bg-white/[0.03] border border-white/5 p-5 hover:border-white/10 transition-colors">
+                <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-3">Members Also Play In</div>
+                <div className="flex flex-wrap gap-x-5 gap-y-2 text-lg font-bold text-offwhite">
                   <span>Century Palm <span className="text-grey-mid font-normal text-sm">(Deranged)</span></span>
-                  <span className="text-red/30">/</span>
+                  <span className="text-red/40">/</span>
                   <span>Myelin Sheaths <span className="text-grey-mid font-normal text-sm">(HoZac)</span></span>
-                  <span className="text-red/30">/</span>
+                  <span className="text-red/40">/</span>
                   <span>Moby Dicks <span className="text-grey-mid font-normal text-sm">(Southpaw)</span></span>
-                  <span className="text-red/30">/</span>
+                  <span className="text-red/40">/</span>
                   <span>Tough Age <span className="text-grey-mid font-normal text-sm">(Mint)</span></span>
                 </div>
               </div>
@@ -862,9 +862,12 @@ function EPK() {
                     </div>
                   </div>
                 </TiltCard>
-                <div className="mt-2">
+                <div className="mt-3">
                   <div className="text-base font-medium leading-tight group-hover:text-red transition-colors">{album.title}</div>
-                  <div className="text-xs font-mono text-grey-mid mt-1">{album.year} &middot; {album.type} &middot; {album.label}</div>
+                  <div className="text-sm font-mono mt-1.5">
+                    <span className="text-grey-mid">{album.year} &middot; {album.type}</span>
+                    <span className="text-offwhite/70"> &middot; {album.label}</span>
+                  </div>
                 </div>
               </a>
             </Reveal>
@@ -994,6 +997,7 @@ function EPK() {
           </Reveal>
 
           <Reveal delay={0.2}>
+            <p className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-8">For booking and label inquiries</p>
             <div className="flex flex-col items-center space-y-5 text-xl sm:text-2xl font-mono uppercase tracking-[0.15em]">
               <ContactEmail />
               <a href="https://ketamines.bandcamp.com" target="_blank" rel="noopener noreferrer" className="text-offwhite/60 hover:text-white transition-colors">
