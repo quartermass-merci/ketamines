@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from
 import { Play, Pause, SkipForward, SkipBack, Volume2, ExternalLink, ChevronDown } from "lucide-react";
 import { ParallaxScrollSecond } from "@/components/ui/parallax-scroll";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { GoesOutComesInUnderline, ComesInGoesOutUnderline } from "@/components/ui/underline-animation";
 
 /* ─── IMAGE MANIFESTS ─── */
 
@@ -937,18 +938,16 @@ function EPK() {
           </Reveal>
 
           <Reveal delay={0.2}>
-            <div className="space-y-4">
+            <div className="flex flex-col items-center space-y-5 text-xl sm:text-2xl font-mono uppercase tracking-[0.15em]">
               <ContactEmail />
-              <a href="tel:+16472412575" className="block text-xl sm:text-2xl font-mono text-offwhite/50 hover:text-white transition-colors">
-                647.241.2575
+              <a href="https://ketamines.bandcamp.com" target="_blank" rel="noopener noreferrer" className="text-offwhite/60 hover:text-white transition-colors">
+                <ComesInGoesOutUnderline label="BANDCAMP" direction="right" />
               </a>
-              <a
-                href="https://theketamines.bandcamp.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-6 text-xs tracking-[0.3em] uppercase font-mono border border-white/20 hover:border-red hover:text-red px-8 py-3 transition-all duration-300"
-              >
-                theketamines.bandcamp.com
+              <a href="https://www.discogs.com/artist/2376880-Ketamines" target="_blank" rel="noopener noreferrer" className="text-offwhite/60 hover:text-white transition-colors">
+                <ComesInGoesOutUnderline label="DISCOGS" direction="left" />
+              </a>
+              <a href="tel:+16472412575" className="text-offwhite/40 hover:text-white transition-colors text-base mt-4">
+                <GoesOutComesInUnderline label="647.241.2575" direction="left" />
               </a>
             </div>
           </Reveal>
