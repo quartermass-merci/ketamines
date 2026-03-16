@@ -107,6 +107,21 @@ const PRESS_QUOTES = [
     source: "Weird Canada",
     link: "https://weirdcanada.com/category/format/page/129/",
   },
+  {
+    quote: "HoZac makes a lot of records for a label of their size. Most are forgettable, but when they make a good one, oh boy, is it good. This one sounds good. That\u2019s the limits of my descriptive power. \"Sounds good.\" Lots of sound effects like when a person materializes in a He-Man cartoon.",
+    source: "VICE",
+    link: "https://web.archive.org/web/20131101042729/http://www.vice.com/read/records-00000106-v18n12",
+  },
+  {
+    quote: "With catchy harmonies and an array of effects, the band picks up the psych-punk torch and brandishes it like a weapon. The A-side is a syrupy serving of psychedelic pop that will have you yearning for your Twinkeyz and Simply Saucer records all over again. They show no signs of slippage on the flip and all in all, this makes for a very intriguing debut.",
+    source: "Raven Sings the Blues",
+    link: "https://web.archive.org/web/20120626205634/http://ravensingstheblues.blogspot.com/2011/10/ketamines-line-by-line-7-ketamines-are.html",
+  },
+  {
+    quote: "Holy shit, you guys, why on earth did I sleep so hard on Ketamines? \"Line By Line\" is the most succulent slice of hard hitting, impartible, almost bubblegum garage pop song that I\u2019ve heard in some time. Imagine the best clarion bursts of guitar, the most charming vocal harmonies, and references to drugs rolled up in like, a cloud made of cotton candy and you\u2019ll see why this song is bringing tons of sunshine into my world.",
+    source: "Nu Wave Brain Wave",
+    link: "https://web.archive.org/web/20111003220459/http://nuravebrainwave.com/2011/09/mp3-ketamines-line-by-line/",
+  },
 ];
 
 /* ─── COMRADES LIST ─── */
@@ -853,8 +868,8 @@ function EPK() {
           {/* Outlet marquee — allowed to overflow container */}
           <div className="overflow-hidden mb-10 border-y border-white/5 py-4 -mx-4 sm:-mx-6 group/marquee">
             <div className="animate-marquee group-hover/marquee:[animation-play-state:paused] whitespace-nowrap flex gap-8">
-              {["PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "HOZAC RECORDS",
-                "PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "HOZAC RECORDS"
+              {["PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "VICE", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "RAVEN SINGS THE BLUES", "NU WAVE BRAIN WAVE", "HOZAC RECORDS",
+                "PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "VICE", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "RAVEN SINGS THE BLUES", "NU WAVE BRAIN WAVE", "HOZAC RECORDS"
               ].map((name, i) => (
                 <span key={i} className="text-3xl sm:text-5xl font-display uppercase text-white/8">{name}</span>
               ))}
