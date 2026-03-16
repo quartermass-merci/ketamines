@@ -7,6 +7,8 @@ import { Play, Pause, SkipForward, SkipBack, Volume2, ExternalLink, ChevronDown 
 import { ParallaxScrollSecond } from "@/components/ui/parallax-scroll";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { GoesOutComesInUnderline, ComesInGoesOutUnderline } from "@/components/ui/underline-animation";
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
+import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 
 /* ─── IMAGE MANIFESTS ─── */
 
@@ -152,6 +154,16 @@ const LABELS = [
   "HoZac Records (Chicago)", "Odd Box Records (UK)", "Mammoth Cave Recording Co. (Toronto)",
   "Southpaw Records (US)", "Pleasence Records (Toronto)", "Hosehead Records (Toronto)",
   "Leaning Trees Records (Saskatoon)", "Mint Records (Vancouver)",
+];
+
+const LABEL_LOGOS = [
+  { src: "/images/labels/hozac.png", alt: "HoZac Records", invert: true },
+  { src: "/images/labels/mammoth-cave.png", alt: "Mammoth Cave Recording Co.", invert: true },
+  { src: "/images/labels/southpaw.png", alt: "Southpaw Records", invert: true },
+  { src: "/images/labels/pleasence.png", alt: "Pleasence Records", invert: true },
+  { src: "/images/labels/hosehead.png", alt: "Hosehead Records", invert: true },
+  { src: "/images/labels/leaning-trees.png", alt: "Leaning Trees Records", invert: true },
+  { src: "/images/labels/mint.png", alt: "Mint Records", invert: false },
 ];
 
 /* ─── ANIMATED EQUALIZER BARS ─── */
@@ -781,13 +793,29 @@ function EPK() {
                 </div>
               </div>
 
-              {/* Labels as a tight strip */}
-              <div className="flex flex-wrap gap-2">
-                {LABELS.map((label) => (
-                  <span key={label} className="label-pill text-[10px] font-mono px-2.5 py-1 border border-white/10 text-offwhite/40 hover:text-white hover:border-red/50 transition-colors">
-                    {label}
-                  </span>
-                ))}
+              {/* Labels — infinite scrolling logos */}
+              <div className="relative py-6 border-y border-white/5">
+                <InfiniteSlider gap={56} reverse speed={30} durationOnHover={60}>
+                  {LABEL_LOGOS.map((logo) => (
+                    <img
+                      key={logo.alt}
+                      src={logo.src}
+                      alt={logo.alt}
+                      className={`h-8 sm:h-10 w-auto select-none opacity-50 hover:opacity-100 transition-opacity ${logo.invert ? "invert" : ""}`}
+                      loading="lazy"
+                    />
+                  ))}
+                </InfiniteSlider>
+                <ProgressiveBlur
+                  blurIntensity={1}
+                  className="pointer-events-none absolute top-0 left-0 h-full w-[80px]"
+                  direction="left"
+                />
+                <ProgressiveBlur
+                  blurIntensity={1}
+                  className="pointer-events-none absolute top-0 right-0 h-full w-[80px]"
+                  direction="right"
+                />
               </div>
             </div>
           </Reveal>
