@@ -286,7 +286,7 @@ function AudioPlayer() {
 
 function Divider() {
   return (
-    <div className="w-full max-w-5xl mx-auto flex items-center gap-4 py-10 px-6">
+    <div className="w-full flex items-center gap-4 py-10">
       <div className="flex-1 h-px bg-white/10" />
       <div className="w-1.5 h-1.5 bg-red rotate-45" />
       <div className="flex-1 h-px bg-white/10" />
@@ -381,13 +381,15 @@ function EPK() {
     <div className="min-h-screen bg-black">
       <Nav />
 
-      {/* ═══ HERO: MASSIVE FULL-BLEED ALBUM ART ═══ */}
-      <section className="pt-14">
+      {/* ═══ ONE-PAGER CONTAINER ═══ */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16">
+
+        {/* ═══ HERO: ALBUM ART ═══ */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
-          className="grid grid-cols-1 md:grid-cols-2"
+          className="grid grid-cols-1 md:grid-cols-2 gap-1"
         >
           <div className="relative aspect-square overflow-hidden">
             <Image
@@ -416,7 +418,7 @@ function EPK() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs tracking-[0.25em] uppercase font-mono text-grey-mid px-4"
+          className="mt-4 mb-8 flex flex-wrap items-center justify-center gap-3 text-xs tracking-[0.25em] uppercase font-mono text-grey-mid"
         >
           <span className="text-white font-bold">THE KETAMINES</span>
           <span className="text-red">/</span>
@@ -428,29 +430,26 @@ function EPK() {
           <span className="text-red">/</span>
           <span>2026</span>
         </motion.div>
-      </section>
 
-      {/* ═══ PLAYER (no header — immediately listenable) ═══ */}
-      <section id="music" className="px-4 sm:px-6 pt-8 pb-4">
+        {/* ═══ PLAYER ═══ */}
         <motion.div
+          id="music"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="max-w-6xl mx-auto"
         >
           <AudioPlayer />
         </motion.div>
-      </section>
 
-      <Divider />
+        <Divider />
 
-      {/* ═══ ABOUT ═══ */}
-      <section id="about" className="px-4 sm:px-6 py-12 max-w-6xl mx-auto">
+        {/* ═══ ABOUT ═══ */}
+        <section id="about" className="py-12">
         <Reveal>
           <h2 className="text-sm tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center">About</h2>
         </Reveal>
 
-        <div className="max-w-5xl mx-auto">
+        <div>
           {/* Album title */}
           <Reveal>
             <p className="text-4xl sm:text-5xl md:text-7xl font-display uppercase leading-[0.95] text-center text-red mb-10">
@@ -458,9 +457,22 @@ function EPK() {
             </p>
           </Reveal>
 
+          {/* James & PK */}
+          <Reveal delay={0.05}>
+            <div className="relative w-full aspect-[3/2] overflow-hidden mb-10">
+              <Image
+                src="/images/press/james-and-pk.png"
+                alt="James Leroy and PK Lawton"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 960px"
+              />
+            </div>
+          </Reveal>
+
           {/* Bio — TextGenerateEffect for the statement */}
           <Reveal>
-            <div className="max-w-3xl mx-auto mb-10">
+            <div className="mb-10">
               <TextGenerateEffect
                 words="Burned Out! is a tribute to our comrades who toiled in the harsh Canadian DIY hinterland, honest musicians who dedicated their lives to experimentation and community while existing just out of reach of the spotlight."
                 className="!text-offwhite/90"
@@ -471,7 +483,7 @@ function EPK() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-offwhite/80 max-w-3xl mx-auto text-center font-light mb-12">
+            <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-offwhite/80 text-center font-light mb-12">
               We look back on this era with deep gratitude for everyone who showed up, shared the road, taught us their moves, and took care of us in the effervescent spirit of friendship. We repay that debt by shamelessly stealing all your best ideas and copying your moves in this new album.
             </p>
           </Reveal>
@@ -517,10 +529,10 @@ function EPK() {
         </div>
       </section>
 
-      <Divider />
+        <Divider />
 
-      {/* ═══ DISCOGRAPHY ═══ */}
-      <section className="px-4 sm:px-6 py-8 max-w-6xl mx-auto">
+        {/* ═══ DISCOGRAPHY ═══ */}
+        <section className="py-8">
         <Reveal>
           <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center">Discography</h2>
         </Reveal>
@@ -555,118 +567,111 @@ function EPK() {
         </div>
       </section>
 
-      <Divider />
+        <Divider />
 
-      {/* ═══ PRESS ═══ */}
-      <section id="press" className="py-8">
-        <Reveal>
-          <div className="px-4 sm:px-6 max-w-6xl mx-auto">
+        {/* ═══ PRESS ═══ */}
+        <section id="press" className="py-8">
+          <Reveal>
             <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-4 text-center">Press</h2>
-          </div>
-        </Reveal>
+          </Reveal>
 
-        {/* Outlet marquee */}
-        <div className="overflow-hidden mb-10 border-y border-white/5 py-4">
-          <div className="animate-marquee whitespace-nowrap flex gap-8">
-            {["PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "RAZORCAKE", "NOW MAGAZINE", "WEIRD CANADA", "SLED ISLAND", "HOZAC RECORDS", "CiTR DISCORDER", "THE FINEST KISS", "REVOLUTION ROCK",
-              "PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "RAZORCAKE", "NOW MAGAZINE", "WEIRD CANADA", "SLED ISLAND", "HOZAC RECORDS", "CiTR DISCORDER", "THE FINEST KISS", "REVOLUTION ROCK"
-            ].map((name, i) => (
-              <span key={i} className="text-3xl sm:text-5xl font-display uppercase text-white/8">{name}</span>
-            ))}
-          </div>
-        </div>
-
-        {/* Pitchfork feature quote (hero treatment) */}
-        <Reveal className="px-4 sm:px-6 max-w-4xl mx-auto mb-12">
-          <div className="border-l-2 border-red pl-6 py-2">
-            <blockquote className="text-xl sm:text-2xl leading-relaxed font-light text-offwhite/90 italic">
-              &ldquo;{PRESS_QUOTES[0].quote}&rdquo;
-            </blockquote>
-            <cite className="block mt-4 text-xs tracking-[0.2em] uppercase font-mono text-red not-italic">
-              {PRESS_QUOTES[0].source}
-            </cite>
-          </div>
-        </Reveal>
-
-        {/* Remaining quotes in grid */}
-        <div className="px-4 sm:px-6 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {PRESS_QUOTES.slice(1).map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.04, duration: 0.5 }}
-              viewport={{ once: true }}
-              className="quote-card border border-white/5 p-6 flex flex-col justify-between"
-            >
-              <blockquote className="text-base leading-relaxed font-light text-offwhite/75 mb-4">
-                &ldquo;{item.quote}&rdquo;
-              </blockquote>
-              <div className="flex items-center justify-between">
-                <cite className="text-[10px] tracking-[0.15em] uppercase font-mono text-red not-italic">{item.source}</cite>
-                {item.rating && <span className="text-[10px] font-mono text-grey-mid border border-white/10 px-2 py-0.5">{item.rating}</span>}
-              </div>
-              {item.attribution && <div className="text-[10px] text-grey-mid mt-2 font-mono">&mdash; {item.attribution}</div>}
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Oprah image */}
-        <Reveal className="mt-12 px-4 sm:px-6">
-          <div className="max-w-2xl mx-auto">
-            <div className="relative aspect-video overflow-hidden border border-white/10">
-              <Image src="/images/press/oprah.jpg" alt="Ketamines capture Oprah's attention" fill className="object-cover" sizes="672px" />
+          {/* Outlet marquee — allowed to overflow container */}
+          <div className="overflow-hidden mb-10 border-y border-white/5 py-4 -mx-4 sm:-mx-6">
+            <div className="animate-marquee whitespace-nowrap flex gap-8">
+              {["PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "RAZORCAKE", "NOW MAGAZINE", "WEIRD CANADA", "SLED ISLAND", "HOZAC RECORDS", "CiTR DISCORDER", "THE FINEST KISS", "REVOLUTION ROCK",
+                "PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "RAZORCAKE", "NOW MAGAZINE", "WEIRD CANADA", "SLED ISLAND", "HOZAC RECORDS", "CiTR DISCORDER", "THE FINEST KISS", "REVOLUTION ROCK"
+              ].map((name, i) => (
+                <span key={i} className="text-3xl sm:text-5xl font-display uppercase text-white/8">{name}</span>
+              ))}
             </div>
           </div>
-        </Reveal>
-      </section>
 
-      <Divider />
+          {/* Pitchfork feature quote (hero treatment) */}
+          <Reveal className="mb-12">
+            <div className="border-l-2 border-red pl-6 py-2">
+              <blockquote className="text-xl sm:text-2xl leading-relaxed font-light text-offwhite/90 italic">
+                &ldquo;{PRESS_QUOTES[0].quote}&rdquo;
+              </blockquote>
+              <cite className="block mt-4 text-xs tracking-[0.2em] uppercase font-mono text-red not-italic">
+                {PRESS_QUOTES[0].source}
+              </cite>
+            </div>
+          </Reveal>
 
-      {/* ═══ VIDEOS ═══ */}
-      <section id="videos" className="px-4 sm:px-6 py-8 max-w-6xl mx-auto">
-        <Reveal>
-          <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center">Videos</h2>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {VIDEOS.map((video, i) => (
-            <Reveal key={video.vimeoId} delay={i * 0.1}>
-              <div className="group">
-                <div className="relative aspect-video overflow-hidden border border-white/10 group-hover:border-red/50 transition-colors bg-black">
-                  <iframe
-                    src={`https://player.vimeo.com/video/${video.vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479&color=ff0000&title=0&byline=0&portrait=0`}
-                    allow="autoplay; fullscreen; picture-in-picture"
-                    className="absolute inset-0 w-full h-full"
-                    title={video.title}
-                  />
+          {/* Remaining quotes in grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {PRESS_QUOTES.slice(1).map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.04, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="quote-card border border-white/5 p-6 flex flex-col justify-between"
+              >
+                <blockquote className="text-base leading-relaxed font-light text-offwhite/75 mb-4">
+                  &ldquo;{item.quote}&rdquo;
+                </blockquote>
+                <div className="flex items-center justify-between">
+                  <cite className="text-[10px] tracking-[0.15em] uppercase font-mono text-red not-italic">{item.source}</cite>
+                  {item.rating && <span className="text-[10px] font-mono text-grey-mid border border-white/10 px-2 py-0.5">{item.rating}</span>}
                 </div>
-                <div className="mt-2">
-                  <div className="text-base font-medium">{video.title}</div>
-                  <div className="text-xs font-mono text-grey-mid">{video.subtitle}</div>
+                {item.attribution && <div className="text-[10px] text-grey-mid mt-2 font-mono">&mdash; {item.attribution}</div>}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Oprah image */}
+          <Reveal className="mt-12">
+            <div className="relative aspect-video overflow-hidden border border-white/10">
+              <Image src="/images/press/oprah.jpg" alt="Ketamines capture Oprah's attention" fill className="object-cover" sizes="960px" />
+            </div>
+          </Reveal>
+        </section>
+
+        <Divider />
+
+        {/* ═══ VIDEOS ═══ */}
+        <section id="videos" className="py-8">
+          <Reveal>
+            <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center">Videos</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {VIDEOS.map((video, i) => (
+              <Reveal key={video.vimeoId} delay={i * 0.1}>
+                <div className="group">
+                  <div className="relative aspect-video overflow-hidden border border-white/10 group-hover:border-red/50 transition-colors bg-black">
+                    <iframe
+                      src={`https://player.vimeo.com/video/${video.vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479&color=ff0000&title=0&byline=0&portrait=0`}
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      className="absolute inset-0 w-full h-full"
+                      title={video.title}
+                    />
+                  </div>
+                  <div className="mt-2">
+                    <div className="text-base font-medium">{video.title}</div>
+                    <div className="text-xs font-mono text-grey-mid">{video.subtitle}</div>
+                  </div>
                 </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
-      <Divider />
+        <Divider />
 
-      {/* ═══ PHOTOS ═══ */}
-      <section id="photos" className="py-8">
-        <Reveal>
-          <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center px-4">Photos</h2>
-        </Reveal>
-        <div className="max-w-7xl mx-auto">
+        {/* ═══ PHOTOS ═══ */}
+        <section id="photos" className="py-8">
+          <Reveal>
+            <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center">Photos</h2>
+          </Reveal>
           <ParallaxScrollSecond images={ALL_PHOTOS} />
-        </div>
-      </section>
+        </section>
 
-      <Divider />
+        <Divider />
 
-      {/* ═══ CONTACT ═══ */}
-      <section id="contact" className="px-4 sm:px-6 py-16">
-        <div className="max-w-3xl mx-auto text-center">
+        {/* ═══ CONTACT ═══ */}
+        <section id="contact" className="py-16 text-center">
           <Reveal>
             <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-10">Contact</h2>
           </Reveal>
@@ -697,12 +702,13 @@ function EPK() {
               </a>
             </div>
           </Reveal>
-        </div>
-      </section>
+        </section>
+
+      </div>{/* end one-pager container */}
 
       {/* ═══ FOOTER ═══ */}
       <footer className="border-t border-white/5 px-4 sm:px-6 py-8">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="text-[10px] font-mono text-grey-mid tracking-[0.15em] uppercase">Ketamines &copy; 2026</div>
           <div className="text-[10px] font-mono text-white/10 tracking-[0.15em] uppercase">This EPK is confidential</div>
         </div>
