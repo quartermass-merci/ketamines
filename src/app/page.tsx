@@ -717,9 +717,9 @@ function EPK() {
             </div>
           </Reveal>
 
-          {/* Bio — TextGenerateEffect for the statement */}
+          {/* Bio — bold narrative flow */}
           <Reveal>
-            <div className="mb-10">
+            <div className="mb-6">
               <TextGenerateEffect
                 words="Burned Out! is a tribute to our comrades who toiled in the harsh Canadian DIY hinterland, honest musicians who dedicated their lives to experimentation and community while existing just out of reach of the spotlight."
                 className="!text-offwhite/90"
@@ -730,36 +730,62 @@ function EPK() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-offwhite/80 text-center font-light mb-10">
-              We look back on this era with deep gratitude for everyone who showed up, shared the road, taught us their moves, and took care of us in the effervescent spirit of friendship. We repay that debt by shamelessly stealing all your best ideas and copying your moves in this new album.
+            <p className="text-lg sm:text-xl leading-relaxed text-offwhite/60 text-center font-light mb-12">
+              We repay our debt to everyone who showed up, shared the road, and taught us their moves by shamelessly stealing all your best ideas and copying your moves in this new album.
             </p>
           </Reveal>
 
-          {/* Past Masters + Labels — compact row */}
+          {/* Fast facts — punk zine style, single column */}
           <Reveal delay={0.15}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-              <div className="border border-white/10 p-6 space-y-3">
-                <div className="text-xs tracking-[0.3em] uppercase font-mono text-red mb-3">Past Masters</div>
-                <p className="text-base leading-relaxed text-offwhite/70">
-                  Between 2011 and 2015, Ketamines released two full-length albums and six 7&rdquo; singles across eight independent labels in three countries. Ketamines toured extensively thanks to our booking agent, Annie Southworth from Panache. We are interrelated to numerous bands, including Century Palm (Deranged), Myelin Sheaths (HoZac), Moby Dicks (Southpaw), and Tough Age (Mint).
-                </p>
-                <p className="text-base leading-relaxed text-offwhite/70">
-                  <em className="text-offwhite/90">You Can&rsquo;t Serve Two Masters</em> made it to #2 on the Earshot top 5. &ldquo;Line By Line&rdquo; from our HoZac single was used extensively in an ad campaign for the department store Target, which funded many of our tours.
-                </p>
-                <p className="text-base leading-relaxed text-offwhite/70">
-                  The current live Ketamines band is based in Toronto, but James still lives on a farm in rural Southern Alberta.
+            <div className="mb-12 space-y-6">
+              {/* Headline stat */}
+              <div className="border-l-2 border-red pl-5">
+                <p className="text-lg sm:text-xl font-bold text-white leading-snug">
+                  Between 2011 and 2015, Ketamines released two full-length albums and six 7&rdquo; singles across eight independent labels in three countries.
                 </p>
               </div>
 
-              <div className="border border-white/10 p-6">
-                <div className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-4">Label History</div>
-                <div className="flex flex-wrap gap-2">
-                  {LABELS.map((label) => (
-                    <span key={label} className="label-pill text-xs font-mono px-3 py-1.5 border border-white/10 text-offwhite/50 hover:text-white hover:border-white/30 transition-colors">
-                      {label}
-                    </span>
-                  ))}
+              {/* Key facts as punchy lines */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="border-l-2 border-white/20 pl-5">
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Booking</div>
+                  <p className="text-base text-offwhite/80">Annie Southworth / Panache</p>
                 </div>
+                <div className="border-l-2 border-white/20 pl-5">
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Earshot Charts</div>
+                  <p className="text-base text-offwhite/80"><em className="text-white">You Can&rsquo;t Serve Two Masters</em> &mdash; #2</p>
+                </div>
+                <div className="border-l-2 border-white/20 pl-5">
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Sync</div>
+                  <p className="text-base text-offwhite/80">&ldquo;Line By Line&rdquo; used in Target ad campaign &mdash; funded multiple tours</p>
+                </div>
+                <div className="border-l-2 border-white/20 pl-5">
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Based</div>
+                  <p className="text-base text-offwhite/80">Toronto, ON &mdash; James still lives on a farm in rural Southern Alberta</p>
+                </div>
+              </div>
+
+              {/* Interrelated bands — bold callout */}
+              <div className="border border-white/10 p-5">
+                <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-grey-mid mb-3">Interrelated Bands</div>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-base font-bold text-offwhite/80">
+                  <span>Century Palm <span className="text-grey-mid font-normal text-sm">(Deranged)</span></span>
+                  <span className="text-red/30">/</span>
+                  <span>Myelin Sheaths <span className="text-grey-mid font-normal text-sm">(HoZac)</span></span>
+                  <span className="text-red/30">/</span>
+                  <span>Moby Dicks <span className="text-grey-mid font-normal text-sm">(Southpaw)</span></span>
+                  <span className="text-red/30">/</span>
+                  <span>Tough Age <span className="text-grey-mid font-normal text-sm">(Mint)</span></span>
+                </div>
+              </div>
+
+              {/* Labels as a tight strip */}
+              <div className="flex flex-wrap gap-2">
+                {LABELS.map((label) => (
+                  <span key={label} className="label-pill text-[10px] font-mono px-2.5 py-1 border border-white/10 text-offwhite/40 hover:text-white hover:border-red/50 transition-colors">
+                    {label}
+                  </span>
+                ))}
               </div>
             </div>
           </Reveal>
