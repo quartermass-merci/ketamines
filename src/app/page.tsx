@@ -434,7 +434,7 @@ function AudioPlayer() {
 
 function Divider() {
   return (
-    <div className="w-full flex items-center gap-4 py-10">
+    <div className="w-full flex items-center gap-4 py-16">
       <div className="flex-1 h-px bg-white/10" />
       <div className="w-1.5 h-1.5 bg-red rotate-45" />
       <div className="flex-1 h-px bg-white/10" />
@@ -609,7 +609,7 @@ function EPK() {
       <Nav />
 
       {/* ═══ ONE-PAGER CONTAINER ═══ */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-24">
 
         {/* ═══ HERO: ALBUM ART ═══ */}
         <motion.div
@@ -676,22 +676,22 @@ function EPK() {
         <Divider />
 
         {/* ═══ ABOUT ═══ */}
-        <section id="about" className="py-8">
+        <section id="about" className="py-16">
         <Reveal>
-          <h2 className="text-sm tracking-[0.3em] uppercase font-mono text-grey-mid mb-8 text-center">About</h2>
+          <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">About</h2>
         </Reveal>
 
         <div>
           {/* Album title */}
           <Reveal>
-            <p className="text-4xl sm:text-5xl md:text-7xl font-display uppercase leading-[0.95] text-center text-red mb-8">
+            <p className="text-4xl sm:text-5xl md:text-7xl font-display uppercase leading-[0.95] text-center text-red mb-10">
               Burned Out!
             </p>
           </Reveal>
 
           {/* James & PK */}
           <Reveal delay={0.05}>
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-12">
               <div className="border border-white/10">
                 <div className="relative w-full max-w-sm aspect-[4/3] overflow-hidden">
                   <Image
@@ -711,10 +711,10 @@ function EPK() {
 
           {/* Bio — single flowing narrative */}
           <Reveal>
-            <div className="mb-6">
+            <div className="mb-8">
               <TextGenerateEffect
                 words="Burned Out! is a tribute to our comrades who toiled in the harsh Canadian DIY hinterland, honest musicians who dedicated their lives to experimentation and community while existing just out of reach of the spotlight."
-                className="!text-offwhite/90"
+                className="!text-offwhite"
                 filter={false}
                 duration={1.5}
               />
@@ -722,44 +722,44 @@ function EPK() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="text-lg sm:text-xl leading-relaxed text-offwhite/60 text-center font-light mb-6">
+            <p className="text-lg sm:text-xl leading-relaxed text-offwhite/80 text-center font-light mb-8">
               Between 2011 and 2015, Ketamines released two full-length albums and six 7&quot; singles across eight independent labels in the USA (HoZac, Southpaw); Canada (Mint, Mammoth Cave, Pleasence, Hosehead, Leaning Trees) and the UK (Odd Box).
             </p>
           </Reveal>
 
           <Reveal delay={0.15}>
-            <p className="text-lg sm:text-xl leading-relaxed text-offwhite/60 text-center font-light mb-6">
-              <em className="text-offwhite/80">Burned Out!</em> is for the people who showed up, shared the road, and taught us their moves, which we shamelessly copped. And as we get older, we have lost so many of our comrades, and we dedicate this album to them: Annie Southworth was our champion at Panache and gave a little Canadian band so much love, we miss her dearly; Rest in peace to our comrades Joni Sadler from CKUT, Chris Reimer, Philip Tarr, Cody Prarie Chicken, Brendo, our lost bandmate Christopher Schultzen and the goat, Paul Thomas &ldquo;Gator&rdquo; Slator.
+            <p className="text-lg sm:text-xl leading-relaxed text-offwhite/80 text-center font-light mb-10">
+              <em className="text-offwhite">Burned Out!</em> is for the people who showed up, shared the road, and taught us their moves, which we shamelessly copped. And as we get older, we have lost so many of our comrades, and we dedicate this album to them: Annie Southworth was our champion at Panache and gave a little Canadian band so much love, we miss her dearly; Rest in peace to our comrades Joni Sadler from CKUT, Chris Reimer, Philip Tarr, Cody Prarie Chicken, Brendo, our lost bandmate Christopher Schultzen and the goat, Paul Thomas &ldquo;Gator&rdquo; Slator.
             </p>
           </Reveal>
 
           {/* Fast facts — punk zine style */}
           <Reveal delay={0.2}>
-            <div className="mb-12 space-y-6">
+            <div className="mb-16 space-y-8">
               {/* Key facts as punchy lines */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="border-l-2 border-white/20 pl-5">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">College Charts</div>
-                  <p className="text-base text-offwhite/80"><em className="text-white">You Can&rsquo;t Serve Two Masters</em> &mdash; #2 Nationally</p>
+                  <p className="text-base text-offwhite/90"><em className="text-white">You Can&rsquo;t Serve Two Masters</em> &mdash; #2 Nationally</p>
                 </div>
                 <div className="border-l-2 border-white/20 pl-5">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">SYNCs</div>
-                  <p className="text-base text-offwhite/80">&ldquo;Line By Line&rdquo; for Target</p>
+                  <p className="text-base text-offwhite/90">&ldquo;Line By Line&rdquo; for Target</p>
                 </div>
                 <div className="border-l-2 border-white/20 pl-5">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Shows Played</div>
-                  <p className="text-base text-offwhite/80">175+ Across North America</p>
+                  <p className="text-base text-offwhite/90">175+ Across North America</p>
                 </div>
                 <div className="border-l-2 border-white/20 pl-5">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Location</div>
-                  <p className="text-base text-offwhite/80">PK lives in Hamilton &middot; James Leroy lives on a farm in Alberta &middot; The current live band is in Toronto</p>
+                  <p className="text-base text-offwhite/90">PK lives in Hamilton &middot; James Leroy lives on a farm in Alberta &middot; The current live band is in Toronto</p>
                 </div>
               </div>
 
               {/* Interrelated bands — bold callout */}
               <div className="border border-white/10 p-5">
                 <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-grey-mid mb-3">Interrelated Bands</div>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 text-base font-bold text-offwhite/80">
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-base font-bold text-offwhite/90">
                   <span>Century Palm <span className="text-grey-mid font-normal text-sm">(Deranged)</span></span>
                   <span className="text-red/30">/</span>
                   <span>Myelin Sheaths <span className="text-grey-mid font-normal text-sm">(HoZac)</span></span>
@@ -796,9 +796,9 @@ function EPK() {
         <Divider />
 
         {/* ═══ DISCOGRAPHY ═══ */}
-        <section className="py-8">
+        <section className="py-16">
         <Reveal>
-          <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center">Discography</h2>
+          <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Discography</h2>
         </Reveal>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
           {DISCOGRAPHY.map((album, i) => (
@@ -836,9 +836,9 @@ function EPK() {
         <Divider />
 
         {/* ═══ PRESS ═══ */}
-        <section id="press" className="py-8">
+        <section id="press" className="py-16">
           <Reveal>
-            <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-4 text-center">Press</h2>
+            <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-8 text-center">Press</h2>
           </Reveal>
 
           {/* Outlet marquee — allowed to overflow container */}
@@ -864,7 +864,7 @@ function EPK() {
                   viewport={{ once: true }}
                   className="quote-card border border-white/5 p-6 flex flex-col justify-between h-full"
                 >
-                  <blockquote className="text-sm leading-relaxed font-light text-offwhite/75 mb-4">
+                  <blockquote className="text-sm leading-relaxed font-light text-offwhite/85 mb-4">
                     &ldquo;{item.quote}&rdquo;
                   </blockquote>
                   <div>
@@ -902,9 +902,9 @@ function EPK() {
         <Divider />
 
         {/* ═══ VIDEOS ═══ */}
-        <section id="videos" className="py-8">
+        <section id="videos" className="py-16">
           <Reveal>
-            <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center">Videos</h2>
+            <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Videos</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {VIDEOS.map((video, i) => (
@@ -931,9 +931,9 @@ function EPK() {
         <Divider />
 
         {/* ═══ PHOTOS ═══ */}
-        <section id="photos" className="py-8">
+        <section id="photos" className="py-16">
           <Reveal>
-            <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center">Photos</h2>
+            <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Photos</h2>
           </Reveal>
           <ParallaxScrollSecond images={ALL_PHOTOS} />
         </section>
@@ -943,7 +943,7 @@ function EPK() {
         {/* ═══ CONTACT ═══ */}
         <section id="contact" className="py-16 text-center">
           <Reveal>
-            <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-10">Contact</h2>
+            <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12">Contact</h2>
           </Reveal>
 
           <Reveal delay={0.1}>
