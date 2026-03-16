@@ -871,11 +871,11 @@ function EPK() {
           {/* Oprah image */}
           <Reveal className="mt-10">
             <div className="border border-white/10">
-              <div className="relative aspect-video overflow-hidden">
-                <Image src="/images/press/oprah.jpg" alt="Ketamines capture Oprah's attention" fill className="object-cover" sizes="960px" />
+              <div className="relative aspect-[3/1] overflow-hidden">
+                <Image src="/images/press/oprah.jpg" alt="Lethbridge Herald: Ketamines capture Oprah's attention" fill className="object-contain bg-[#f5f0e8]" sizes="960px" />
               </div>
               <div className="px-4 py-2 text-[10px] tracking-[0.15em] uppercase font-mono text-grey-mid">
-                Ketamines get the Oprah treatment
+                Still funny a decade later &mdash; actual clip from the front page of the Lethbridge Herald
               </div>
             </div>
           </Reveal>
