@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { Play, Pause, SkipForward, SkipBack, Volume2, ExternalLink, ChevronDown } from "lucide-react";
 import { ParallaxScrollSecond } from "@/components/ui/parallax-scroll";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
@@ -93,12 +93,107 @@ const LABELS = [
   "Leaning Trees Records (Saskatoon)", "Mint Records (Vancouver)",
 ];
 
+/* ─── ANIMATED EQUALIZER BARS ─── */
+
+function EqBars() {
+  return (
+    <div className="flex items-end gap-[2px] h-3.5 w-4 shrink-0">
+      {[0, 0.2, 0.4].map((delay) => (
+        <motion.div
+          key={delay}
+          className="w-[3px] bg-red rounded-sm"
+          animate={{ height: ["40%", "100%", "60%", "90%", "40%"] }}
+          transition={{ duration: 0.8, repeat: Infinity, delay, ease: "easeInOut" }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ─── TILT CARD (3D hover) ─── */
+
+function TiltCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0.5);
+  const y = useMotionValue(0.5);
+  const rotateX = useTransform(y, [0, 1], [4, -4]);
+  const rotateY = useTransform(x, [0, 1], [-4, 4]);
+  const springX = useSpring(rotateX, { stiffness: 200, damping: 20 });
+  const springY = useSpring(rotateY, { stiffness: 200, damping: 20 });
+
+  const handleMove = useCallback((e: React.MouseEvent) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    x.set((e.clientX - rect.left) / rect.width);
+    y.set((e.clientY - rect.top) / rect.height);
+  }, [x, y]);
+
+  const handleLeave = useCallback(() => {
+    x.set(0.5);
+    y.set(0.5);
+  }, [x, y]);
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      style={{ rotateX: springX, rotateY: springY, transformPerspective: 800 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ─── ANIMATED COUNTER ─── */
+
+function AnimatedNumber({ value, className = "" }: { value: number; className?: string }) {
+  const [displayed, setDisplayed] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !hasAnimated.current) {
+        hasAnimated.current = true;
+        const start = Date.now();
+        const duration = 1200;
+        const tick = () => {
+          const elapsed = Date.now() - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          setDisplayed(Math.round(eased * value));
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+    }, { threshold: 0.5 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [value]);
+
+  return <div ref={ref} className={className}>{displayed}</div>;
+}
+
 /* ─── PASSWORD GATE ─── */
+
+const WRONG_MESSAGES = [
+  "Wrong password",
+  "Nope, try again",
+  "Not even close",
+  "Still wrong",
+  "You\u2019re really struggling here",
+  "Hint: what happens to toast?",
+];
 
 function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [shake, setShake] = useState(false);
+  const [attempts, setAttempts] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => { inputRef.current?.focus(); }, []);
@@ -108,6 +203,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
     if (password.toLowerCase().trim() === "burnt") {
       onUnlock();
     } else {
+      setAttempts((a) => a + 1);
       setError(true);
       setShake(true);
       setTimeout(() => setShake(false), 600);
@@ -115,13 +211,26 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
     }
   };
 
+  const errorMsg = WRONG_MESSAGES[Math.min(attempts - 1, WRONG_MESSAGES.length - 1)] || "Wrong password";
+
   return (
     <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
       <div className={`relative flex flex-col items-center gap-10 ${shake ? "animate-shake" : ""}`}>
-        <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 fade-up invert">
+        <motion.div
+          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 invert"
+          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+        >
           <Image src="/images/logos/main-logo.jpg" alt="The Ketamines" fill className="object-contain" priority />
-        </div>
-        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4 fade-up-delay-1">
+        </motion.div>
+        <motion.form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+        >
           <label className="text-xs tracking-[0.3em] uppercase text-grey-mid font-mono">Enter Password</label>
           <input
             ref={inputRef}
@@ -132,9 +241,21 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
             placeholder="_ _ _ _ _"
             autoComplete="off"
           />
-          {error && <p className="text-red text-xs tracking-[0.2em] uppercase font-mono animate-pulse">Wrong password</p>}
+          <AnimatePresence mode="wait">
+            {error && (
+              <motion.p
+                key={attempts}
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="text-red text-xs tracking-[0.2em] uppercase font-mono"
+              >
+                {errorMsg}
+              </motion.p>
+            )}
+          </AnimatePresence>
           <button type="submit" className="mt-2 text-xs tracking-[0.3em] uppercase text-grey-mid hover:text-white transition-colors duration-300 font-mono">[ Enter ]</button>
-        </form>
+        </motion.form>
       </div>
     </div>
   );
@@ -223,7 +344,7 @@ function AudioPlayer() {
                 >
                   <span className="text-xs font-mono w-6 shrink-0 text-grey-mid">{track.num}</span>
                   {currentTrack === idx && isPlaying ? (
-                    <span className="w-4 shrink-0"><Volume2 size={14} className="text-red animate-pulse" /></span>
+                    <EqBars />
                   ) : (
                     <span className="w-4 shrink-0"><Play size={14} className="text-grey-mid" /></span>
                   )}
@@ -249,7 +370,7 @@ function AudioPlayer() {
         </div>
         <div className="flex items-center justify-center gap-6">
           <button onClick={prev} className="text-grey-mid hover:text-white transition-colors"><SkipBack size={18} /></button>
-          <button onClick={togglePlay} className="w-10 h-10 flex items-center justify-center border border-white/20 hover:border-red hover:text-red transition-all">
+          <button onClick={togglePlay} className={`w-10 h-10 flex items-center justify-center border transition-all ${isPlaying ? "border-red text-red shadow-[0_0_12px_rgba(255,0,0,0.3)]" : "border-white/20 hover:border-red hover:text-red"}`}>
             {isPlaying ? <Pause size={18} /> : <Play size={18} />}
           </button>
           <button onClick={next} className="text-grey-mid hover:text-white transition-colors"><SkipForward size={18} /></button>
@@ -368,6 +489,68 @@ function ComradesColumns() {
   );
 }
 
+/* ─── CONTACT EMAIL (click-to-copy) ─── */
+
+function ContactEmail() {
+  const [copied, setCopied] = useState(false);
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("pklawton@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <button onClick={handleClick} className="block text-xl sm:text-2xl font-mono text-red hover:text-white transition-colors font-bold mx-auto">
+      <AnimatePresence mode="wait">
+        {copied ? (
+          <motion.span key="copied" initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} className="text-white">
+            Copied! Now email us.
+          </motion.span>
+        ) : (
+          <motion.span key="email" initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }}>
+            pklawton@gmail.com
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </button>
+  );
+}
+
+/* ─── FOOTER EASTER EGG ─── */
+
+function FooterEasterEgg() {
+  const [clicks, setClicks] = useState(0);
+  const messages = [
+    "This EPK is confidential",
+    "Seriously, don\u2019t share this",
+    "We\u2019re watching you",
+    "OK fine, share it with one person",
+    "Actually, share it with everyone",
+    "Sign this band already",
+    "\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25",
+  ];
+
+  return (
+    <button
+      onClick={() => setClicks((c) => c + 1)}
+      className="text-[10px] font-mono text-white/10 hover:text-white/20 tracking-[0.15em] uppercase transition-colors select-none"
+    >
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={clicks}
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -5 }}
+        >
+          {messages[clicks % messages.length]}
+        </motion.span>
+      </AnimatePresence>
+    </button>
+  );
+}
+
 /* ─── MAIN EPK ─── */
 
 function EPK() {
@@ -415,7 +598,7 @@ function EPK() {
           className="mt-6 mb-4 text-center"
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-display uppercase tracking-wide leading-none">
-            <span className="text-white">THE KETAMINES</span>
+            <span className="text-white glitch-text hover:text-red transition-colors duration-300" data-text="THE KETAMINES">THE KETAMINES</span>
             <span className="text-red mx-2 sm:mx-3">/</span>
             <span className="text-red">BURNED OUT!</span>
           </h1>
@@ -437,19 +620,19 @@ function EPK() {
         >
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-2xl sm:text-3xl font-display text-white">2</div>
+              <AnimatedNumber value={2} className="text-2xl sm:text-3xl font-display text-white" />
               <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">LPs</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-display text-white">6</div>
+              <AnimatedNumber value={6} className="text-2xl sm:text-3xl font-display text-white" />
               <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">7&rdquo; Singles</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-display text-white">8</div>
+              <AnimatedNumber value={8} className="text-2xl sm:text-3xl font-display text-white" />
               <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">Labels</div>
             </div>
             <div>
-              <div className="text-2xl sm:text-3xl font-display text-red">3</div>
+              <AnimatedNumber value={3} className="text-2xl sm:text-3xl font-display text-red" />
               <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">Countries</div>
             </div>
           </div>
@@ -546,7 +729,7 @@ function EPK() {
                 <div className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-4">Label History</div>
                 <div className="flex flex-wrap gap-2">
                   {LABELS.map((label) => (
-                    <span key={label} className="text-xs font-mono px-3 py-1.5 border border-white/10 text-offwhite/50 hover:text-white hover:border-white/30 transition-colors">
+                    <span key={label} className="label-pill text-xs font-mono px-3 py-1.5 border border-white/10 text-offwhite/50 hover:text-white hover:border-white/30 transition-colors">
                       {label}
                     </span>
                   ))}
@@ -583,18 +766,20 @@ function EPK() {
                 rel="noopener noreferrer"
                 className="group block"
               >
-                <div className="relative aspect-square overflow-hidden border border-white/5 group-hover:border-red/50 transition-all duration-300">
-                  <Image
-                    src={album.src}
-                    alt={album.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                    <ExternalLink size={20} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                <TiltCard>
+                  <div className="relative aspect-square overflow-hidden border border-white/5 group-hover:border-red/50 transition-all duration-300">
+                    <Image
+                      src={album.src}
+                      alt={album.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                      <ExternalLink size={20} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
                   </div>
-                </div>
+                </TiltCard>
                 <div className="mt-2">
                   <div className="text-base font-medium leading-tight group-hover:text-red transition-colors">{album.title}</div>
                   <div className="text-xs font-mono text-grey-mid mt-1">{album.year} &middot; {album.type} &middot; {album.label}</div>
@@ -614,8 +799,8 @@ function EPK() {
           </Reveal>
 
           {/* Outlet marquee — allowed to overflow container */}
-          <div className="overflow-hidden mb-10 border-y border-white/5 py-4 -mx-4 sm:-mx-6">
-            <div className="animate-marquee whitespace-nowrap flex gap-8">
+          <div className="overflow-hidden mb-10 border-y border-white/5 py-4 -mx-4 sm:-mx-6 group/marquee">
+            <div className="animate-marquee group-hover/marquee:[animation-play-state:paused] whitespace-nowrap flex gap-8">
               {["PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "RAZORCAKE", "NOW MAGAZINE", "WEIRD CANADA", "SLED ISLAND", "HOZAC RECORDS", "CiTR DISCORDER", "THE FINEST KISS", "REVOLUTION ROCK",
                 "PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "RAZORCAKE", "NOW MAGAZINE", "WEIRD CANADA", "SLED ISLAND", "HOZAC RECORDS", "CiTR DISCORDER", "THE FINEST KISS", "REVOLUTION ROCK"
               ].map((name, i) => (
@@ -729,9 +914,7 @@ function EPK() {
 
           <Reveal delay={0.2}>
             <div className="space-y-4">
-              <a href="mailto:pklawton@gmail.com" className="block text-xl sm:text-2xl font-mono text-red hover:text-white transition-colors font-bold">
-                pklawton@gmail.com
-              </a>
+              <ContactEmail />
               <a href="tel:+16472412575" className="block text-xl sm:text-2xl font-mono text-offwhite/50 hover:text-white transition-colors">
                 647.241.2575
               </a>
@@ -753,7 +936,7 @@ function EPK() {
       <footer className="border-t border-white/5 px-4 sm:px-6 py-8">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="text-[10px] font-mono text-grey-mid tracking-[0.15em] uppercase">Ketamines &copy; 2026</div>
-          <div className="text-[10px] font-mono text-white/10 tracking-[0.15em] uppercase">This EPK is confidential</div>
+          <FooterEasterEgg />
         </div>
       </footer>
     </div>

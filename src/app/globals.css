@@ -264,3 +264,33 @@ body {
   transform: translateY(-4px);
   background: #1a1a1a;
 }
+
+/* Label pill shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.label-pill:hover {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,0,0,0.06) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out;
+}
+
+/* Shake animation for password gate */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Smooth red glow pulse on playing state */
+@keyframes redPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(255,0,0,0.2); }
+  50% { box-shadow: 0 0 20px rgba(255,0,0,0.4); }
+}
+.red-pulse {
+  animation: redPulse 2s ease-in-out infinite;
+}
