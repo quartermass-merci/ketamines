@@ -478,13 +478,13 @@ function Nav() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-      scrolled ? "bg-black/90 backdrop-blur-md border-b border-white/5" : "bg-gradient-to-b from-black/80 via-black/50 to-transparent"
+      scrolled ? "bg-black/90 backdrop-blur-md border-b border-white/5" : "bg-black border-b border-white/5"
     }`}>
-      <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
         <div className="relative w-10 h-10 invert opacity-80 hover:opacity-100 transition-opacity">
           <Image src="/images/logos/main-logo.jpg" alt="K" fill className="object-contain" />
         </div>
-        <div className="flex gap-6 text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid">
+        <div className="flex gap-6 text-[10px] tracking-[0.2em] uppercase font-mono text-offwhite/60">
           {[
             ["#music", "Music"],
             ["#about", "About"],
