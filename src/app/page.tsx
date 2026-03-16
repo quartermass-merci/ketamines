@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Play, Pause, SkipForward, SkipBack, Volume2, ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Play, Pause, SkipForward, SkipBack, Volume2, ExternalLink, ChevronDown } from "lucide-react";
 import { ParallaxScrollSecond } from "@/components/ui/parallax-scroll";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 
@@ -42,17 +42,22 @@ const DISCOGRAPHY = [
   { title: "Stay Awake", year: "2014", src: "/images/album-art/stay-awake.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "Mint" },
 ];
 
-/* ─── PRESS QUOTES (one per outlet) ─── */
+/* ─── PRESS QUOTES (one per outlet — hero + top 5) ─── */
+
+const PRESS_HERO = {
+  quote: "The best sell for Spaced Out comes from their palpable excitement to be making this music. \u201CEvil Intentions\u201D begins with the copied-and-pasted opening strains of Steppenwolf\u2019s \u201CMagic Carpet Ride.\u201D It\u2019s surprising that the song goes on to impress, since just the hint of that overplayed, infectious melody is a tough act to follow. They pull it off because behind their eccentric tendencies and hallucinogenic moniker, these guys build solid song structures: verse, chorus, and bridge, all strung together by solid hooks.",
+  source: "Pitchfork",
+};
 
 const PRESS_QUOTES = [
-  {
-    quote: "The best sell for Spaced Out comes from their palpable excitement to be making this music. \u201CEvil Intentions\u201D begins with the copied-and-pasted opening strains of Steppenwolf\u2019s \u201CMagic Carpet Ride.\u201D It\u2019s surprising that the song goes on to impress, since just the hint of that overplayed, infectious melody is a tough act to follow. They pull it off because behind their eccentric tendencies and hallucinogenic moniker, these guys build solid song structures: verse, chorus, and bridge, all strung together by solid hooks.",
-    source: "Pitchfork",
-  },
   {
     quote: "You Can\u2019t Serve Two Masters is one of the better psych listens of the year; its ability to surprise is so engaging that it reminds us never to judge a book by its cover.",
     source: "PopMatters",
     rating: "7/10",
+  },
+  {
+    quote: "Ketamines threw down a monster set of ultra-catchy and inventive garage rock that had the main stage writhing and shimmying.",
+    source: "Exclaim!",
   },
   {
     quote: "There\u2019s something that thrills me when people get away with these completely ludicrous, dumb, nursery-rhyme riffs, and I\u2019ve always been jealous of them.",
@@ -60,40 +65,12 @@ const PRESS_QUOTES = [
     attribution: "Jarrett Samson (Tough Age)",
   },
   {
-    quote: "Ketamines threw down a monster set of ultra-catchy and inventive garage rock that had the main stage writhing and shimmying.",
-    source: "Exclaim!",
-  },
-  {
-    quote: "Canada\u2019s Ketamines shed many of the garage rock pretenses and go the quirky power pop route. It\u2019s a deft move and shows you what a brilliant band the Ketamines are.",
-    source: "The Finest Kiss",
-  },
-  {
     quote: "The word ketamine refers to two things: one is the name of an anesthetic substance famous for being a recreational sedative. The other refers to a five-piece acid-wash pop band. Both are highly addictive.",
     source: "CiTR Discorder",
   },
   {
-    quote: "Surfy, reverby, drugged-up freak pop. Mixing it up with different instruments and multiple vocalists, it\u2019s got a very free-form feel.",
-    source: "Razorcake",
-  },
-  {
-    quote: "Side B\u2019s \u2018Turning You On\u2019\u2019s a teen monster movie throb, the one where the zombie rises off the floor and tries to grab some flesh before getting bounced out of the party.",
-    source: "Weird Canada",
-  },
-  {
-    quote: "Their two new 7-inch singles diverge from the scrappy psych punk and power pop of their recent LP. All The Colours Of Your Heart is oddly funky in a psychedelic garage way.",
-    source: "NOW Magazine",
-  },
-  {
-    quote: "You Can\u2019t Serve Two Masters has the effect of a shaken up can of pop that has burst and has been left out in the sun too long. It is sticky, gritty and catchy as hell.",
-    source: "Revolution Rock / CJAM 99.1",
-  },
-  {
     quote: "They still harness the hazy, confident stride of the dazed legends that came before them, and their psychedelic pop should carry them straight into the arms of today\u2019s most jaded with ease.",
     source: "HoZac Records",
-  },
-  {
-    quote: "Ketamines (Toronto, ON) \u2014 They just released a super memorable slab of oh-so-catchy garage pop and essentially have an open invitation to play Sled Island 2013 anytime they want.",
-    source: "Sled Island Festival",
   },
 ];
 
@@ -346,30 +323,47 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
   );
 }
 
-/* ─── COMRADES COLUMNS ─── */
+/* ─── COMRADES COLUMNS (collapsible) ─── */
 
 function ComradesColumns() {
+  const [expanded, setExpanded] = useState(false);
+  const PREVIEW_COUNT = 40;
+
+  const visibleNames = expanded ? COMRADES : COMRADES.slice(0, PREVIEW_COUNT);
+
   const cols = useMemo(() => {
-    const perCol = Math.ceil(COMRADES.length / 4);
+    const perCol = Math.ceil(visibleNames.length / 4);
     return [
-      COMRADES.slice(0, perCol),
-      COMRADES.slice(perCol, perCol * 2),
-      COMRADES.slice(perCol * 2, perCol * 3),
-      COMRADES.slice(perCol * 3),
+      visibleNames.slice(0, perCol),
+      visibleNames.slice(perCol, perCol * 2),
+      visibleNames.slice(perCol * 2, perCol * 3),
+      visibleNames.slice(perCol * 3),
     ];
-  }, []);
+  }, [visibleNames]);
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-0">
-      {cols.map((col, i) => (
-        <div key={i}>
-          {col.map((name) => (
-            <div key={name} className="text-[11px] font-mono text-offwhite/30 hover:text-red transition-colors duration-200 leading-[1.8]">
-              {name}
-            </div>
-          ))}
+    <div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-0">
+        {cols.map((col, i) => (
+          <div key={i}>
+            {col.map((name) => (
+              <div key={name} className="text-[11px] font-mono text-offwhite/30 hover:text-red transition-colors duration-200 leading-[1.8]">
+                {name}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+      {!expanded && (
+        <div className="flex justify-center mt-4">
+          <button
+            onClick={() => setExpanded(true)}
+            className="flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid hover:text-white transition-colors border border-white/10 hover:border-white/30 px-5 py-2"
+          >
+            Show all {COMRADES.length} comrades <ChevronDown size={12} />
+          </button>
         </div>
-      ))}
+      )}
     </div>
   );
 }
@@ -413,22 +407,59 @@ function EPK() {
           </div>
         </motion.div>
 
-        {/* Title strip */}
+        {/* Title strip — bold and commanding */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-4 mb-8 flex flex-wrap items-center justify-center gap-3 text-xs tracking-[0.25em] uppercase font-mono text-grey-mid"
+          className="mt-6 mb-4 text-center"
         >
-          <span className="text-white font-bold">THE KETAMINES</span>
-          <span className="text-red">/</span>
-          <span className="font-bold">BURNED OUT!</span>
-          <span className="text-red">/</span>
-          <span>LP</span>
-          <span className="text-red">/</span>
-          <span>10 TRACKS</span>
-          <span className="text-red">/</span>
-          <span>2026</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display uppercase tracking-wide leading-none">
+            <span className="text-white">THE KETAMINES</span>
+            <span className="text-red mx-2 sm:mx-3">/</span>
+            <span className="text-red">BURNED OUT!</span>
+          </h1>
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-3 text-xs tracking-[0.25em] uppercase font-mono text-grey-mid">
+            <span>LP</span>
+            <span className="text-red">/</span>
+            <span>10 TRACKS</span>
+            <span className="text-red">/</span>
+            <span>2026</span>
+          </div>
+        </motion.div>
+
+        {/* Quick-scan summary for A&R */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="mb-8 border border-white/10 bg-white/[0.02] p-4 sm:p-5"
+        >
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+            <div>
+              <div className="text-2xl sm:text-3xl font-display text-white">2</div>
+              <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">LPs</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-display text-white">6</div>
+              <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">7&rdquo; Singles</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-display text-white">8</div>
+              <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">Labels</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-display text-red">3</div>
+              <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">Countries</div>
+            </div>
+          </div>
+          <div className="mt-3 pt-3 border-t border-white/5 text-center">
+            <span className="text-[10px] tracking-[0.15em] uppercase font-mono text-grey-mid">Toronto, ON</span>
+            <span className="text-grey-mid mx-2">&middot;</span>
+            <a href="mailto:pklawton@gmail.com" className="text-[10px] tracking-[0.15em] uppercase font-mono text-red hover:text-white transition-colors">pklawton@gmail.com</a>
+            <span className="text-grey-mid mx-2">&middot;</span>
+            <a href="https://theketamines.bandcamp.com" target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-[0.15em] uppercase font-mono text-grey-mid hover:text-white transition-colors">bandcamp</a>
+          </div>
         </motion.div>
 
         {/* ═══ PLAYER ═══ */}
@@ -444,29 +475,36 @@ function EPK() {
         <Divider />
 
         {/* ═══ ABOUT ═══ */}
-        <section id="about" className="py-12">
+        <section id="about" className="py-8">
         <Reveal>
-          <h2 className="text-sm tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center">About</h2>
+          <h2 className="text-sm tracking-[0.3em] uppercase font-mono text-grey-mid mb-8 text-center">About</h2>
         </Reveal>
 
         <div>
           {/* Album title */}
           <Reveal>
-            <p className="text-4xl sm:text-5xl md:text-7xl font-display uppercase leading-[0.95] text-center text-red mb-10">
+            <p className="text-4xl sm:text-5xl md:text-7xl font-display uppercase leading-[0.95] text-center text-red mb-8">
               Burned Out!
             </p>
           </Reveal>
 
           {/* James & PK */}
           <Reveal delay={0.05}>
-            <div className="relative w-full aspect-[3/2] overflow-hidden mb-10">
-              <Image
-                src="/images/press/james-and-pk.png"
-                alt="James Leroy and PK Lawton"
-                fill
-                className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, 960px"
-              />
+            <div className="flex justify-center mb-8">
+              <div className="border border-white/10">
+                <div className="relative w-full max-w-sm aspect-[4/3] overflow-hidden">
+                  <Image
+                    src="/images/press/james-and-pk.png"
+                    alt="James Leroy and PK Lawton"
+                    fill
+                    className="object-cover object-top"
+                    sizes="384px"
+                  />
+                </div>
+                <div className="px-3 py-2 text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid text-center">
+                  James Leroy &amp; PK Lawton
+                </div>
+              </div>
             </div>
           </Reveal>
 
@@ -483,7 +521,7 @@ function EPK() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-offwhite/80 text-center font-light mb-12">
+            <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-offwhite/80 text-center font-light mb-10">
               We look back on this era with deep gratitude for everyone who showed up, shared the road, taught us their moves, and took care of us in the effervescent spirit of friendship. We repay that debt by shamelessly stealing all your best ideas and copying your moves in this new album.
             </p>
           </Reveal>
@@ -494,13 +532,13 @@ function EPK() {
               <div className="border border-white/10 p-6 space-y-3">
                 <div className="text-xs tracking-[0.3em] uppercase font-mono text-red mb-3">Past Masters</div>
                 <p className="text-base leading-relaxed text-offwhite/70">
-                  Between 2011 and 2015, Ketamines released two full-length albums and six 7&rdquo; singles across eight independent labels in three countries.
+                  Between 2011 and 2015, Ketamines released two full-length albums and six 7&rdquo; singles across eight independent labels in three countries. Ketamines toured extensively thanks to our booking agent, Annie Southworth from Panache. We are interrelated to numerous bands, including Century Palm (Deranged), Myelin Sheaths (HoZac), Moby Dicks (Southpaw), and Tough Age (Mint).
                 </p>
                 <p className="text-base leading-relaxed text-offwhite/70">
-                  <em className="text-offwhite/90">You Can&rsquo;t Serve Two Masters</em> (2013) was named to the PopMatters best albums of the year, charted in the upper reaches of Canadian college radio, and drew praise from Pitchfork, Exclaim!, Weird Canada, and Discorder.
+                  <em className="text-offwhite/90">You Can&rsquo;t Serve Two Masters</em> made it to #2 on the Earshot top 5. &ldquo;Line By Line&rdquo; from our HoZac single was used extensively in an ad campaign for the department store Target, which funded many of our tours.
                 </p>
                 <p className="text-base leading-relaxed text-offwhite/70">
-                  Live shows featured a deliberately rotating roster that eventually included over 100 musicians, extracted from our friends in bands like Tough Age, Dirty Beaches, Century Palm, and Fist City.
+                  The current live Ketamines band is based in Toronto, but James still lives on a farm in rural Southern Alberta.
                 </p>
               </div>
 
@@ -587,20 +625,20 @@ function EPK() {
           </div>
 
           {/* Pitchfork feature quote (hero treatment) */}
-          <Reveal className="mb-12">
+          <Reveal className="mb-10">
             <div className="border-l-2 border-red pl-6 py-2">
               <blockquote className="text-xl sm:text-2xl leading-relaxed font-light text-offwhite/90 italic">
-                &ldquo;{PRESS_QUOTES[0].quote}&rdquo;
+                &ldquo;{PRESS_HERO.quote}&rdquo;
               </blockquote>
               <cite className="block mt-4 text-xs tracking-[0.2em] uppercase font-mono text-red not-italic">
-                {PRESS_QUOTES[0].source}
+                {PRESS_HERO.source}
               </cite>
             </div>
           </Reveal>
 
-          {/* Remaining quotes in grid */}
+          {/* Top quotes in grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {PRESS_QUOTES.slice(1).map((item, i) => (
+            {PRESS_QUOTES.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -622,9 +660,14 @@ function EPK() {
           </div>
 
           {/* Oprah image */}
-          <Reveal className="mt-12">
-            <div className="relative aspect-video overflow-hidden border border-white/10">
-              <Image src="/images/press/oprah.jpg" alt="Ketamines capture Oprah's attention" fill className="object-cover" sizes="960px" />
+          <Reveal className="mt-10">
+            <div className="border border-white/10">
+              <div className="relative aspect-video overflow-hidden">
+                <Image src="/images/press/oprah.jpg" alt="Ketamines capture Oprah's attention" fill className="object-cover" sizes="960px" />
+              </div>
+              <div className="px-4 py-2 text-[10px] tracking-[0.15em] uppercase font-mono text-grey-mid">
+                Ketamines get the Oprah treatment
+              </div>
             </div>
           </Reveal>
         </section>
