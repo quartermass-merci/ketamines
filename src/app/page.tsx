@@ -34,10 +34,10 @@ const TRACKS = [
 
 const DISCOGRAPHY = [
   /* Row 1 */
-  { title: "A Rotten Bond", year: "2012", src: "/images/album-art/rotten-bond.jpg", link: "https://ketamines.bandcamp.com/album/a-rotten-bond-7", type: "7\"", label: "Odd Box" },
   { title: "Spaced Out", year: "2012", src: "/images/album-art/spaced-out.jpg", link: "https://ketamines.bandcamp.com/album/spaced-out-lp", type: "LP", label: "Mammoth Cave / Southpaw" },
   { title: "You Can\u2019t Serve Two Masters", year: "2013", src: "/images/album-art/ycsm.jpg", link: "https://ketamines.bandcamp.com/album/you-cant-serve-two-masters-lp", type: "LP", label: "Mammoth Cave / Southpaw" },
   { title: "Line By Line", year: "2011", src: "/images/album-art/hozac.jpg", link: "https://ketamines.bandcamp.com/album/hozac-7", type: "7\"", label: "HoZac" },
+  { title: "A Rotten Bond", year: "2012", src: "/images/album-art/rotten-bond.jpg", link: "https://ketamines.bandcamp.com/album/a-rotten-bond-7", type: "7\"", label: "Odd Box" },
   /* Row 2 */
   { title: "All The Colours Of Your Heart", year: "2013", src: "/images/album-art/colours.jpg", link: "https://ketamines.bandcamp.com/album/all-the-colours-of-your-heart-7", type: "7\"", label: "Pleasence" },
   { title: "Eleven Eleven EP", year: "2014", src: "/images/album-art/eleven-eleven.jpg", link: "https://ketamines.bandcamp.com/album/eleven-eleven-7-ep", type: "7\" EP", label: "Leaning Trees" },
@@ -48,22 +48,23 @@ const DISCOGRAPHY = [
 /* ─── PRESS QUOTES (all equal treatment, with links) ─── */
 
 const PRESS_QUOTES = [
+  /* ─── Row 1: Pitchfork / VICE / Raven Sings the Blues ─── */
   {
     quote: "The best sell for Spaced Out comes from their palpable excitement to be making this music. \u201CEvil Intentions\u201D begins with the copied-and-pasted opening strains of Steppenwolf\u2019s \u201CMagic Carpet Ride.\u201D It\u2019s surprising that the song goes on to impress, since just the hint of that overplayed, infectious melody is a tough act to follow. They pull it off because behind their eccentric tendencies and hallucinogenic moniker, these guys build solid song structures: verse, chorus, and bridge, all strung together by solid hooks.",
     source: "Pitchfork",
     link: "https://pitchfork.com/reviews/albums/16370-ketamines-spaced-out/",
   },
   {
-    quote: "You Can\u2019t Serve Two Masters is one of the better psych listens of the year; its ability to surprise is so engaging that it reminds us never to judge a book by its cover.",
-    source: "PopMatters",
-    rating: "7/10",
-    link: "https://www.popmatters.com/175477-the-ketaminesyou-cant-serve-two-masters-2495722138.html",
+    quote: "HoZac makes a lot of records for a label of their size. Most are forgettable, but when they make a good one, oh boy, is it good. This one sounds good. That\u2019s the limits of my descriptive power. \"Sounds good.\" Lots of sound effects like when a person materializes in a He-Man cartoon.",
+    source: "VICE",
+    link: "https://web.archive.org/web/20131101042729/http://www.vice.com/read/records-00000106-v18n12",
   },
   {
-    quote: "Ketamines threw down a monster set of ultra-catchy and inventive garage rock that had the main stage writhing and shimmying.",
-    source: "Exclaim!",
-    link: "https://exclaim.ca/music/article/wyrd_fest_iii_featuring_red_mass_long_long_long_famines_tonstartssbandht_das_amore-waldorf_hotel_vancouver_bc_may_22",
+    quote: "With catchy harmonies and an array of effects, the band picks up the psych-punk torch and brandishes it like a weapon. The A-side is a syrupy serving of psychedelic pop that will have you yearning for your Twinkeyz and Simply Saucer records all over again. They show no signs of slippage on the flip and all in all, this makes for a very intriguing debut.",
+    source: "Raven Sings the Blues",
+    link: "https://web.archive.org/web/20120626205634/http://ravensingstheblues.blogspot.com/2011/10/ketamines-line-by-line-7-ketamines-are.html",
   },
+  /* ─── Row 2 ─── */
   {
     quote: "There\u2019s something that thrills me when people get away with these completely ludicrous, dumb, nursery-rhyme riffs, and I\u2019ve always been jealous of them.",
     source: "Consequence of Sound",
@@ -79,6 +80,7 @@ const PRESS_QUOTES = [
     quote: "The word ketamine refers to two things: one is the name of an anesthetic substance famous for being a recreational sedative. The other refers to a five-piece acid-wash pop band. Both are highly addictive.",
     source: "CiTR Discorder",
   },
+  /* ─── Row 3 ─── */
   {
     quote: "Ketamines channel a shit-ton of energy into their trashy psych-outs, bringing a bit of garage-leaning surf-pop into the picture for their own bizarre flavor. We can only hope they\u2019ll be back in 2013 with more of the bubbly, hook-heavy madness.",
     source: "Styrofoam Drone",
@@ -96,6 +98,7 @@ const PRESS_QUOTES = [
     attribution: "Best Albums 2013",
     link: "https://revrock.blogspot.com/2013/12/2013-highlights-show-489.html",
   },
+  /* ─── Row 4 ─── */
   {
     quote: "Canada\u2019s Ketamines come from a garage rock background, but on You Can\u2019t Serve Two Masters they shed many of the garage rock pretenses and go the quirky power pop route. The sound is cleaner and lyrics are pointed and since the sound is cleaner the vocal melodies shine brighter. It\u2019s a deft move and shows you what a brilliant band the Ketamines are.",
     source: "Finest Kiss",
@@ -108,19 +111,27 @@ const PRESS_QUOTES = [
     link: "https://weirdcanada.com/category/format/page/129/",
   },
   {
-    quote: "HoZac makes a lot of records for a label of their size. Most are forgettable, but when they make a good one, oh boy, is it good. This one sounds good. That\u2019s the limits of my descriptive power. \"Sounds good.\" Lots of sound effects like when a person materializes in a He-Man cartoon.",
-    source: "VICE",
-    link: "https://web.archive.org/web/20131101042729/http://www.vice.com/read/records-00000106-v18n12",
-  },
-  {
-    quote: "With catchy harmonies and an array of effects, the band picks up the psych-punk torch and brandishes it like a weapon. The A-side is a syrupy serving of psychedelic pop that will have you yearning for your Twinkeyz and Simply Saucer records all over again. They show no signs of slippage on the flip and all in all, this makes for a very intriguing debut.",
-    source: "Raven Sings the Blues",
-    link: "https://web.archive.org/web/20120626205634/http://ravensingstheblues.blogspot.com/2011/10/ketamines-line-by-line-7-ketamines-are.html",
-  },
-  {
     quote: "Holy shit, you guys, why on earth did I sleep so hard on Ketamines? \"Line By Line\" is the most succulent slice of hard hitting, impartible, almost bubblegum garage pop song that I\u2019ve heard in some time. Imagine the best clarion bursts of guitar, the most charming vocal harmonies, and references to drugs rolled up in like, a cloud made of cotton candy and you\u2019ll see why this song is bringing tons of sunshine into my world.",
     source: "Nu Wave Brain Wave",
     link: "https://web.archive.org/web/20111003220459/http://nuravebrainwave.com/2011/09/mp3-ketamines-line-by-line/",
+  },
+  /* ─── Row 5 (bottom): PopMatters / Exclaim! / Lights In Pairs ─── */
+  {
+    quote: "From the venerable Mammoth Cave Records, the first \u201Cfull length\u201D from the Ketamines is 28 minutes of fuzzed out rock and roll at its best. There are some real gems here that sound like they were composed in the most spirited of garages.",
+    source: "Lights In Pairs",
+    attribution: "Best Albums of 2012",
+    link: "http://lightsinpairs.wordpress.com/2013/01/05/best-albums-of-2012/",
+  },
+  {
+    quote: "You Can\u2019t Serve Two Masters is one of the better psych listens of the year; its ability to surprise is so engaging that it reminds us never to judge a book by its cover.",
+    source: "PopMatters",
+    rating: "7/10",
+    link: "https://www.popmatters.com/175477-the-ketaminesyou-cant-serve-two-masters-2495722138.html",
+  },
+  {
+    quote: "Ketamines threw down a monster set of ultra-catchy and inventive garage rock that had the main stage writhing and shimmying.",
+    source: "Exclaim!",
+    link: "https://exclaim.ca/music/article/wyrd_fest_iii_featuring_red_mass_long_long_long_famines_tonstartssbandht_das_amore-waldorf_hotel_vancouver_bc_may_22",
   },
 ];
 
@@ -434,7 +445,7 @@ function AudioPlayer() {
 
 function Divider() {
   return (
-    <div className="w-full flex items-center gap-4 py-16">
+    <div className="w-full flex items-center gap-4 py-20">
       <div className="flex-1 h-px bg-white/10" />
       <div className="w-1.5 h-1.5 bg-red rotate-45" />
       <div className="flex-1 h-px bg-white/10" />
@@ -676,7 +687,7 @@ function EPK() {
         <Divider />
 
         {/* ═══ ABOUT ═══ */}
-        <section id="about" className="py-16">
+        <section id="about" className="py-24">
         <Reveal>
           <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">About</h2>
         </Reveal>
@@ -796,7 +807,7 @@ function EPK() {
         <Divider />
 
         {/* ═══ DISCOGRAPHY ═══ */}
-        <section className="py-16">
+        <section className="py-24">
         <Reveal>
           <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Discography</h2>
         </Reveal>
@@ -836,7 +847,7 @@ function EPK() {
         <Divider />
 
         {/* ═══ PRESS ═══ */}
-        <section id="press" className="py-16">
+        <section id="press" className="py-24">
           <Reveal>
             <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-8 text-center">Press</h2>
           </Reveal>
@@ -844,8 +855,8 @@ function EPK() {
           {/* Outlet marquee — allowed to overflow container */}
           <div className="overflow-hidden mb-10 border-y border-white/5 py-4 -mx-4 sm:-mx-6 group/marquee">
             <div className="animate-marquee group-hover/marquee:[animation-play-state:paused] whitespace-nowrap flex gap-8">
-              {["PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "VICE", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "RAVEN SINGS THE BLUES", "NU WAVE BRAIN WAVE", "HOZAC RECORDS",
-                "PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "VICE", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "RAVEN SINGS THE BLUES", "NU WAVE BRAIN WAVE", "HOZAC RECORDS"
+              {["PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "VICE", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "RAVEN SINGS THE BLUES", "NU WAVE BRAIN WAVE", "LIGHTS IN PAIRS", "HOZAC RECORDS",
+                "PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "VICE", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "RAVEN SINGS THE BLUES", "NU WAVE BRAIN WAVE", "LIGHTS IN PAIRS", "HOZAC RECORDS"
               ].map((name, i) => (
                 <span key={i} className="text-3xl sm:text-5xl font-display uppercase text-white/8">{name}</span>
               ))}
@@ -902,7 +913,7 @@ function EPK() {
         <Divider />
 
         {/* ═══ VIDEOS ═══ */}
-        <section id="videos" className="py-16">
+        <section id="videos" className="py-24">
           <Reveal>
             <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Videos</h2>
           </Reveal>
@@ -931,7 +942,7 @@ function EPK() {
         <Divider />
 
         {/* ═══ PHOTOS ═══ */}
-        <section id="photos" className="py-16">
+        <section id="photos" className="py-24">
           <Reveal>
             <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Photos</h2>
           </Reveal>
@@ -941,7 +952,7 @@ function EPK() {
         <Divider />
 
         {/* ═══ CONTACT ═══ */}
-        <section id="contact" className="py-16 text-center">
+        <section id="contact" className="py-24 text-center">
           <Reveal>
             <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12">Contact</h2>
           </Reveal>
