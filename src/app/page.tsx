@@ -661,30 +661,7 @@ function EPK() {
           </div>
         </motion.div>
 
-        {/* Quick-scan summary for A&R */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="mb-8 py-6 text-center"
-        >
-          <div className="flex flex-wrap items-baseline justify-center gap-x-6 gap-y-2 text-sm tracking-[0.2em] uppercase font-mono text-grey-mid">
-            <span><span className="text-2xl font-display text-white mr-1">2</span> LPs</span>
-            <span className="text-red/40">|</span>
-            <span><span className="text-2xl font-display text-white mr-1">6</span> Singles</span>
-            <span className="text-red/40">|</span>
-            <span><span className="text-2xl font-display text-white mr-1">8</span> Labels</span>
-            <span className="text-red/40">|</span>
-            <span><span className="text-2xl font-display text-red mr-1">3</span> Countries</span>
-          </div>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs tracking-[0.15em] uppercase font-mono text-grey-mid">
-            <span>Toronto, ON</span>
-            <span className="text-white/20">&middot;</span>
-            <a href="mailto:pklawton@gmail.com" className="text-red hover:text-white transition-colors">pklawton@gmail.com</a>
-            <span className="text-white/20">&middot;</span>
-            <a href="https://ketamines.bandcamp.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">bandcamp</a>
-          </div>
-        </motion.div>
+        <div className="mb-8" />
 
         {/* ═══ PLAYER ═══ */}
         <motion.div
@@ -732,7 +709,7 @@ function EPK() {
             </div>
           </Reveal>
 
-          {/* Bio — bold narrative flow */}
+          {/* Bio — single flowing narrative */}
           <Reveal>
             <div className="mb-6">
               <TextGenerateEffect
@@ -745,38 +722,37 @@ function EPK() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="text-lg sm:text-xl leading-relaxed text-offwhite/60 text-center font-light mb-12">
-              We repay our debt to everyone who showed up, shared the road, and taught us their moves by shamelessly stealing all your best ideas and copying your moves in this new album.
+            <p className="text-lg sm:text-xl leading-relaxed text-offwhite/60 text-center font-light mb-6">
+              Between 2011 and 2015, Ketamines released two full-length albums and six 7&quot; singles across eight independent labels in the USA (HoZac, Southpaw); Canada (Mint, Mammoth Cave, Pleasence, Hosehead, Leaning Trees) and the UK (Odd Box).
             </p>
           </Reveal>
 
-          {/* Fast facts — punk zine style, single column */}
           <Reveal delay={0.15}>
-            <div className="mb-12 space-y-6">
-              {/* Headline stat */}
-              <div className="border-l-2 border-red pl-5">
-                <p className="text-lg sm:text-xl font-bold text-white leading-snug">
-                  Between 2011 and 2015, Ketamines released two full-length albums and six 7&rdquo; singles across eight independent labels in three countries.
-                </p>
-              </div>
+            <p className="text-lg sm:text-xl leading-relaxed text-offwhite/60 text-center font-light mb-6">
+              <em className="text-offwhite/80">Burned Out!</em> is for the people who showed up, shared the road, and taught us their moves, which we shamelessly copped. And as we get older, we have lost so many of our comrades, and we dedicate this album to them: Annie Southworth was our champion at Panache and gave a little Canadian band so much love, we miss her dearly; Rest in peace to our comrades Joni Sadler from CKUT, Chris Reimer, Philip Tarr, Cody Prarie Chicken, Brendo, our lost bandmate Christopher Schultzen and the goat, Paul Thomas &ldquo;Gator&rdquo; Slator.
+            </p>
+          </Reveal>
 
+          {/* Fast facts — punk zine style */}
+          <Reveal delay={0.2}>
+            <div className="mb-12 space-y-6">
               {/* Key facts as punchy lines */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="border-l-2 border-white/20 pl-5">
-                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Booking</div>
-                  <p className="text-base text-offwhite/80">Annie Southworth / Panache</p>
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">College Charts</div>
+                  <p className="text-base text-offwhite/80"><em className="text-white">You Can&rsquo;t Serve Two Masters</em> &mdash; #2 Nationally</p>
                 </div>
                 <div className="border-l-2 border-white/20 pl-5">
-                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Earshot Charts</div>
-                  <p className="text-base text-offwhite/80"><em className="text-white">You Can&rsquo;t Serve Two Masters</em> &mdash; #2</p>
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">SYNCs</div>
+                  <p className="text-base text-offwhite/80">&ldquo;Line By Line&rdquo; for Target</p>
                 </div>
                 <div className="border-l-2 border-white/20 pl-5">
-                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Sync</div>
-                  <p className="text-base text-offwhite/80">&ldquo;Line By Line&rdquo; used in Target ad campaign &mdash; funded multiple tours</p>
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Shows Played</div>
+                  <p className="text-base text-offwhite/80">175+ Across North America</p>
                 </div>
                 <div className="border-l-2 border-white/20 pl-5">
-                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Based</div>
-                  <p className="text-base text-offwhite/80">Toronto, ON &mdash; James still lives on a farm in rural Southern Alberta</p>
+                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-1">Location</div>
+                  <p className="text-base text-offwhite/80">PK lives in Hamilton &middot; James Leroy lives on a farm in Alberta &middot; The current live band is in Toronto</p>
                 </div>
               </div>
 
