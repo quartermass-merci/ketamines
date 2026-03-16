@@ -632,7 +632,7 @@ function EPK() {
       <Nav />
 
       {/* ═══ ONE-PAGER CONTAINER ═══ */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-24">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6" style={{ paddingTop: '6rem' }}>
 
         {/* ═══ HERO: ALBUM ART ═══ */}
         <motion.div
