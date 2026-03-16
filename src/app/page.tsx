@@ -32,45 +32,79 @@ const TRACKS = [
 /* ─── DISCOGRAPHY (back catalog only — matches Bandcamp) ─── */
 
 const DISCOGRAPHY = [
-  { title: "Spaced Out", year: "2012", src: "/images/album-art/spaced-out.jpg", link: "https://theketamines.bandcamp.com", type: "LP", label: "Mammoth Cave / Southpaw" },
-  { title: "You Can\u2019t Serve Two Masters", year: "2013", src: "/images/album-art/ycsm.jpg", link: "https://theketamines.bandcamp.com", type: "LP", label: "Mammoth Cave / Southpaw" },
-  { title: "Line By Line", year: "2011", src: "/images/album-art/hozac.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "HoZac" },
-  { title: "All The Colours Of Your Heart", year: "2013", src: "/images/album-art/colours.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "Pleasence" },
-  { title: "Eleven Eleven EP", year: "2014", src: "/images/album-art/eleven-eleven.jpg", link: "https://theketamines.bandcamp.com", type: "7\" EP", label: "Leaning Trees" },
-  { title: "A Rotten Bond", year: "2012", src: "/images/album-art/rotten-bond.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "Odd Box" },
-  { title: "So Hot!", year: "2013", src: "/images/album-art/so-hot.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "Hosehead" },
-  { title: "Stay Awake", year: "2014", src: "/images/album-art/stay-awake.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "Mint" },
+  /* Row 1 */
+  { title: "A Rotten Bond", year: "2012", src: "/images/album-art/rotten-bond.jpg", link: "https://ketamines.bandcamp.com/album/a-rotten-bond-7", type: "7\"", label: "Odd Box" },
+  { title: "Spaced Out", year: "2012", src: "/images/album-art/spaced-out.jpg", link: "https://ketamines.bandcamp.com/album/spaced-out-lp", type: "LP", label: "Mammoth Cave / Southpaw" },
+  { title: "You Can\u2019t Serve Two Masters", year: "2013", src: "/images/album-art/ycsm.jpg", link: "https://ketamines.bandcamp.com/album/you-cant-serve-two-masters-lp", type: "LP", label: "Mammoth Cave / Southpaw" },
+  { title: "Line By Line", year: "2011", src: "/images/album-art/hozac.jpg", link: "https://ketamines.bandcamp.com/album/hozac-7", type: "7\"", label: "HoZac" },
+  /* Row 2 */
+  { title: "All The Colours Of Your Heart", year: "2013", src: "/images/album-art/colours.jpg", link: "https://ketamines.bandcamp.com/album/all-the-colours-of-your-heart-7", type: "7\"", label: "Pleasence" },
+  { title: "Eleven Eleven EP", year: "2014", src: "/images/album-art/eleven-eleven.jpg", link: "https://ketamines.bandcamp.com/album/eleven-eleven-7-ep", type: "7\" EP", label: "Leaning Trees" },
+  { title: "So Hot!", year: "2013", src: "/images/album-art/so-hot.jpg", link: "https://ketamines.bandcamp.com/album/so-hot-7", type: "7\"", label: "Hosehead" },
+  { title: "Stay Awake", year: "2014", src: "/images/album-art/stay-awake.jpg", link: "https://ketamines.bandcamp.com/album/stay-awake-7", type: "7\"", label: "Mint" },
 ];
 
-/* ─── PRESS QUOTES (one per outlet — hero + top 5) ─── */
-
-const PRESS_HERO = {
-  quote: "The best sell for Spaced Out comes from their palpable excitement to be making this music. \u201CEvil Intentions\u201D begins with the copied-and-pasted opening strains of Steppenwolf\u2019s \u201CMagic Carpet Ride.\u201D It\u2019s surprising that the song goes on to impress, since just the hint of that overplayed, infectious melody is a tough act to follow. They pull it off because behind their eccentric tendencies and hallucinogenic moniker, these guys build solid song structures: verse, chorus, and bridge, all strung together by solid hooks.",
-  source: "Pitchfork",
-};
+/* ─── PRESS QUOTES (all equal treatment, with links) ─── */
 
 const PRESS_QUOTES = [
+  {
+    quote: "The best sell for Spaced Out comes from their palpable excitement to be making this music. \u201CEvil Intentions\u201D begins with the copied-and-pasted opening strains of Steppenwolf\u2019s \u201CMagic Carpet Ride.\u201D It\u2019s surprising that the song goes on to impress, since just the hint of that overplayed, infectious melody is a tough act to follow. They pull it off because behind their eccentric tendencies and hallucinogenic moniker, these guys build solid song structures: verse, chorus, and bridge, all strung together by solid hooks.",
+    source: "Pitchfork",
+    link: "https://pitchfork.com/reviews/albums/16370-ketamines-spaced-out/",
+  },
   {
     quote: "You Can\u2019t Serve Two Masters is one of the better psych listens of the year; its ability to surprise is so engaging that it reminds us never to judge a book by its cover.",
     source: "PopMatters",
     rating: "7/10",
+    link: "https://www.popmatters.com/175477-the-ketaminesyou-cant-serve-two-masters-2495722138.html",
   },
   {
     quote: "Ketamines threw down a monster set of ultra-catchy and inventive garage rock that had the main stage writhing and shimmying.",
     source: "Exclaim!",
+    link: "https://exclaim.ca/music/article/wyrd_fest_iii_featuring_red_mass_long_long_long_famines_tonstartssbandht_das_amore-waldorf_hotel_vancouver_bc_may_22",
   },
   {
     quote: "There\u2019s something that thrills me when people get away with these completely ludicrous, dumb, nursery-rhyme riffs, and I\u2019ve always been jealous of them.",
     source: "Consequence of Sound",
     attribution: "Jarrett Samson (Tough Age)",
+    link: "https://consequence.net/2017/09/canadian-punks-tough-age-share-the-origins-of-their-new-single-me-in-glue-stream/",
+  },
+  {
+    quote: "They still harness the hazy, confident stride of the dazed legends that came before them, and their psychedelic pop should carry them straight into the arms of today\u2019s most jaded with ease.",
+    source: "Sled Island",
+    link: "https://m.sledisland.com/2012/the-ketamins",
   },
   {
     quote: "The word ketamine refers to two things: one is the name of an anesthetic substance famous for being a recreational sedative. The other refers to a five-piece acid-wash pop band. Both are highly addictive.",
     source: "CiTR Discorder",
   },
   {
-    quote: "They still harness the hazy, confident stride of the dazed legends that came before them, and their psychedelic pop should carry them straight into the arms of today\u2019s most jaded with ease.",
-    source: "HoZac Records",
+    quote: "Ketamines channel a shit-ton of energy into their trashy psych-outs, bringing a bit of garage-leaning surf-pop into the picture for their own bizarre flavor. We can only hope they\u2019ll be back in 2013 with more of the bubbly, hook-heavy madness.",
+    source: "Styrofoam Drone",
+    attribution: "Top 25 of 2012",
+    link: "https://styrofoamdrone.com/2012/",
+  },
+  {
+    quote: "All The Colours of Your Heart reminded me of Ian Dury and the Blockheads especially with the organ and funk influence meets a poppy Fall. \u2026 \u2018Turning You On\u2019 is a complete psychedelic garage rock freakout that would be well in line with 13th Floor Elevators while adding in a surf pop calmness and quirky lead to jerk you back out your calmness.",
+    source: "Audio Ammunition",
+    link: "https://audioammunition.blogspot.com/2014/05/reviews.html",
+  },
+  {
+    quote: "You Can\u2019t Serve Two Masters has the effect of a shaken up can of pop that has burst and has been left out in the sun too long. It is sticky, gritty and catchy as hell.",
+    source: "Revolution Rock",
+    attribution: "Best Albums 2013",
+    link: "https://revrock.blogspot.com/2013/12/2013-highlights-show-489.html",
+  },
+  {
+    quote: "Canada\u2019s Ketamines come from a garage rock background, but on You Can\u2019t Serve Two Masters they shed many of the garage rock pretenses and go the quirky power pop route. The sound is cleaner and lyrics are pointed and since the sound is cleaner the vocal melodies shine brighter. It\u2019s a deft move and shows you what a brilliant band the Ketamines are.",
+    source: "Finest Kiss",
+    attribution: "Best Albums of 2013",
+    link: "https://finestkiss.wordpress.com/2013/12/22/best-of-2013-albums/",
+  },
+  {
+    quote: "Side A kicks off proceedings with \u2018Colours\u2019\u2019s wicked Steve-Cropper-jonesing GEETAR licks bumping with some uptight rythym urgency. Hit a sideways pogo to \u2018chase away the gloom\u2019, as our heroes say. \u2026 Imagine Sky Saxon lighting boards for The Meters, and you\u2019re almost there.",
+    source: "Weird Canada",
+    link: "https://weirdcanada.com/category/format/page/129/",
   },
 ];
 
@@ -616,32 +650,23 @@ function EPK() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="mb-8 border border-white/10 bg-white/[0.02] p-4 sm:p-5"
+          className="mb-8 py-6 text-center"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-            <div>
-              <AnimatedNumber value={2} className="text-2xl sm:text-3xl font-display text-white" />
-              <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">LPs</div>
-            </div>
-            <div>
-              <AnimatedNumber value={6} className="text-2xl sm:text-3xl font-display text-white" />
-              <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">7&rdquo; Singles</div>
-            </div>
-            <div>
-              <AnimatedNumber value={8} className="text-2xl sm:text-3xl font-display text-white" />
-              <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">Labels</div>
-            </div>
-            <div>
-              <AnimatedNumber value={3} className="text-2xl sm:text-3xl font-display text-red" />
-              <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">Countries</div>
-            </div>
+          <div className="flex flex-wrap items-baseline justify-center gap-x-6 gap-y-2 text-sm tracking-[0.2em] uppercase font-mono text-grey-mid">
+            <span><span className="text-2xl font-display text-white mr-1">2</span> LPs</span>
+            <span className="text-red/40">|</span>
+            <span><span className="text-2xl font-display text-white mr-1">6</span> Singles</span>
+            <span className="text-red/40">|</span>
+            <span><span className="text-2xl font-display text-white mr-1">8</span> Labels</span>
+            <span className="text-red/40">|</span>
+            <span><span className="text-2xl font-display text-red mr-1">3</span> Countries</span>
           </div>
-          <div className="mt-3 pt-3 border-t border-white/5 text-center">
-            <span className="text-[10px] tracking-[0.15em] uppercase font-mono text-grey-mid">Toronto, ON</span>
-            <span className="text-grey-mid mx-2">&middot;</span>
-            <a href="mailto:pklawton@gmail.com" className="text-[10px] tracking-[0.15em] uppercase font-mono text-red hover:text-white transition-colors">pklawton@gmail.com</a>
-            <span className="text-grey-mid mx-2">&middot;</span>
-            <a href="https://theketamines.bandcamp.com" target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-[0.15em] uppercase font-mono text-grey-mid hover:text-white transition-colors">bandcamp</a>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs tracking-[0.15em] uppercase font-mono text-grey-mid">
+            <span>Toronto, ON</span>
+            <span className="text-white/20">&middot;</span>
+            <a href="mailto:pklawton@gmail.com" className="text-red hover:text-white transition-colors">pklawton@gmail.com</a>
+            <span className="text-white/20">&middot;</span>
+            <a href="https://ketamines.bandcamp.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">bandcamp</a>
           </div>
         </motion.div>
 
@@ -742,7 +767,7 @@ function EPK() {
           <Reveal className="mt-8">
             <div className="border-t border-white/5 pt-8">
               <div className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid text-center mb-6">
-                Comrades we ruthlessly borrowed from
+                Burned Out! was influenced by:
               </div>
               <ComradesColumns />
             </div>
@@ -801,47 +826,46 @@ function EPK() {
           {/* Outlet marquee — allowed to overflow container */}
           <div className="overflow-hidden mb-10 border-y border-white/5 py-4 -mx-4 sm:-mx-6 group/marquee">
             <div className="animate-marquee group-hover/marquee:[animation-play-state:paused] whitespace-nowrap flex gap-8">
-              {["PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "RAZORCAKE", "NOW MAGAZINE", "WEIRD CANADA", "SLED ISLAND", "HOZAC RECORDS", "CiTR DISCORDER", "THE FINEST KISS", "REVOLUTION ROCK",
-                "PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "RAZORCAKE", "NOW MAGAZINE", "WEIRD CANADA", "SLED ISLAND", "HOZAC RECORDS", "CiTR DISCORDER", "THE FINEST KISS", "REVOLUTION ROCK"
+              {["PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "HOZAC RECORDS",
+                "PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "HOZAC RECORDS"
               ].map((name, i) => (
                 <span key={i} className="text-3xl sm:text-5xl font-display uppercase text-white/8">{name}</span>
               ))}
             </div>
           </div>
 
-          {/* Pitchfork feature quote (hero treatment) */}
-          <Reveal className="mb-10">
-            <div className="border-l-2 border-red pl-6 py-2">
-              <blockquote className="text-xl sm:text-2xl leading-relaxed font-light text-offwhite/90 italic">
-                &ldquo;{PRESS_HERO.quote}&rdquo;
-              </blockquote>
-              <cite className="block mt-4 text-xs tracking-[0.2em] uppercase font-mono text-red not-italic">
-                {PRESS_HERO.source}
-              </cite>
-            </div>
-          </Reveal>
-
-          {/* Top quotes in grid */}
+          {/* All quotes in uniform grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {PRESS_QUOTES.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.04, duration: 0.5 }}
-                viewport={{ once: true }}
-                className="quote-card border border-white/5 p-6 flex flex-col justify-between"
-              >
-                <blockquote className="text-base leading-relaxed font-light text-offwhite/75 mb-4">
-                  &ldquo;{item.quote}&rdquo;
-                </blockquote>
-                <div className="flex items-center justify-between">
-                  <cite className="text-[10px] tracking-[0.15em] uppercase font-mono text-red not-italic">{item.source}</cite>
-                  {item.rating && <span className="text-[10px] font-mono text-grey-mid border border-white/10 px-2 py-0.5">{item.rating}</span>}
-                </div>
-                {item.attribution && <div className="text-[10px] text-grey-mid mt-2 font-mono">&mdash; {item.attribution}</div>}
-              </motion.div>
-            ))}
+            {PRESS_QUOTES.map((item, i) => {
+              const inner = (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.04, duration: 0.5 }}
+                  viewport={{ once: true }}
+                  className="quote-card border border-white/5 p-6 flex flex-col justify-between h-full"
+                >
+                  <blockquote className="text-sm leading-relaxed font-light text-offwhite/75 mb-4">
+                    &ldquo;{item.quote}&rdquo;
+                  </blockquote>
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <cite className="text-[10px] tracking-[0.15em] uppercase font-mono text-red not-italic">{item.source}</cite>
+                      {item.rating && <span className="text-[10px] font-mono text-grey-mid border border-white/10 px-2 py-0.5">{item.rating}</span>}
+                    </div>
+                    {item.attribution && <div className="text-[10px] text-grey-mid mt-2 font-mono">&mdash; {item.attribution}</div>}
+                  </div>
+                </motion.div>
+              );
+              return item.link ? (
+                <a key={i} href={item.link} target="_blank" rel="noopener noreferrer" className="block">
+                  {inner}
+                </a>
+              ) : (
+                <div key={i}>{inner}</div>
+              );
+            })}
           </div>
 
           {/* Oprah image */}
