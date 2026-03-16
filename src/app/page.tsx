@@ -2,12 +2,10 @@
 
 import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
-import {
-  motion,
-  AnimatePresence,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import { Play, Pause, SkipForward, SkipBack, Volume2, ExternalLink } from "lucide-react";
 import { ParallaxScrollSecond } from "@/components/ui/parallax-scroll";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 
 /* ─── IMAGE MANIFESTS ─── */
 
@@ -34,14 +32,14 @@ const TRACKS = [
 /* ─── DISCOGRAPHY (back catalog only — matches Bandcamp) ─── */
 
 const DISCOGRAPHY = [
-  { title: "You Can\u2019t Serve Two Masters", year: "2013", src: "/images/album-art/ycsm.jpg", link: "https://theketamines.bandcamp.com", type: "LP", label: "Mammoth Cave" },
-  { title: "Spaced Out", year: "2012", src: "/images/album-art/spaced-out.jpg", link: "https://theketamines.bandcamp.com", type: "LP", label: "Southpaw" },
+  { title: "Spaced Out", year: "2012", src: "/images/album-art/spaced-out.jpg", link: "https://theketamines.bandcamp.com", type: "LP", label: "Mammoth Cave / Southpaw" },
+  { title: "You Can\u2019t Serve Two Masters", year: "2013", src: "/images/album-art/ycsm.jpg", link: "https://theketamines.bandcamp.com", type: "LP", label: "Mammoth Cave / Southpaw" },
   { title: "Line By Line", year: "2011", src: "/images/album-art/hozac.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "HoZac" },
   { title: "All The Colours Of Your Heart", year: "2013", src: "/images/album-art/colours.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "Pleasence" },
-  { title: "Eleven Eleven EP", year: "2014", src: "/images/album-art/eleven-eleven.jpg", link: "https://theketamines.bandcamp.com", type: "7\" EP", label: "Hosehead" },
-  { title: "A Rotten Bond", year: "2012", src: "/images/album-art/rotten-bond.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "HoZac" },
-  { title: "So Hot!", year: "2013", src: "/images/album-art/so-hot.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "Odd Box" },
-  { title: "Stay Awake", year: "2014", src: "/images/album-art/stay-awake.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "Pleasence" },
+  { title: "Eleven Eleven EP", year: "2014", src: "/images/album-art/eleven-eleven.jpg", link: "https://theketamines.bandcamp.com", type: "7\" EP", label: "Leaning Trees" },
+  { title: "A Rotten Bond", year: "2012", src: "/images/album-art/rotten-bond.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "Odd Box" },
+  { title: "So Hot!", year: "2013", src: "/images/album-art/so-hot.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "Hosehead" },
+  { title: "Stay Awake", year: "2014", src: "/images/album-art/stay-awake.jpg", link: "https://theketamines.bandcamp.com", type: "7\"", label: "Mint" },
 ];
 
 /* ─── PRESS QUOTES (one per outlet) ─── */
@@ -252,7 +250,7 @@ function AudioPlayer() {
                   ) : (
                     <span className="w-4 shrink-0"><Play size={14} className="text-grey-mid" /></span>
                   )}
-                  <span className="text-sm">{track.title}</span>
+                  <span className="text-base font-medium">{track.title}</span>
                 </button>
               );
             })}
@@ -348,35 +346,28 @@ function Reveal({ children, className = "", delay = 0 }: { children: React.React
   );
 }
 
-/* ─── SCROLLING COMRADES MARQUEE ─── */
+/* ─── COMRADES COLUMNS ─── */
 
-function ComradesMarquee() {
-  // Split into 4 rows, each scrolling in alternating directions
-  const rows = useMemo(() => {
-    const perRow = Math.ceil(COMRADES.length / 4);
+function ComradesColumns() {
+  const cols = useMemo(() => {
+    const perCol = Math.ceil(COMRADES.length / 4);
     return [
-      COMRADES.slice(0, perRow),
-      COMRADES.slice(perRow, perRow * 2),
-      COMRADES.slice(perRow * 2, perRow * 3),
-      COMRADES.slice(perRow * 3),
+      COMRADES.slice(0, perCol),
+      COMRADES.slice(perCol, perCol * 2),
+      COMRADES.slice(perCol * 2, perCol * 3),
+      COMRADES.slice(perCol * 3),
     ];
   }, []);
 
   return (
-    <div className="overflow-hidden space-y-1 py-6">
-      {rows.map((row, i) => (
-        <div key={i} className="relative overflow-hidden whitespace-nowrap">
-          <div
-            className={i % 2 === 0 ? "animate-marquee-slow" : "animate-marquee-slow-reverse"}
-            style={{ animationDuration: `${60 + i * 15}s` }}
-          >
-            {[...row, ...row].map((name, j) => (
-              <span key={`${name}-${j}`} className="inline-block text-[11px] font-mono text-offwhite/25 hover:text-red transition-colors duration-200 mx-2">
-                {name}
-                {j < row.length * 2 - 1 && <span className="text-white/10 ml-2">&bull;</span>}
-              </span>
-            ))}
-          </div>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-0">
+      {cols.map((col, i) => (
+        <div key={i}>
+          {col.map((name) => (
+            <div key={name} className="text-[11px] font-mono text-offwhite/30 hover:text-red transition-colors duration-200 leading-[1.8]">
+              {name}
+            </div>
+          ))}
         </div>
       ))}
     </div>
@@ -390,55 +381,53 @@ function EPK() {
     <div className="min-h-screen bg-black">
       <Nav />
 
-      {/* ═══ HERO: MASSIVE ALBUM ART ═══ */}
-      <section className="pt-16 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-2"
-          >
-            <div className="relative aspect-square overflow-hidden">
-              <Image
-                src="/images/album-art/front-cover.png"
-                alt="Burned Out! — Front Cover"
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            <div className="relative aspect-square overflow-hidden">
-              <Image
-                src="/images/album-art/back-cover.png"
-                alt="Burned Out! — Back Cover"
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </motion.div>
+      {/* ═══ HERO: MASSIVE FULL-BLEED ALBUM ART ═══ */}
+      <section className="pt-14">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+          className="grid grid-cols-1 md:grid-cols-2"
+        >
+          <div className="relative aspect-square overflow-hidden">
+            <Image
+              src="/images/album-art/front-cover.png"
+              alt="Burned Out! — Front Cover"
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square overflow-hidden">
+            <Image
+              src="/images/album-art/back-cover.png"
+              alt="Burned Out! — Back Cover"
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </motion.div>
 
-          {/* Title strip */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="mt-4 flex flex-wrap items-center justify-center gap-3 text-[10px] tracking-[0.25em] uppercase font-mono text-grey-mid"
-          >
-            <span className="text-white">THE KETAMINES</span>
-            <span className="text-red">/</span>
-            <span>BURNED OUT!</span>
-            <span className="text-red">/</span>
-            <span>LP</span>
-            <span className="text-red">/</span>
-            <span>10 TRACKS</span>
-            <span className="text-red">/</span>
-            <span>2026</span>
-          </motion.div>
-        </div>
+        {/* Title strip */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+          className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs tracking-[0.25em] uppercase font-mono text-grey-mid px-4"
+        >
+          <span className="text-white font-bold">THE KETAMINES</span>
+          <span className="text-red">/</span>
+          <span className="font-bold">BURNED OUT!</span>
+          <span className="text-red">/</span>
+          <span>LP</span>
+          <span className="text-red">/</span>
+          <span>10 TRACKS</span>
+          <span className="text-red">/</span>
+          <span>2026</span>
+        </motion.div>
       </section>
 
       {/* ═══ PLAYER (no header — immediately listenable) ═══ */}
@@ -456,78 +445,73 @@ function EPK() {
       <Divider />
 
       {/* ═══ ABOUT ═══ */}
-      <section id="about" className="px-4 sm:px-6 py-8 max-w-6xl mx-auto">
+      <section id="about" className="px-4 sm:px-6 py-12 max-w-6xl mx-auto">
         <Reveal>
-          <h2 className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center">About</h2>
+          <h2 className="text-sm tracking-[0.3em] uppercase font-mono text-grey-mid mb-10 text-center">About</h2>
         </Reveal>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Hero quote */}
+        <div className="max-w-5xl mx-auto">
+          {/* Album title */}
           <Reveal>
-            <p className="text-3xl sm:text-4xl md:text-5xl font-display uppercase leading-[1.1] text-center text-red mb-12">
-              Sorry what is this?
+            <p className="text-4xl sm:text-5xl md:text-7xl font-display uppercase leading-[0.95] text-center text-red mb-10">
+              Burned Out!
             </p>
           </Reveal>
 
-          {/* Bio — broken into digestible blocks */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-            <div className="md:col-span-7 space-y-6">
-              <Reveal>
-                <p className="text-base sm:text-lg leading-relaxed text-offwhite/80">
-                  Burned Out! is the first new Ketamine LP in over a decade. Over the last six years, James Leroy and I have written and recorded around forty new songs, and of that batch, we think these are the 10 best, among the better songs we&rsquo;ve ever recorded.
-                </p>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <p className="text-base sm:text-lg leading-relaxed text-offwhite/80">
-                  We initially wanted to return to our fuzz/psych roots that defined our best work, but we&rsquo;ve also remained firmly genre-agnostic, which can be confusing to some people who only listen to one thing. Genre is so boring; we&rsquo;ve always hated being lumped into one thing or another. But there are lots of genre-agnostic bands that are popular now, so maybe this is our moment.
-                </p>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <p className="text-base sm:text-lg leading-relaxed text-offwhite/80">
-                  This new work shamelessly steals many ideas from the Canadian DIY underground we&rsquo;ve been involved with since James and I released a split cassette in 1996: my side was as &ldquo;10% Gain,&rdquo; which was heavy Jawbreaker worship; his side was amazing skate-punk crap-core in the vein of FYP as &ldquo;NCL.&rdquo; Since then, we&rsquo;ve evolved, changed, and grown, and we are so excited to be back at it.
-                </p>
-              </Reveal>
+          {/* Bio — TextGenerateEffect for the statement */}
+          <Reveal>
+            <div className="max-w-3xl mx-auto mb-10">
+              <TextGenerateEffect
+                words="Burned Out! is a tribute to our comrades who toiled in the harsh Canadian DIY hinterland, honest musicians who dedicated their lives to experimentation and community while existing just out of reach of the spotlight."
+                className="!text-offwhite/90"
+                filter={false}
+                duration={1.5}
+              />
             </div>
+          </Reveal>
 
-            {/* Sidebar stats */}
-            <div className="md:col-span-5 space-y-6">
-              <Reveal delay={0.15}>
-                <div className="border border-white/10 p-6 space-y-4">
-                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-4">Past Masters</div>
-                  <p className="text-sm leading-relaxed text-offwhite/70">
-                    Between 2011 and 2015, Ketamines released two full-length albums and six 7&rdquo; singles across eight independent labels in three countries.
-                  </p>
-                  <p className="text-sm leading-relaxed text-offwhite/70">
-                    <em className="text-offwhite/90">You Can&rsquo;t Serve Two Masters</em> (2013) was named to the PopMatters best albums of the year, charted in the upper reaches of Canadian college radio for months, and drew praise from Pitchfork, Exclaim!, Weird Canada, and Discorder.
-                  </p>
-                  <p className="text-sm leading-relaxed text-offwhite/70">
-                    The band&rsquo;s live shows featured a deliberately rotating roster that eventually included over 100 musicians over the run, extracted from our friends in bands like Tough Age, Dirty Beaches, Century Palm, and Fist City.
-                  </p>
-                </div>
-              </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-offwhite/80 max-w-3xl mx-auto text-center font-light mb-12">
+              We look back on this era with deep gratitude for everyone who showed up, shared the road, taught us their moves, and took care of us in the effervescent spirit of friendship. We repay that debt by shamelessly stealing all your best ideas and copying your moves in this new album.
+            </p>
+          </Reveal>
 
-              <Reveal delay={0.25}>
-                <div className="border border-white/10 p-6">
-                  <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-grey-mid mb-3">Label History</div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {LABELS.map((label) => (
-                      <span key={label} className="text-[10px] font-mono px-2 py-1 border border-white/10 text-offwhite/50 hover:text-white hover:border-white/30 transition-colors">
-                        {label}
-                      </span>
-                    ))}
-                  </div>
+          {/* Past Masters + Labels — compact row */}
+          <Reveal delay={0.15}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              <div className="border border-white/10 p-6 space-y-3">
+                <div className="text-xs tracking-[0.3em] uppercase font-mono text-red mb-3">Past Masters</div>
+                <p className="text-base leading-relaxed text-offwhite/70">
+                  Between 2011 and 2015, Ketamines released two full-length albums and six 7&rdquo; singles across eight independent labels in three countries.
+                </p>
+                <p className="text-base leading-relaxed text-offwhite/70">
+                  <em className="text-offwhite/90">You Can&rsquo;t Serve Two Masters</em> (2013) was named to the PopMatters best albums of the year, charted in the upper reaches of Canadian college radio, and drew praise from Pitchfork, Exclaim!, Weird Canada, and Discorder.
+                </p>
+                <p className="text-base leading-relaxed text-offwhite/70">
+                  Live shows featured a deliberately rotating roster that eventually included over 100 musicians, extracted from our friends in bands like Tough Age, Dirty Beaches, Century Palm, and Fist City.
+                </p>
+              </div>
+
+              <div className="border border-white/10 p-6">
+                <div className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-4">Label History</div>
+                <div className="flex flex-wrap gap-2">
+                  {LABELS.map((label) => (
+                    <span key={label} className="text-xs font-mono px-3 py-1.5 border border-white/10 text-offwhite/50 hover:text-white hover:border-white/30 transition-colors">
+                      {label}
+                    </span>
+                  ))}
                 </div>
-              </Reveal>
+              </div>
             </div>
-          </div>
+          </Reveal>
 
-          {/* Comrades — dynamic scrolling marquee */}
-          <Reveal className="mt-12">
-            <div className="border-t border-b border-white/5">
-              <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-grey-mid text-center pt-6 pb-2">
+          {/* Comrades — 4-column layout */}
+          <Reveal className="mt-8">
+            <div className="border-t border-white/5 pt-8">
+              <div className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid text-center mb-6">
                 Comrades we ruthlessly borrowed from
               </div>
-              <ComradesMarquee />
+              <ComradesColumns />
             </div>
           </Reveal>
         </div>
@@ -562,8 +546,8 @@ function EPK() {
                   </div>
                 </div>
                 <div className="mt-2">
-                  <div className="text-sm font-light leading-tight group-hover:text-red transition-colors">{album.title}</div>
-                  <div className="text-[10px] font-mono text-grey-mid mt-0.5">{album.year} &middot; {album.type} &middot; {album.label}</div>
+                  <div className="text-base font-medium leading-tight group-hover:text-red transition-colors">{album.title}</div>
+                  <div className="text-xs font-mono text-grey-mid mt-1">{album.year} &middot; {album.type} &middot; {album.label}</div>
                 </div>
               </a>
             </Reveal>
@@ -595,7 +579,7 @@ function EPK() {
         {/* Pitchfork feature quote (hero treatment) */}
         <Reveal className="px-4 sm:px-6 max-w-4xl mx-auto mb-12">
           <div className="border-l-2 border-red pl-6 py-2">
-            <blockquote className="text-lg sm:text-xl leading-relaxed font-light text-offwhite/90 italic">
+            <blockquote className="text-xl sm:text-2xl leading-relaxed font-light text-offwhite/90 italic">
               &ldquo;{PRESS_QUOTES[0].quote}&rdquo;
             </blockquote>
             <cite className="block mt-4 text-xs tracking-[0.2em] uppercase font-mono text-red not-italic">
@@ -615,7 +599,7 @@ function EPK() {
               viewport={{ once: true }}
               className="quote-card border border-white/5 p-6 flex flex-col justify-between"
             >
-              <blockquote className="text-sm leading-relaxed font-light text-offwhite/75 mb-4">
+              <blockquote className="text-base leading-relaxed font-light text-offwhite/75 mb-4">
                 &ldquo;{item.quote}&rdquo;
               </blockquote>
               <div className="flex items-center justify-between">
@@ -657,8 +641,8 @@ function EPK() {
                   />
                 </div>
                 <div className="mt-2">
-                  <div className="text-sm font-light">{video.title}</div>
-                  <div className="text-[10px] font-mono text-grey-mid">{video.subtitle}</div>
+                  <div className="text-base font-medium">{video.title}</div>
+                  <div className="text-xs font-mono text-grey-mid">{video.subtitle}</div>
                 </div>
               </div>
             </Reveal>
@@ -697,10 +681,10 @@ function EPK() {
 
           <Reveal delay={0.2}>
             <div className="space-y-4">
-              <a href="mailto:pklawton@gmail.com" className="block text-lg font-mono text-red hover:text-white transition-colors">
+              <a href="mailto:pklawton@gmail.com" className="block text-xl sm:text-2xl font-mono text-red hover:text-white transition-colors font-bold">
                 pklawton@gmail.com
               </a>
-              <a href="tel:+16472412575" className="block text-lg font-mono text-offwhite/50 hover:text-white transition-colors">
+              <a href="tel:+16472412575" className="block text-xl sm:text-2xl font-mono text-offwhite/50 hover:text-white transition-colors">
                 647.241.2575
               </a>
               <a
