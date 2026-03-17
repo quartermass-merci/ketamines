@@ -488,11 +488,11 @@ function Nav() {
     <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 border-b border-white/5 ${
       scrolled ? "bg-black/90 backdrop-blur-md" : "bg-black"
     }`}>
-      <div className="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
-        <div className="relative w-10 h-10 invert opacity-80 hover:opacity-100 transition-opacity">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+        <div className="relative w-10 h-10 invert opacity-80 hover:opacity-100 transition-opacity hidden lg:block">
           <Image src="/images/logos/main-logo.jpg" alt="K" fill className="object-contain" sizes="40px" />
         </div>
-        <div className="flex gap-6 text-[10px] tracking-[0.2em] uppercase font-mono text-offwhite/60">
+        <div className="flex gap-3 lg:gap-6 text-[9px] sm:text-[10px] tracking-[0.15em] lg:tracking-[0.2em] uppercase font-mono text-offwhite/60 w-full lg:w-auto justify-between lg:justify-end">
           {[
             ["#music", "Music"],
             ["#about", "About"],
@@ -772,19 +772,19 @@ function EPK() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">College Charts</div>
-                  <p className="text-lg text-offwhite"><em className="text-white font-medium">You Can&rsquo;t Serve Two Masters</em> &mdash; <span className="text-amber font-bold">#2 Nationally</span></p>
+                  <p className="text-base sm:text-lg text-offwhite"><em className="text-white font-medium">You Can&rsquo;t Serve Two Masters</em> &mdash; <span className="text-amber font-bold">#2 Nationally</span></p>
                 </div>
                 <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">SYNCs</div>
-                  <p className="text-lg text-offwhite">&ldquo;Line By Line&rdquo; for <span className="text-amber font-bold">Target</span></p>
+                  <p className="text-base sm:text-lg text-offwhite">&ldquo;Line By Line&rdquo; for <span className="text-amber font-bold">Target</span></p>
                 </div>
                 <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">Shows Played</div>
-                  <p className="text-lg text-offwhite"><span className="text-amber font-bold text-2xl">175+</span> Across North America</p>
+                  <p className="text-base sm:text-lg text-offwhite"><span className="text-amber font-bold text-xl sm:text-2xl">175+</span> Across North America</p>
                 </div>
                 <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">Location</div>
-                  <p className="text-lg text-offwhite">PK lives in Hamilton &middot; James Leroy lives on a farm in Alberta &middot; The current live band is in Toronto</p>
+                  <p className="text-base sm:text-lg text-offwhite">PK lives in Hamilton &middot; James Leroy lives on a farm in Alberta &middot; The current live band is in Toronto</p>
                 </div>
               </div>
 
