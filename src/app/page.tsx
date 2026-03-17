@@ -13,7 +13,7 @@ import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 /* ─── IMAGE MANIFESTS ─── */
 
 const ALL_PHOTOS = [
-  ...Array.from({ length: 15 }, (_, i) => `/images/live/live-${String(i + 1).padStart(2, "0")}.jpg`),
+  ...Array.from({ length: 52 }, (_, i) => `/images/live/live-${String(i + 1).padStart(2, "0")}.jpg`),
   ...Array.from({ length: 8 }, (_, i) => `/images/press/press-${String(i + 1).padStart(2, "0")}.jpg`),
 ];
 
@@ -742,24 +742,24 @@ function EPK() {
 
           {/* Bio */}
           <Reveal>
-            <div className="space-y-6 mb-16">
-              <p className="text-base sm:text-lg leading-relaxed text-white text-center">
+            <div className="space-y-5 mb-16">
+              <p className="text-sm sm:text-base leading-relaxed text-white text-left">
                 James Leroy and I have been making music together since 1996, when we did our first recording session in his basement on a borrowed 8-track cassette recorder. In the 30 years since (!) a lot has changed; we live across the country from each other, I work in design and James works on a farm, but we&rsquo;ve never stopped. Hundreds of dumb songs, mostly written and meticulously iterated on for months and months, mostly for our own entertainment. And then, sometimes we get the itch to put out records and get this thing rolling again, and so here we are. We finally have 10 songs we think people besides us might be interested in.
               </p>
 
-              <p className="text-base sm:text-lg leading-relaxed text-white text-center">
+              <p className="text-sm sm:text-base leading-relaxed text-white text-left">
                 <em>Burned Out!</em> is our first long-player since 2013&rsquo;s <em>You Can&rsquo;t Serve Two Masters</em>. James and I initially bonded over a shared love of the Winnipeg political punk scene, and this might be our most overtly political record yet, but it&rsquo;s also a record about what it means to make art in an environment where art has been completely devalued.
               </p>
 
-              <p className="text-base sm:text-lg leading-relaxed text-white text-center">
+              <p className="text-sm sm:text-base leading-relaxed text-white text-left">
                 Over the last four years, we&rsquo;ve lost so many of our comrades and bandmates: our first collaborator, Christopher Schultzen; Joni Sadler from CKUT, one of our champions in campus and community radio; friends and collaborators from other bands like Cody Prairie Chicken, Chris Reimer, and Phillip Tarr; friends who put us up in their homes like Brendo in Saskatoon. We continue in their honour.
               </p>
 
-              <p className="text-base sm:text-lg leading-relaxed text-white text-center">
+              <p className="text-sm sm:text-base leading-relaxed text-white text-left">
                 We had a great initial run with the Ketamines: 7&quot;s on HoZac, Mint Records, Pleasence, Hosehead, Leaning Trees, and Odd Box in the UK; two well-received LPs. We toured extensively across North America thanks to the push from our friend Annie Southworth at Panache (rest in peace, Queen) and got to play some incredible shows. We opened for Roky Erikson, Sonic Boom, Damon and Naomi, Shadowy Men on a Shadowy Planet.
               </p>
 
-              <p className="text-lg sm:text-xl leading-relaxed text-white text-center font-medium">
+              <p className="text-base sm:text-lg leading-relaxed text-white text-left font-medium">
                 This record is for the lifers, like us, who don&rsquo;t know how to quit.
               </p>
             </div>
