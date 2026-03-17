@@ -420,7 +420,7 @@ function AudioPlayer() {
                   key={track.num}
                   onClick={() => { setCurrentTrack(idx); setIsPlaying(true); }}
                   className={`w-full flex items-center gap-4 px-4 py-3 text-left transition-colors hover:bg-white/5 border-b border-white/5 ${
-                    currentTrack === idx ? "bg-white/5 text-white" : "text-offwhite/60"
+                    currentTrack === idx ? "bg-white/5 text-white border-l-2 !border-l-red" : "text-offwhite/60"
                   }`}
                 >
                   <span className="text-xs font-mono w-6 shrink-0 text-grey-mid">{track.num}</span>
@@ -447,7 +447,7 @@ function AudioPlayer() {
           </span>
         </div>
         <div className="w-full h-1 bg-white/10 cursor-pointer mb-3 group" onClick={seek}>
-          <div className="h-full bg-red transition-all duration-100 group-hover:bg-white" style={{ width: duration ? `${(progress / duration) * 100}%` : "0%" }} />
+          <div className="h-full transition-all duration-100" style={{ width: duration ? `${(progress / duration) * 100}%` : "0%", background: "linear-gradient(90deg, #ff0000 0%, #00e5ff 100%)" }} />
         </div>
         <div className="flex items-center justify-center gap-6">
           <button onClick={prev} className="text-grey-mid hover:text-white transition-colors"><SkipBack size={18} /></button>
@@ -467,7 +467,7 @@ function Divider() {
   return (
     <div className="w-full flex items-center gap-4 py-20">
       <div className="flex-1 h-px bg-white/10" />
-      <div className="w-1.5 h-1.5 bg-red rotate-45" />
+      <div className="w-1.5 h-1.5 bg-red rotate-45 divider-diamond" />
       <div className="flex-1 h-px bg-white/10" />
     </div>
   );
@@ -772,15 +772,15 @@ function EPK() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">College Charts</div>
-                  <p className="text-lg text-offwhite"><em className="text-white font-medium">You Can&rsquo;t Serve Two Masters</em> &mdash; <span className="text-red font-bold">#2 Nationally</span></p>
+                  <p className="text-lg text-offwhite"><em className="text-white font-medium">You Can&rsquo;t Serve Two Masters</em> &mdash; <span className="text-amber font-bold">#2 Nationally</span></p>
                 </div>
                 <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">SYNCs</div>
-                  <p className="text-lg text-offwhite">&ldquo;Line By Line&rdquo; for <span className="text-red font-bold">Target</span></p>
+                  <p className="text-lg text-offwhite">&ldquo;Line By Line&rdquo; for <span className="text-amber font-bold">Target</span></p>
                 </div>
                 <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">Shows Played</div>
-                  <p className="text-lg text-offwhite"><span className="text-red font-bold text-2xl">175+</span> Across North America</p>
+                  <p className="text-lg text-offwhite"><span className="text-amber font-bold text-2xl">175+</span> Across North America</p>
                 </div>
                 <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">Location</div>
@@ -788,19 +788,6 @@ function EPK() {
                 </div>
               </div>
 
-              {/* Interrelated bands — bold callout */}
-              <div className="mt-4 bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
-                <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-3">Members Also Play In</div>
-                <div className="flex flex-wrap gap-x-5 gap-y-2 text-lg font-bold text-offwhite">
-                  <span>Century Palm <span className="text-grey-mid font-normal text-sm">(Deranged)</span></span>
-                  <span className="text-red/40">/</span>
-                  <span>Myelin Sheaths <span className="text-grey-mid font-normal text-sm">(HoZac)</span></span>
-                  <span className="text-red/40">/</span>
-                  <span>Moby Dicks <span className="text-grey-mid font-normal text-sm">(Southpaw)</span></span>
-                  <span className="text-red/40">/</span>
-                  <span>Tough Age <span className="text-grey-mid font-normal text-sm">(Mint)</span></span>
-                </div>
-              </div>
             </div>
           </Reveal>
 
@@ -821,7 +808,7 @@ function EPK() {
         {/* ═══ DISCOGRAPHY ═══ */}
         <section id="discography" className="py-24">
         <Reveal>
-          <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Discography</h2>
+          <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-amber/70 mb-12 text-center">Discography</h2>
         </Reveal>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
           {DISCOGRAPHY.map((album, i) => (
@@ -900,7 +887,7 @@ function EPK() {
               {["PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "VICE", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "RAVEN SINGS THE BLUES", "NU WAVE BRAIN WAVE", "LIGHTS IN PAIRS", "HOZAC RECORDS",
                 "PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "VICE", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "RAVEN SINGS THE BLUES", "NU WAVE BRAIN WAVE", "LIGHTS IN PAIRS", "HOZAC RECORDS"
               ].map((name, i) => (
-                <span key={i} className="text-3xl sm:text-5xl font-display uppercase text-white/8">{name}</span>
+                <span key={i} className={`text-3xl sm:text-5xl font-display uppercase ${i % 3 === 0 ? "text-red/10" : i % 3 === 1 ? "text-cyan/8" : "text-white/6"}`}>{name}</span>
               ))}
             </div>
           </div>
@@ -1003,7 +990,8 @@ function EPK() {
           <Reveal delay={0.1}>
             <div className="flex justify-center mb-12">
               <div className="relative w-full max-w-md aspect-[2.5/1]">
-                <Image src="/images/logos/black-metal-logo.png" alt="Ketamines" fill className="object-contain invert" sizes="(max-width: 448px) 100vw, 448px" />
+                <div className="absolute inset-0 bg-red/5 blur-3xl rounded-full" />
+                <Image src="/images/logos/black-metal-logo.png" alt="Ketamines" fill className="object-contain invert relative z-10" sizes="(max-width: 448px) 100vw, 448px" />
               </div>
             </div>
           </Reveal>
