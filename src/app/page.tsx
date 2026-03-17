@@ -640,7 +640,7 @@ function EPK() {
       <Nav />
 
       {/* ═══ ONE-PAGER CONTAINER ═══ */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6" style={{ paddingTop: '3.5rem' }}>
 
         {/* ═══ HERO: ALBUM ART ═══ */}
         <motion.div
@@ -724,13 +724,13 @@ function EPK() {
           <Reveal delay={0.05}>
             <div className="flex justify-center mb-12">
               <div className="border border-white/10">
-                <div className="relative w-full max-w-sm aspect-[4/3] overflow-hidden">
+                <div className="relative w-full max-w-md aspect-[4/3] overflow-hidden">
                   <Image
                     src="/images/press/james-and-pk.png"
                     alt="James Leroy and PK Lawton"
                     fill
                     className="object-cover object-top"
-                    sizes="384px"
+                    sizes="448px"
                   />
                 </div>
                 <div className="px-3 py-2 text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid text-center">
@@ -742,24 +742,24 @@ function EPK() {
 
           {/* Bio */}
           <Reveal>
-            <div className="space-y-8 mb-12">
-              <p className="text-lg sm:text-xl leading-relaxed text-white text-center">
+            <div className="space-y-6 mb-16">
+              <p className="text-base sm:text-lg leading-relaxed text-white text-center">
                 James Leroy and I have been making music together since 1996, when we did our first recording session in his basement on a borrowed 8-track cassette recorder. In the 30 years since (!) a lot has changed; we live across the country from each other, I work in design and James works on a farm, but we&rsquo;ve never stopped. Hundreds of dumb songs, mostly written and meticulously iterated on for months and months, mostly for our own entertainment. And then, sometimes we get the itch to put out records and get this thing rolling again, and so here we are. We finally have 10 songs we think people besides us might be interested in.
               </p>
 
-              <p className="text-lg sm:text-xl leading-relaxed text-white text-center">
+              <p className="text-base sm:text-lg leading-relaxed text-white text-center">
                 <em>Burned Out!</em> is our first long-player since 2013&rsquo;s <em>You Can&rsquo;t Serve Two Masters</em>. James and I initially bonded over a shared love of the Winnipeg political punk scene, and this might be our most overtly political record yet, but it&rsquo;s also a record about what it means to make art in an environment where art has been completely devalued.
               </p>
 
-              <p className="text-lg sm:text-xl leading-relaxed text-white text-center">
+              <p className="text-base sm:text-lg leading-relaxed text-white text-center">
                 Over the last four years, we&rsquo;ve lost so many of our comrades and bandmates: our first collaborator, Christopher Schultzen; Joni Sadler from CKUT, one of our champions in campus and community radio; friends and collaborators from other bands like Cody Prairie Chicken, Chris Reimer, and Phillip Tarr; friends who put us up in their homes like Brendo in Saskatoon. We continue in their honour.
               </p>
 
-              <p className="text-lg sm:text-xl leading-relaxed text-white text-center">
+              <p className="text-base sm:text-lg leading-relaxed text-white text-center">
                 We had a great initial run with the Ketamines: 7&quot;s on HoZac, Mint Records, Pleasence, Hosehead, Leaning Trees, and Odd Box in the UK; two well-received LPs. We toured extensively across North America thanks to the push from our friend Annie Southworth at Panache (rest in peace, Queen) and got to play some incredible shows. We opened for Roky Erikson, Sonic Boom, Damon and Naomi, Shadowy Men on a Shadowy Planet.
               </p>
 
-              <p className="text-xl sm:text-2xl leading-relaxed text-white text-center font-medium">
+              <p className="text-lg sm:text-xl leading-relaxed text-white text-center font-medium">
                 This record is for the lifers, like us, who don&rsquo;t know how to quit.
               </p>
             </div>
@@ -789,7 +789,7 @@ function EPK() {
               </div>
 
               {/* Interrelated bands — bold callout */}
-              <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
+              <div className="mt-4 bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                 <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-3">Members Also Play In</div>
                 <div className="flex flex-wrap gap-x-5 gap-y-2 text-lg font-bold text-offwhite">
                   <span>Century Palm <span className="text-grey-mid font-normal text-sm">(Deranged)</span></span>
@@ -800,31 +800,6 @@ function EPK() {
                   <span className="text-red/40">/</span>
                   <span>Tough Age <span className="text-grey-mid font-normal text-sm">(Mint)</span></span>
                 </div>
-              </div>
-
-              {/* Labels — infinite scrolling logos */}
-              <div className="relative py-6 border-y border-white/5">
-                <InfiniteSlider gap={56} reverse speed={30} durationOnHover={60}>
-                  {LABEL_LOGOS.map((logo) => (
-                    <img
-                      key={logo.alt}
-                      src={logo.src}
-                      alt={logo.alt}
-                      className={`h-8 sm:h-10 w-auto select-none opacity-50 hover:opacity-100 transition-opacity ${logo.invert ? "invert" : ""}`}
-                      loading="lazy"
-                    />
-                  ))}
-                </InfiniteSlider>
-                <ProgressiveBlur
-                  blurIntensity={1}
-                  className="pointer-events-none absolute top-0 left-0 h-full w-[80px]"
-                  direction="left"
-                />
-                <ProgressiveBlur
-                  blurIntensity={1}
-                  className="pointer-events-none absolute top-0 right-0 h-full w-[80px]"
-                  direction="right"
-                />
               </div>
             </div>
           </Reveal>
@@ -883,6 +858,33 @@ function EPK() {
           ))}
         </div>
       </section>
+
+        {/* Labels — infinite scrolling logos */}
+        <Reveal>
+          <div className="relative py-8 my-12 border-y border-white/5">
+            <InfiniteSlider gap={56} reverse speed={30} durationOnHover={60}>
+              {LABEL_LOGOS.map((logo) => (
+                <img
+                  key={logo.alt}
+                  src={logo.src}
+                  alt={logo.alt}
+                  className={`h-8 sm:h-10 w-auto select-none opacity-50 hover:opacity-100 transition-opacity ${logo.invert ? "invert" : ""}`}
+                  loading="lazy"
+                />
+              ))}
+            </InfiniteSlider>
+            <ProgressiveBlur
+              blurIntensity={1}
+              className="pointer-events-none absolute top-0 left-0 h-full w-[80px]"
+              direction="left"
+            />
+            <ProgressiveBlur
+              blurIntensity={1}
+              className="pointer-events-none absolute top-0 right-0 h-full w-[80px]"
+              direction="right"
+            />
+          </div>
+        </Reveal>
 
         <Divider />
 
