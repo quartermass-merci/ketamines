@@ -1,6 +1,6 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { type HTMLMotionProps, motion } from 'framer-motion';
+// No framer-motion needed — static layers only
 
 export const GRADIENT_ANGLES = {
   top: 0,
@@ -14,17 +14,16 @@ export type ProgressiveBlurProps = {
   blurLayers?: number;
   className?: string;
   blurIntensity?: number;
-} & HTMLMotionProps<'div'>;
+};
 
 export function ProgressiveBlur({
   direction = 'bottom',
   blurLayers = 8,
   className,
   blurIntensity = 0.25,
-  ...props
 }: ProgressiveBlurProps) {
   const layers = Math.max(blurLayers, 2);
-  const segmentSize = 1 / (blurLayers + 1);
+  const segmentSize = 1 / (layers + 1);
 
   return (
     <div className={cn('relative', className)}>
@@ -45,7 +44,7 @@ export function ProgressiveBlur({
         )})`;
 
         return (
-          <motion.div
+          <div
             key={index}
             className='pointer-events-none absolute inset-0 rounded-[inherit]'
             style={{
@@ -53,7 +52,6 @@ export function ProgressiveBlur({
               WebkitMaskImage: gradient,
               backdropFilter: `blur(${index * blurIntensity}px)`,
             }}
-            {...props}
           />
         );
       })}

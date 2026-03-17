@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { Play, Pause, SkipForward, SkipBack, Volume2, ExternalLink, ChevronDown } from "lucide-react";
 import { ParallaxScrollSecond } from "@/components/ui/parallax-scroll";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+
 import { GoesOutComesInUnderline, ComesInGoesOutUnderline } from "@/components/ui/underline-animation";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import { ProgressiveBlur } from "@/components/ui/progressive-blur";
@@ -168,20 +168,25 @@ const LABEL_LOGOS = [
 
 /* ─── ANIMATED EQUALIZER BARS ─── */
 
-function EqBars() {
+const EQ_ANIMATE = { scaleY: [0.4, 1, 0.6, 0.9, 0.4] };
+const EQ_TRANSITIONS = [0, 0.2, 0.4].map((delay) => ({
+  duration: 0.8, repeat: Infinity, delay, ease: "easeInOut" as const,
+}));
+
+const EqBars = React.memo(function EqBars() {
   return (
     <div className="flex items-end gap-[2px] h-3.5 w-4 shrink-0">
-      {[0, 0.2, 0.4].map((delay) => (
+      {EQ_TRANSITIONS.map((transition, i) => (
         <motion.div
-          key={delay}
-          className="w-[3px] bg-red rounded-sm"
-          animate={{ height: ["40%", "100%", "60%", "90%", "40%"] }}
-          transition={{ duration: 0.8, repeat: Infinity, delay, ease: "easeInOut" }}
+          key={i}
+          className="w-[3px] h-full bg-red rounded-sm origin-bottom"
+          animate={EQ_ANIMATE}
+          transition={transition}
         />
       ))}
     </div>
   );
-}
+});
 
 /* ─── TILT CARD (3D hover) ─── */
 
@@ -253,6 +258,9 @@ function AnimatedNumber({ value, className = "" }: { value: number; className?: 
 
 /* ─── PASSWORD GATE ─── */
 
+const EPK_PASSWORD = "burnt";
+const SESSION_KEY = "ketamines-epk-unlocked";
+
 const WRONG_MESSAGES = [
   "Wrong password",
   "Nope, try again",
@@ -273,7 +281,7 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password.toLowerCase().trim() === "burnt") {
+    if (password.toLowerCase().trim() === EPK_PASSWORD) {
       onUnlock();
     } else {
       setAttempts((a) => a + 1);
@@ -371,13 +379,13 @@ function AudioPlayer() {
     const audio = audioRef.current;
     if (!audio) return;
     audio.src = TRACKS[currentTrack].file;
-    if (isPlaying) audio.play();
+    if (isPlaying) audio.play().catch(() => {});
   }, [currentTrack, isPlaying]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (isPlaying) { audio.pause(); } else { audio.play(); }
+    if (isPlaying) { audio.pause(); } else { audio.play().catch(() => {}); }
     setIsPlaying(!isPlaying);
   };
 
@@ -472,17 +480,17 @@ function Nav() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 100);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-      scrolled ? "bg-black/90 backdrop-blur-md border-b border-white/5" : "bg-black border-b border-white/5"
+    <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 border-b border-white/5 ${
+      scrolled ? "bg-black/90 backdrop-blur-md" : "bg-black"
     }`}>
       <div className="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
         <div className="relative w-10 h-10 invert opacity-80 hover:opacity-100 transition-opacity">
-          <Image src="/images/logos/main-logo.jpg" alt="K" fill className="object-contain" />
+          <Image src="/images/logos/main-logo.jpg" alt="K" fill className="object-contain" sizes="40px" />
         </div>
         <div className="flex gap-6 text-[10px] tracking-[0.2em] uppercase font-mono text-offwhite/60">
           {[
@@ -632,7 +640,7 @@ function EPK() {
       <Nav />
 
       {/* ═══ ONE-PAGER CONTAINER ═══ */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6" style={{ paddingTop: '6rem' }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-20">
 
         {/* ═══ HERO: ALBUM ART ═══ */}
         <motion.div
@@ -732,28 +740,29 @@ function EPK() {
             </div>
           </Reveal>
 
-          {/* Bio — single flowing narrative */}
+          {/* Bio */}
           <Reveal>
-            <div className="mb-8">
-              <TextGenerateEffect
-                words="Burned Out! is a tribute to our comrades who toiled in the harsh Canadian DIY hinterland, honest musicians who dedicated their lives to experimentation and community while existing just out of reach of the spotlight."
-                className="!text-offwhite"
-                filter={false}
-                duration={1.5}
-              />
+            <div className="space-y-8 mb-12">
+              <p className="text-lg sm:text-xl leading-relaxed text-white text-center">
+                James Leroy and I have been making music together since 1996, when we did our first recording session in his basement on a borrowed 8-track cassette recorder. In the 30 years since (!) a lot has changed; we live across the country from each other, I work in design and James works on a farm, but we&rsquo;ve never stopped. Hundreds of dumb songs, mostly written and meticulously iterated on for months and months, mostly for our own entertainment. And then, sometimes we get the itch to put out records and get this thing rolling again, and so here we are. We finally have 10 songs we think people besides us might be interested in.
+              </p>
+
+              <p className="text-lg sm:text-xl leading-relaxed text-white text-center">
+                <em>Burned Out!</em> is our first long-player since 2013&rsquo;s <em>You Can&rsquo;t Serve Two Masters</em>. James and I initially bonded over a shared love of the Winnipeg political punk scene, and this might be our most overtly political record yet, but it&rsquo;s also a record about what it means to make art in an environment where art has been completely devalued.
+              </p>
+
+              <p className="text-lg sm:text-xl leading-relaxed text-white text-center">
+                Over the last four years, we&rsquo;ve lost so many of our comrades and bandmates: our first collaborator, Christopher Schultzen; Joni Sadler from CKUT, one of our champions in campus and community radio; friends and collaborators from other bands like Cody Prairie Chicken, Chris Reimer, and Phillip Tarr; friends who put us up in their homes like Brendo in Saskatoon. We continue in their honour.
+              </p>
+
+              <p className="text-lg sm:text-xl leading-relaxed text-white text-center">
+                We had a great initial run with the Ketamines: 7&quot;s on HoZac, Mint Records, Pleasence, Hosehead, Leaning Trees, and Odd Box in the UK; two well-received LPs. We toured extensively across North America thanks to the push from our friend Annie Southworth at Panache (rest in peace, Queen) and got to play some incredible shows. We opened for Roky Erikson, Sonic Boom, Damon and Naomi, Shadowy Men on a Shadowy Planet.
+              </p>
+
+              <p className="text-xl sm:text-2xl leading-relaxed text-white text-center font-medium">
+                This record is for the lifers, like us, who don&rsquo;t know how to quit.
+              </p>
             </div>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <p className="text-lg sm:text-xl leading-relaxed text-offwhite/80 text-center font-light mb-8">
-              Between 2011 and 2015, Ketamines released two full-length albums and six 7&quot; singles across eight independent labels in the USA (HoZac, Southpaw); Canada (Mint, Mammoth Cave, Pleasence, Hosehead, Leaning Trees) and the UK (Odd Box).
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <p className="text-lg sm:text-xl leading-relaxed text-offwhite/80 text-center font-light mb-10">
-              <em className="text-offwhite">Burned Out!</em> is for the people who showed up, shared the road, and taught us their moves, which we shamelessly copped. And as we get older, we have lost so many of our comrades, and we dedicate this album to them: Annie Southworth was our champion at Panache and gave a little Canadian band so much love, we miss her dearly; Rest in peace to our comrades Joni Sadler from CKUT, Chris Reimer, Philip Tarr, Cody Prarie Chicken, Brendo, our lost bandmate Christopher Schultzen and the goat, Paul Thomas &ldquo;Gator&rdquo; Slator.
-            </p>
           </Reveal>
 
           {/* Fast facts — punk zine style */}
@@ -761,26 +770,26 @@ function EPK() {
             <div className="mb-16 space-y-8">
               {/* Key facts as punchy lines */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-white/[0.03] border border-white/5 p-5 hover:border-white/10 transition-colors">
+                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">College Charts</div>
                   <p className="text-lg text-offwhite"><em className="text-white font-medium">You Can&rsquo;t Serve Two Masters</em> &mdash; <span className="text-red font-bold">#2 Nationally</span></p>
                 </div>
-                <div className="bg-white/[0.03] border border-white/5 p-5 hover:border-white/10 transition-colors">
+                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">SYNCs</div>
                   <p className="text-lg text-offwhite">&ldquo;Line By Line&rdquo; for <span className="text-red font-bold">Target</span></p>
                 </div>
-                <div className="bg-white/[0.03] border border-white/5 p-5 hover:border-white/10 transition-colors">
+                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">Shows Played</div>
                   <p className="text-lg text-offwhite"><span className="text-red font-bold text-2xl">175+</span> Across North America</p>
                 </div>
-                <div className="bg-white/[0.03] border border-white/5 p-5 hover:border-white/10 transition-colors">
+                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">Location</div>
                   <p className="text-lg text-offwhite">PK lives in Hamilton &middot; James Leroy lives on a farm in Alberta &middot; The current live band is in Toronto</p>
                 </div>
               </div>
 
               {/* Interrelated bands — bold callout */}
-              <div className="bg-white/[0.03] border border-white/5 p-5 hover:border-white/10 transition-colors">
+              <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
                 <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-3">Members Also Play In</div>
                 <div className="flex flex-wrap gap-x-5 gap-y-2 text-lg font-bold text-offwhite">
                   <span>Century Palm <span className="text-grey-mid font-normal text-sm">(Deranged)</span></span>
@@ -835,7 +844,7 @@ function EPK() {
         <Divider />
 
         {/* ═══ DISCOGRAPHY ═══ */}
-        <section className="py-24">
+        <section id="discography" className="py-24">
         <Reveal>
           <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Discography</h2>
         </Reveal>
@@ -880,7 +889,7 @@ function EPK() {
         {/* ═══ PRESS ═══ */}
         <section id="press" className="py-24">
           <Reveal>
-            <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-8 text-center">Press</h2>
+            <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Press</h2>
           </Reveal>
 
           {/* Outlet marquee — allowed to overflow container */}
@@ -932,9 +941,9 @@ function EPK() {
           <Reveal className="mt-10">
             <div className="border border-white/10">
               <div className="relative aspect-[3/1] overflow-hidden">
-                <Image src="/images/press/oprah.jpg" alt="Lethbridge Herald: Ketamines capture Oprah's attention" fill className="object-contain bg-[#f5f0e8]" sizes="960px" />
+                <Image src="/images/press/oprah.jpg" alt="Lethbridge Herald: Ketamines capture Oprah's attention" fill className="object-contain bg-[#f5f0e8]" sizes="(max-width: 960px) 100vw, 960px" />
               </div>
-              <div className="px-4 py-2 text-[10px] tracking-[0.15em] uppercase font-mono text-grey-mid">
+              <div className="px-4 py-2 text-[10px] tracking-[0.15em] uppercase font-mono text-grey-mid text-center">
                 Still funny a decade later &mdash; actual clip from the front page of the Lethbridge Herald
               </div>
             </div>
@@ -956,13 +965,14 @@ function EPK() {
                     <iframe
                       src={`https://player.vimeo.com/video/${video.vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479&color=ff0000&title=0&byline=0&portrait=0`}
                       allow="autoplay; fullscreen; picture-in-picture"
+                      loading="lazy"
                       className="absolute inset-0 w-full h-full"
                       title={video.title}
                     />
                   </div>
-                  <div className="mt-2">
+                  <div className="mt-3">
                     <div className="text-base font-medium">{video.title}</div>
-                    <div className="text-xs font-mono text-grey-mid">{video.subtitle}</div>
+                    <div className="text-xs font-mono text-grey-mid mt-1">{video.subtitle}</div>
                   </div>
                 </div>
               </Reveal>
@@ -991,7 +1001,7 @@ function EPK() {
           <Reveal delay={0.1}>
             <div className="flex justify-center mb-12">
               <div className="relative w-full max-w-md aspect-[2.5/1]">
-                <Image src="/images/logos/black-metal-logo.png" alt="Ketamines" fill className="object-contain invert" />
+                <Image src="/images/logos/black-metal-logo.png" alt="Ketamines" fill className="object-contain invert" sizes="(max-width: 448px) 100vw, 448px" />
               </div>
             </div>
           </Reveal>
@@ -1034,14 +1044,14 @@ export default function Page() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const saved = sessionStorage.getItem("ketamines-epk-unlocked");
+      const saved = sessionStorage.getItem(SESSION_KEY);
       if (saved === "true") setUnlocked(true);
     }
   }, []);
 
   const handleUnlock = () => {
     setEntering(true);
-    sessionStorage.setItem("ketamines-epk-unlocked", "true");
+    sessionStorage.setItem(SESSION_KEY, "true");
     setTimeout(() => setUnlocked(true), 600);
   };
 

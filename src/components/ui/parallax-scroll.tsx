@@ -61,6 +61,7 @@ export const ParallaxScrollSecond = ({
                   className="h-80 w-full object-cover object-left-top !m-0 !p-0 grayscale hover:grayscale-0 transition-all duration-500"
                   height={400}
                   width={400}
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   alt="The Ketamines"
                 />
               </motion.div>
@@ -78,6 +79,7 @@ export const ParallaxScrollSecond = ({
                   className="h-80 w-full object-cover object-left-top !m-0 !p-0 grayscale hover:grayscale-0 transition-all duration-500"
                   height={400}
                   width={400}
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   alt="The Ketamines"
                 />
               </motion.div>
@@ -100,6 +102,7 @@ export const ParallaxScrollSecond = ({
                   className="h-80 w-full object-cover object-left-top !m-0 !p-0 grayscale hover:grayscale-0 transition-all duration-500"
                   height={400}
                   width={400}
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   alt="The Ketamines"
                 />
               </motion.div>

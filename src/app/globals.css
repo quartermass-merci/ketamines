@@ -125,23 +125,6 @@ body {
   animation: marquee 30s linear infinite;
 }
 
-@keyframes marquee-slow {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-@keyframes marquee-slow-reverse {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
-}
-
-.animate-marquee-slow {
-  display: inline-block;
-  animation: marquee-slow 60s linear infinite;
-}
-.animate-marquee-slow-reverse {
-  display: inline-block;
-  animation: marquee-slow-reverse 60s linear infinite;
-}
 
 /* Glitch effect */
 @keyframes glitch {
@@ -210,35 +193,8 @@ body {
   animation: fadeUp 0.8s ease-out forwards;
 }
 
-.fade-up-delay-1 {
-  animation: fadeUp 0.8s ease-out 0.1s forwards;
-  opacity: 0;
-}
-.fade-up-delay-2 {
-  animation: fadeUp 0.8s ease-out 0.2s forwards;
-  opacity: 0;
-}
-.fade-up-delay-3 {
-  animation: fadeUp 0.8s ease-out 0.3s forwards;
-  opacity: 0;
-}
 
-/* Horizontal scroll for photo strip */
-.photo-strip {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.photo-strip::-webkit-scrollbar {
-  display: none;
-}
-.photo-strip > * {
-  scroll-snap-align: start;
-  flex-shrink: 0;
-}
+
 
 /* Blink cursor for password input */
 @keyframes blink {
@@ -265,16 +221,6 @@ body {
   background: #1a1a1a;
 }
 
-/* Label pill shimmer */
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-.label-pill:hover {
-  background: linear-gradient(90deg, transparent 0%, rgba(255,0,0,0.06) 50%, transparent 100%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s ease-in-out;
-}
 
 /* Shake animation for password gate */
 @keyframes shake {
