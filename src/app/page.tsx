@@ -47,6 +47,15 @@ const DISCOGRAPHY = [
   { title: "Stay Awake", year: "2014", src: "/images/album-art/stay-awake.jpg", link: "https://ketamines.bandcamp.com/album/stay-awake-7", type: "7\"", label: "Mint" },
 ];
 
+/* ─── ASSOCIATED RELEASES ─── */
+
+const ASSOCIATED_RELEASES = [
+  { title: "Meet You", artist: "Century Palm", year: "2017", label: "Deranged Records", src: "/images/album-art/century-palm-meet-you.jpg", link: "https://centurypalm.bandcamp.com/album/meet-you-lp" },
+  { title: "Get On Your Nerves", artist: "Myelin Sheaths", year: "2010", label: "Southpaw Records", src: "/images/album-art/myelin-sheaths-nerves.jpg", link: "https://myelinsheaths.bandcamp.com/album/get-on-your-nerves-lp-southpaw-2010" },
+  { title: "A Hopeless Noise", artist: "Red Mass", year: "2020", label: "Mothland", src: "/images/album-art/red-mass-hopeless.jpg", link: "https://redmass.bandcamp.com/album/a-hopeless-noise" },
+  { title: "Terminal Phase", artist: "Don\u2019t Bother", year: "2018", label: "Symbolic Capital Industries", src: "/images/album-art/dont-bother-terminal.jpg", link: "https://paullawton.bandcamp.com/album/terminal-phase-2018" },
+];
+
 /* ─── PRESS QUOTES (all equal treatment, with links) ─── */
 
 const PRESS_QUOTES = [
@@ -139,7 +148,7 @@ const PRESS_QUOTES = [
 
 /* ─── COMRADES LIST ─── */
 
-const COMRADES = "Absolutely Free, Actual Water, AHNA, Aids Wolf, Andy Boay, Apollo Ghosts, Atomic Don, Audacity, Aunty Panty, Average Times, B-Lines, B.A. Johnston, Babysitter, Bad Naked, The Ballantynes, Bare Mutants, Bare Wires, Barreracudas, The Beaten Hearts, Beliefs, The Beverlys, The Bicycles, Bidini Band, Bile Sister, The Blind Shake, The Bonaduces, Bonnie Doon, Brat Kings, Brave Radar, Brazilian Money, Brews Willis, Bronx Cheerleader, The Browns, Burnt Ones, Caves, Caymans, Cellphone, Century Palm, Chad VanGaalen, Chains of Love, Chico No Face, Cindy Lee, Concrete Hearts, Connosseurs of Porn, Cosmonauts, The Courtneys, Cousins, Cozy, Crocodile, Crosss, The Cry, The Cryptomaniacs, Damo Suzuki, Dany Laj and The Looks, Darcy Spindle, Davila 666, The Dead Beat, Dead Ghosts, Dirty Beaches, Disasterbators, Dog Day, The Doozies, Dorothea Paas, Duchess Says, Dusted, D\u2019Eon, Each Other, Elevator, Elevator Through, Elevator to Hell, Ell V Gore, Elliot, Eric & The Happy Thoughts, Eric\u2019s Trip, Extra Happy Ghost!!!, The Famines, Far-Out Fangtooth, Favour, Feel Alright, Femme Accident, Femminielli, Feral Children, Fill Spectre, Fist City, Fleshmoves, The Florals, The Forever, The Forks, Freak Heat Waves, Freelove Fenner, The Fresh and Onlys, Fresh Snow, Friendo, Fungi Girls, Fuzzy Numbers, Gal Gracen, Gay, Gentleman Jesse and His Men, GOBBLE GOBBLE, Gold, The Gooeys, The Grand Pantrymen, Grave Babies, Growing Pains, Grown-Ups, Hag Face, Hank and Lilly, Haunted Souls, Heaven For Real, Henry H. Owings, High Rise II, The Highest Order, Hobo Cubes, Homostupids, HSY, Human Eye, Hunters, I-Spy, Ian Manhire, J. Sherri, James Leroy and the Giant, The James Leroy Power Trio, Jay Holy, JAZZ, Jeans Boots, The Jeremy Clarkson, JFM, Jil Peace, JLK, John Jerome and The Congregation, Juan Wauters, K-Holes, The Kamikazes, Kappa Chow, King Cobb Steelie, King Tuff, Korean Gut, KRANG, Kris Ellestad, Lab Coast, Lantern, Legato Vipers, Lets Go, Long Long Long, The Low Sizes, Lungbutter, Mac, Mac DeMarco, Man Legs, Man Made Hill, Manic Attracts, Mavo, Meat Curtains, Mexican Slang, Mickey, Microdot, The Mitts, The Moby Dicks, Mode Moderne, Modern Nature, Monomyth, Moon, Moonwood, Mothers Children, The Mutators, The Myelin Sheaths, Mystics, Nap Eyes, Needlecraft, Needles//Pins, Nervous Talk, Noble Savages, Nu Sensae, The Numerators, The Nymphets, OBN III, Open Channels, The Ostrich, Ought, Outdoor Minors, Outer Minds, Outtacontroller, P.S. I Love You, Painted Thin, Pale Lips, Parquet Courts, PC Worship, Peace for Bombs, Peelander Z, Personal and the Pizza, Pink Noise, Pink Wine, Pissed Jeans, Plastic Act, Play Guitar, Pleasure Leftists, Pop Crimes, Porter Hall, Pow Wows, Pregnancy Scares, Preoccupations, Priors, Private Lives, Propagandhi, Protruders, Pup, Quiet Loudly, Quilt, Radians, Rayon Beach, Red Fisher, Red Mass, Redd Kross, Renny Wilson, Rick White, Roky Erickson, Role Mach, The Sadies, Sam Coffey and the Iron Lungs, Scattered Clouds, Schoolteacher, The Sedatives, Sexy Merlin, Shadowy Men on a Shadowy Planet, Shannon and the Clams, Sharp Ends, Shearing Pinx, Sheer Agony, Shipyards, Shitty Neighbours, Shooting Guns, Shotgun Jimmie, The Shrapnelles, Silver Dapple, Simply Saucer, Skin Flowers, Slim Twig, Slime Street, Sonic Avenues, Sonic Boom, The Soupcans, Squish, Stalwart Sons, Start Something, Steve Adamyk Band, The Stolen Minks, Stoopid Idiots, Strange Attractor, Strange Boys, Stressed Out, Student Teacher, Sun Arraw, Taylor Knox Band, Teen Liver, Teenanger, Teledrome, Tess Parks, Thee Oh Sees, The Thrashers, Timecopz, Times New Viking, Timmy\u2019s Organism, Tonetta, Tonstartssbandht, Topless Mongos, Tough Age, TV Ghost, Tyvek, Ultimate Painting, Ultrathin, Uncle Bad Touch, Us Girls, The Valley Boys, VIDEO, Village, Voicemail, Warm Soda, Wax Mannequin, White Mystery, White Poppy, The White Wires, The Wicked Awesomes, WLMRT, The Wolf Note, Women, Woolworm, Wrong Hole, Wyrd Visions, X Ray Eyeballs, Yellow Teeth, Young Governor, Zacht Automaat, Zebrassieres".split(", ");
+const COMRADES = "Absolutely Free, Actual Water, AHNA, Aids Wolf, Ancient Shapes, Andy Boay, Apollo Ghosts, Atomic 7, Atomic Don, Audacity, Aunty Panty, Average Times, B-Lines, B.A. Johnston, Babysitter, Bad Naked, The Ballantynes, Bare Mutants, Bare Wires, Barreracudas, The Beaten Hearts, Beliefs, The Beverlys, The Bicycles, Bidini Band, Bile Sister, The Blind Shake, The Bonaduces, Bonnie Doon, Brat Kings, Brave Radar, Brazilian Money, Brews Willis, Bronx Cheerleader, The Browns, The Burning Hell, Burnt Ones, Caves, Caymans, Cellphone, Century Palm, Chad VanGaalen, Chains of Love, Chico No Face, Cindy Lee, Concrete Hearts, Connosseurs of Porn, The Constantines, Cosmonauts, The Courtneys, Cousins, Cozy, Crocodile, Crosss, The Cry, The Cryptomaniacs, cub, D\u2019Eon, Damo Suzuki, Daniel Fred and Julie, Daniel Romano, Dany Laj and The Looks, Darcy Spindle, Davila 666, The Dead Beat, Dead Ghosts, Destroyer, Dirty Beaches, Disasterbators, Dog Day, The Doozies, Dorothea Paas, Duchess Says, Dumb, Duotang, Dusted, Each Other, Elevator, Elevator Through, Elevator to Hell, Ell V Gore, Elliot, Energy Slime, Eric & The Happy Thoughts, Eric\u2019s Trip, The Evaporators, Extra Happy Ghost!!!, Faith Healer, The Famines, Far-Out Fangtooth, Favour, Feel Alright, Femme Accident, Femminielli, Feral Children, Fill Spectre, Fist City, Fiver, Fleshmoves, The Florals, The Forever, The Forks, Freak Heat Waves, Freelove Fenner, The Fresh and Onlys, Fresh Snow, Friendo, Fungi Girls, Fuzzy Numbers, Gal Gracen, The Gay, Gentleman Jesse and His Men, GOBBLE GOBBLE, Gold, The Gooeys, The Grand Pantrymen, Grave Babies, Growing Pains, Grown-Ups, Hag Face, Hank and Lilly, Haunted Souls, Heaven For Real, Henry H. Owings, Hi-Fives, High Rise II, The Highest Order, Hobo Cubes, Homostupids, HSY, Huevos Rancheros, Human Eye, Hunters, I-Spy, Ian Manhire, J. Sherri, James Leroy and the Giant, The James Leroy Power Trio, Jay Holy, JAZZ, Jeans Boots, The Jeremy Clarkson, JFM, Jil Peace, JLK, John Jerome and The Congregation, Jon McKiel, Juan Wauters, Julie Doiron, K-Holes, The Kamikazes, Kappa Chow, King Cobb Steelie, King Tuff, knitting, Korean Gut, KRANG, Kris Ellestad, Lab Coast, Lantern, Legato Vipers, Lets Go, Long Long Long, The Low Sizes, Lungbutter, Mac, Mac DeMarco, Man Legs, Man Made Hill, Manic Attracts, Mavo, Meat Curtains, Mexican Slang, Mickey, Microdot, Miesha & The Spanks, The Mitts, The Moby Dicks, Mode Moderne, Modern Nature, Monomyth, Moon, Moonwood, Mothers Children, The Mutators, The Myelin Sheaths, Mystics, Nap Eyes, Necking, Needlecraft, Needles//Pins, Nervous Talk, New Town Animals, Noble Savages, Novillero, Nu Sensae, The Numerators, The Nymphets, OBN III, Open Channels, The Organ, The Ostrich, Ought, Outdoor Minors, Outer Minds, Outtacontroller, P.S. I Love You, Painted Thin, Pale Lips, Pansy Division, Parquet Courts, Partner, PC Worship, Peace for Bombs, Peach Kelli Pop, Peelander Z, Personal and the Pizza, Pink Noise, Pink Wine, Pissed Jeans, Plastic Act, Play Guitar, Pleasure Leftists, Pop Crimes, Porter Hall, Pow Wows, Pregnancy Scares, Preoccupations, Priors, Private Lives, Propagandhi, Protruders, Pup, Quiet Loudly, Quilt, Radians, Rayon Beach, Red Fisher, Red Mass, Redd Kross, Renny Wilson, Rick White, Roky Erickson, Role Mach, The Sadies, Sam Coffey and the Iron Lungs, Scattered Clouds, Schoolteacher, The Sedatives, Sexy Merlin, Shadowy Men on a Shadowy Planet, Shannon and the Clams, Sharp Ends, Shearing Pinx, Sheer Agony, Shipyards, Shitty Neighbours, Shooting Guns, Shotgun & Jaybird, Shotgun Jimmie, The Shrapnelles, Silver Dapple, Simply Saucer, Skin Flowers, Slim Twig, Slime Street, Sonic Avenues, Sonic Boom, The Soupcans, Squish, Stalwart Sons, the Stand GT, Start Something, Steve Adamyk Band, The Stolen Minks, Stoopid Idiots, Strange Attractor, Strange Boys, Stressed Out, Student Teacher, Sun Arraw, Supermoon, Taylor Knox Band, Teen Liver, Teenanger, Teledrome, Tess Parks, Thee Oh Sees, The Thrashers, Timecopz, Times New Viking, Timmy\u2019s Organism, Tonetta, Tonstartssbandht, Topless Mongos, Tough Age, TV Ghost, Tyvek, Ultimate Painting, Ultrathin, Uncle Bad Touch, Us Girls, The Valley Boys, VIDEO, Village, Voicemail, Warm Soda, Wax Mannequin, White Mystery, White Poppy, The White Wires, The Wicked Awesomes, WLMRT, The Wolf Note, Women, Woolworm, Wrong Hole, Wyrd Visions, X Ray Eyeballs, Yellow Teeth, Young Governor, Zacht Automaat, Zebrassieres".split(", ");
 
 /* ─── VIDEOS ─── */
 
@@ -837,6 +846,46 @@ function EPK() {
                   <div className="text-base font-medium leading-tight group-hover:text-red transition-colors">{album.title}</div>
                   <div className="text-sm font-mono mt-1.5">
                     <span className="text-grey-mid">{album.year} &middot; {album.type}</span>
+                    <span className="text-offwhite/70"> &middot; {album.label}</span>
+                  </div>
+                </div>
+              </a>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Associated Releases */}
+        <Reveal>
+          <h3 className="text-lg sm:text-xl tracking-[0.25em] uppercase font-mono text-amber/70 mt-16 mb-8 text-center">Associated Releases</h3>
+        </Reveal>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6">
+          {ASSOCIATED_RELEASES.map((album, i) => (
+            <Reveal key={album.title} delay={i * 0.05}>
+              <a
+                href={album.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
+              >
+                <TiltCard>
+                  <div className="relative aspect-square overflow-hidden border border-white/5 group-hover:border-red/50 transition-all duration-300">
+                    <Image
+                      src={album.src}
+                      alt={`${album.artist} — ${album.title}`}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                      <ExternalLink size={20} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </div>
+                </TiltCard>
+                <div className="mt-3">
+                  <div className="text-base font-medium leading-tight group-hover:text-red transition-colors">{album.artist}</div>
+                  <div className="text-sm text-offwhite/70 leading-tight mt-0.5">{album.title}</div>
+                  <div className="text-sm font-mono mt-1.5">
+                    <span className="text-grey-mid">{album.year}</span>
                     <span className="text-offwhite/70"> &middot; {album.label}</span>
                   </div>
                 </div>
