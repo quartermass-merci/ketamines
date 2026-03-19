@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, useScroll } from "framer-motion";
 import { Play, Pause, SkipForward, SkipBack, Volume2, ExternalLink, ChevronDown } from "lucide-react";
-import { ParallaxScrollSecond } from "@/components/ui/parallax-scroll";
+import { ImageGallery } from "@/components/ui/image-gallery";
 
 import { GoesOutComesInUnderline, ComesInGoesOutUnderline } from "@/components/ui/underline-animation";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
@@ -174,6 +174,72 @@ const LABEL_LOGOS = [
   { src: "/images/labels/leaning-trees.png", alt: "Leaning Trees Records", invert: true },
   { src: "/images/labels/mint.png", alt: "Mint Records", invert: false },
 ];
+
+/* ─── VHS GRAIN OVERLAY (animated Canvas noise) ─── */
+
+function VHSGrain() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Small canvas, stretched via CSS for performance
+    canvas.width = 256;
+    canvas.height = 256;
+
+    let raf: number;
+    let frame = 0;
+
+    const draw = () => {
+      frame++;
+      // Only update every 3rd frame (~20fps) for that VHS stutter feel
+      if (frame % 3 === 0) {
+        const imageData = ctx.createImageData(256, 256);
+        const data = imageData.data;
+        for (let i = 0; i < data.length; i += 4) {
+          const v = Math.random() * 255;
+          data[i] = v;
+          data[i + 1] = v;
+          data[i + 2] = v;
+          data[i + 3] = 12; // Very subtle alpha
+        }
+
+        // Add occasional horizontal scan line glitch
+        if (Math.random() > 0.97) {
+          const y = Math.floor(Math.random() * 256);
+          const h = Math.floor(Math.random() * 4) + 1;
+          for (let row = y; row < Math.min(y + h, 256); row++) {
+            for (let x = 0; x < 256; x++) {
+              const idx = (row * 256 + x) * 4;
+              data[idx + 3] = 40; // Brighter scan line
+            }
+          }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+      }
+      raf = requestAnimationFrame(draw);
+    };
+
+    // Respect prefers-reduced-motion
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!mq.matches) {
+      draw();
+    }
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="pointer-events-none fixed inset-0 z-[9999] h-full w-full opacity-[0.06]"
+      style={{ mixBlendMode: "overlay", imageRendering: "auto" }}
+    />
+  );
+}
 
 /* ─── ANIMATED EQUALIZER BARS ─── */
 
@@ -351,6 +417,98 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
   );
 }
 
+/* ─── AUDIO VISUALIZER (Web Audio API + Canvas) ─── */
+
+function AudioVisualizer({ audioRef, isPlaying }: { audioRef: React.RefObject<HTMLAudioElement | null>; isPlaying: boolean }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const analyserRef = useRef<AnalyserNode | null>(null);
+  const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
+  const ctxRef = useRef<AudioContext | null>(null);
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    // Create AudioContext on first play (requires user gesture)
+    if (!ctxRef.current) {
+      const ctx = new AudioContext();
+      const analyser = ctx.createAnalyser();
+      analyser.fftSize = 128;
+      analyser.smoothingTimeConstant = 0.8;
+      const source = ctx.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(ctx.destination);
+      ctxRef.current = ctx;
+      analyserRef.current = analyser;
+      sourceRef.current = source;
+    }
+
+    if (isPlaying && ctxRef.current?.state === "suspended") {
+      ctxRef.current.resume();
+    }
+  }, [audioRef, isPlaying]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const analyser = analyserRef.current;
+    if (!canvas || !analyser) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    const draw = () => {
+      rafRef.current = requestAnimationFrame(draw);
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      if (!isPlaying) return;
+
+      analyser.getByteFrequencyData(dataArray);
+
+      const barCount = Math.min(bufferLength, 48);
+      const barWidth = w / barCount;
+      const gap = 1;
+
+      for (let i = 0; i < barCount; i++) {
+        const value = dataArray[i] / 255;
+        const barHeight = value * h * 0.9;
+
+        // Gradient from red to cyan across the spectrum
+        const t = i / barCount;
+        const r = Math.round(255 * (1 - t));
+        const g = Math.round(229 * t);
+        const b = Math.round(255 * t);
+
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${0.6 + value * 0.4})`;
+        ctx.fillRect(
+          i * barWidth + gap / 2,
+          h - barHeight,
+          barWidth - gap,
+          barHeight
+        );
+      }
+    };
+
+    draw();
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [isPlaying]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      width={480}
+      height={40}
+      className="w-full h-8 opacity-80"
+      style={{ imageRendering: "pixelated" }}
+    />
+  );
+}
+
 /* ─── AUDIO PLAYER ─── */
 
 function AudioPlayer() {
@@ -455,10 +613,11 @@ function AudioPlayer() {
             {fmt(progress)} / {fmt(duration)}
           </span>
         </div>
-        <div className="w-full h-1 bg-white/10 cursor-pointer mb-3 group" onClick={seek}>
+        <div className="w-full h-1 bg-white/10 cursor-pointer mb-2 group" onClick={seek}>
           <div className="h-full transition-all duration-100" style={{ width: duration ? `${(progress / duration) * 100}%` : "0%", background: "linear-gradient(90deg, #ff0000 0%, #00e5ff 100%)" }} />
         </div>
-        <div className="flex items-center justify-center gap-6">
+        <AudioVisualizer audioRef={audioRef} isPlaying={isPlaying} />
+        <div className="flex items-center justify-center gap-6 mt-2">
           <button onClick={prev} className="text-grey-mid hover:text-white transition-colors"><SkipBack size={18} /></button>
           <button onClick={togglePlay} className={`w-10 h-10 flex items-center justify-center border transition-all ${isPlaying ? "border-red text-red shadow-[0_0_12px_rgba(255,0,0,0.3)]" : "border-white/20 hover:border-red hover:text-red"}`}>
             {isPlaying ? <Pause size={18} /> : <Play size={18} />}
@@ -641,6 +800,49 @@ function FooterEasterEgg() {
   );
 }
 
+/* ─── HERO COVERS (scroll-driven parallax) ─── */
+
+function HeroCovers() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const yFront = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const yBack = useTransform(scrollYProgress, [0, 1], [0, -30]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 1, 0.6]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+      className="grid grid-cols-1 md:grid-cols-2 gap-1 overflow-hidden"
+      style={{ scale, opacity }}
+    >
+      <motion.div className="relative aspect-square overflow-hidden" style={{ y: yFront }}>
+        <Image
+          src="/images/album-art/front-cover.png"
+          alt="Burned Out! — Front Cover"
+          fill
+          className="object-cover"
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </motion.div>
+      <motion.div className="relative aspect-square overflow-hidden" style={{ y: yBack }}>
+        <Image
+          src="/images/album-art/back-cover.png"
+          alt="Burned Out! — Back Cover"
+          fill
+          className="object-cover"
+          priority
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+      </motion.div>
+    </motion.div>
+  );
+}
+
 /* ─── MAIN EPK ─── */
 
 function EPK() {
@@ -654,39 +856,14 @@ function EPK() {
 
   return (
     <div className="min-h-screen bg-black">
+      <VHSGrain />
       <Nav />
 
       {/* ═══ ONE-PAGER CONTAINER ═══ */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6" style={{ paddingTop: '3.5rem' }}>
 
-        {/* ═══ HERO: ALBUM ART ═══ */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-1"
-        >
-          <div className="relative aspect-square overflow-hidden">
-            <Image
-              src="/images/album-art/front-cover.png"
-              alt="Burned Out! — Front Cover"
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-          <div className="relative aspect-square overflow-hidden">
-            <Image
-              src="/images/album-art/back-cover.png"
-              alt="Burned Out! — Back Cover"
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-        </motion.div>
+        {/* ═══ HERO: ALBUM ART (scroll-driven parallax) ═══ */}
+        <HeroCovers />
 
         {/* Title strip — bold and commanding */}
         <motion.div
@@ -1034,7 +1211,7 @@ function EPK() {
           <Reveal>
             <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-12 text-center">Photos</h2>
           </Reveal>
-          <ParallaxScrollSecond images={ALL_PHOTOS} />
+          <ImageGallery images={ALL_PHOTOS} />
         </section>
 
         <Divider />
@@ -1108,12 +1285,12 @@ export default function Page() {
   const handleUnlock = () => {
     setEntering(true);
     sessionStorage.setItem(SESSION_KEY, "true");
-    setTimeout(() => setUnlocked(true), 600);
+    setTimeout(() => setUnlocked(true), 1400);
   };
 
   if (!unlocked) {
     return (
-      <div className={entering ? "transition-opacity duration-500 opacity-0" : ""}>
+      <div className={entering ? "crt-shutdown" : ""}>
         <PasswordGate onUnlock={handleUnlock} />
       </div>
     );
