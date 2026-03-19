@@ -592,7 +592,7 @@ function ContactEmail() {
   };
 
   return (
-    <button onClick={handleClick} className="block text-xl sm:text-2xl font-mono text-red hover:text-white transition-colors font-bold mx-auto">
+    <button onClick={handleClick} className="block text-2xl sm:text-3xl md:text-4xl font-mono text-red hover:text-white transition-colors font-bold mx-auto">
       <AnimatePresence mode="wait">
         {copied ? (
           <motion.span key="copied" initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} className="text-white">
@@ -644,6 +644,14 @@ function FooterEasterEgg() {
 /* ─── MAIN EPK ─── */
 
 function EPK() {
+  useEffect(() => {
+    console.log(
+      "%c🔥 THE KETAMINES — BURNED OUT! 🔥\n%cSign this band.\npklawton@gmail.com",
+      "font-size:20px;font-weight:bold;color:#ff0000;",
+      "font-size:14px;color:#d4a017;"
+    );
+  }, []);
+
   return (
     <div className="min-h-screen bg-black">
       <Nav />
@@ -718,7 +726,7 @@ function EPK() {
         {/* ═══ ABOUT ═══ */}
         <section id="about" className="py-24 px-4 sm:px-6">
         <Reveal>
-          <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">About</h2>
+          <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-12 text-center">About</h2>
         </Reveal>
 
         <div>
@@ -779,19 +787,19 @@ function EPK() {
             <div className="mb-16 space-y-8">
               {/* Key facts as punchy lines */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
+                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 hover:-translate-y-0.5 transition-all duration-300">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">College Charts</div>
                   <p className="text-base sm:text-lg text-offwhite"><em className="text-white font-medium">You Can&rsquo;t Serve Two Masters</em> &mdash; <span className="text-amber font-bold">#2 Nationally</span></p>
                 </div>
-                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
+                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 hover:-translate-y-0.5 transition-all duration-300">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">SYNCs</div>
                   <p className="text-base sm:text-lg text-offwhite">&ldquo;Line By Line&rdquo; for <span className="text-amber font-bold">Target</span></p>
                 </div>
-                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
+                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 hover:-translate-y-0.5 transition-all duration-300">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">Shows Played</div>
                   <p className="text-base sm:text-lg text-offwhite"><span className="text-amber font-bold text-xl sm:text-2xl">175+</span> Across North America</p>
                 </div>
-                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 transition-colors">
+                <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 hover:-translate-y-0.5 transition-all duration-300">
                   <div className="text-[10px] tracking-[0.3em] uppercase font-mono text-red mb-2">Location</div>
                   <p className="text-base sm:text-lg text-offwhite">PK lives in Hamilton &middot; James Leroy lives on a farm in Alberta &middot; The current live band is in Toronto</p>
                 </div>
@@ -817,7 +825,7 @@ function EPK() {
         {/* ═══ DISCOGRAPHY ═══ */}
         <section id="discography" className="py-24">
         <Reveal>
-          <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-amber/70 mb-12 text-center">Discography</h2>
+          <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-12 text-center">Discography</h2>
         </Reveal>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6">
           {DISCOGRAPHY.map((album, i) => (
@@ -856,7 +864,7 @@ function EPK() {
 
         {/* Associated Releases */}
         <Reveal>
-          <h3 className="text-lg sm:text-xl tracking-[0.25em] uppercase font-mono text-amber/70 mt-16 mb-2 text-center">Associated Releases</h3>
+          <h3 className="text-xl sm:text-2xl tracking-[0.15em] uppercase font-heading text-white/70 mt-16 mb-2 text-center">Associated Releases</h3>
           <p className="text-xs tracking-[0.15em] font-mono text-offwhite/30 text-center mb-8">Other projects featuring PK Lawton</p>
         </Reveal>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6">
@@ -954,7 +962,7 @@ function EPK() {
                   viewport={{ once: true }}
                   className="quote-card border border-white/5 p-6 flex flex-col justify-between h-full"
                 >
-                  <blockquote className="text-sm leading-relaxed font-light text-offwhite/85 mb-4">
+                  <blockquote className="text-[15px] leading-relaxed font-light text-offwhite/85 mb-4">
                     &ldquo;{item.quote}&rdquo;
                   </blockquote>
                   <div>
@@ -994,7 +1002,7 @@ function EPK() {
         {/* ═══ VIDEOS ═══ */}
         <section id="videos" className="py-24">
           <Reveal>
-            <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Videos</h2>
+            <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-12 text-center">Videos</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {VIDEOS.map((video, i) => (
@@ -1024,7 +1032,7 @@ function EPK() {
         {/* ═══ PHOTOS ═══ */}
         <section id="photos" className="py-24">
           <Reveal>
-            <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Photos</h2>
+            <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-12 text-center">Photos</h2>
           </Reveal>
           <ParallaxScrollSecond images={ALL_PHOTOS} />
         </section>
@@ -1038,8 +1046,8 @@ function EPK() {
 
           <div className="relative z-10">
             <Reveal>
-              <h2 className="text-3xl sm:text-5xl tracking-[0.2em] uppercase font-heading text-white mb-4">Get In Touch</h2>
-              <p className="text-[11px] tracking-[0.35em] uppercase font-mono text-offwhite/40 mb-16">For booking and label inquiries</p>
+              <h2 className="text-4xl sm:text-6xl md:text-7xl tracking-[0.15em] uppercase font-heading text-white mb-4">Get In Touch</h2>
+              <p className="text-[11px] tracking-[0.35em] uppercase font-mono text-offwhite/40 mb-16">Booking &amp; label inquiries</p>
             </Reveal>
 
             <Reveal delay={0.1}>
@@ -1111,5 +1119,13 @@ export default function Page() {
     );
   }
 
-  return <EPK />;
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+    >
+      <EPK />
+    </motion.div>
+  );
 }
