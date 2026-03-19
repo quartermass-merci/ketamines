@@ -148,7 +148,7 @@ const PRESS_QUOTES = [
 
 /* ─── COMRADES LIST ─── */
 
-const COMRADES = "Absolutely Free, Actual Water, AHNA, Aids Wolf, Alvvays, Ancient Shapes, Andy Boay, Apollo Ghosts, Atomic 7, Atomic Don, Audacity, Aunty Panty, Average Times, B-Lines, B.A. Johnston, Babysitter, Bad Naked, The Ballantynes, Bare Mutants, Bare Wires, Barreracudas, The Beaten Hearts, Beliefs, The Beverlys, The Bicycles, Bidini Band, Bile Sister, The Blind Shake, The Bonaduces, Bonnie Doon, Brat Kings, Brave Radar, Brazilian Money, Brews Willis, Bronx Cheerleader, The Browns, The Burning Hell, Burnt Ones, Caves, Caymans, Cellphone, Century Palm, Chad VanGaalen, Chains of Love, Chastity, Chico No Face, Cindy Lee, Concrete Hearts, Connosseurs of Porn, The Constantines, Cosmonauts, The Courtneys, Cousins, Cozy, Crocodile, Crosss, The Cry, The Cryptomaniacs, cub, D\u2019Eon, Damo Suzuki, Daniel Fred and Julie, Daniel Romano, Dany Laj and The Looks, Darcy Spindle, Davila 666, The Dead Beat, Dead Ghosts, Destroyer, Dirty Beaches, Disasterbators, Dog Day, Doomsquad, The Doozies, Dorothea Paas, Duchess Says, Ducks Ltd., Dumb, Duotang, Dusted, Each Other, Elevator, Elevator Through, Elevator to Hell, Ell V Gore, Elliot, Ellis, Energy Slime, Eric & The Happy Thoughts, Eric\u2019s Trip, The Evaporators, Extra Happy Ghost!!!, Faith Healer, The Famines, Far-Out Fangtooth, Favour, Feel Alright, Femme Accident, Femminielli, Feral Children, Fill Spectre, Fist City, Fiver, Fleshmoves, The Florals, The Forever, The Forks, Freak Heat Waves, Freelove Fenner, The Fresh and Onlys, Fresh Snow, Friendo, Fungi Girls, Fuzzy Numbers, Gal Gracen, The Gay, Gentleman Jesse and His Men, GOBBLE GOBBLE, Gold, The Gooeys, The Grand Pantrymen, Grave Babies, Growing Pains, Grown-Ups, Hag Face, Hank and Lilly, Haunted Souls, Heaven For Real, Henry H. Owings, Hi-Fives, High Rise II, The Highest Order, Hobo Cubes, Hollerado, Homostupids, HSY, Huevos Rancheros, Human Eye, Hunters, I-Spy, Ian Manhire, Islands, J. Sherri, James Leroy and the Giant, The James Leroy Power Trio, Jay Holy, JAZZ, Jeans Boots, The Jeremy Clarkson, JFM, Jil Peace, JLK, John Jerome and The Congregation, Jon McKiel, Juan Wauters, Julie Doiron, K-Holes, The Kamikazes, Kappa Chow, King Cobb Steelie, King Tuff, knitting, Korean Gut, KRANG, Kris Ellestad, Lab Coast, Lantern, Legato Vipers, Lets Go, Long Long Long, The Low Sizes, Lungbutter, Mac, Mac DeMarco, Makeout Videotape, Man Legs, Man Made Hill, Manic Attracts, Mavo, Meat Curtains, Mexican Slang, Mickey, Microdot, Miesha & The Spanks, The Mitts, The Moby Dicks, Mode Moderne, Modern Nature, Monomyth, Moon, Moonwood, Mothers Children, The Mutators, The Myelin Sheaths, Mystics, Nap Eyes, Necking, Needlecraft, Needles//Pins, Nervous Talk, New Town Animals, Noble Savages, Novillero, Nu Sensae, The Numerators, The Nymphets, OBN III, Odonis Odonis, Open Channels, The Organ, The Ostrich, Ought, Outdoor Minors, Outer Minds, Outtacontroller, P.S. I Love You, Painted Thin, Pale Lips, Pansy Division, Parquet Courts, Partner, PC Worship, Peace for Bombs, Peach Kelli Pop, Peelander Z, Personal and the Pizza, Pink Noise, Pink Wine, Pissed Jeans, Plastic Act, Play Guitar, Pleasure Leftists, Pop Crimes, Porter Hall, Pow Wows, Pregnancy Scares, Preoccupations, Priors, Private Lives, Propagandhi, Protruders, Pup, Quiet Loudly, Quilt, Radians, Rayon Beach, Red Fisher, Red Mass, Redd Kross, Renny Wilson, Rick White, Roky Erickson, Role Mach, The Sadies, Sam Coffey and the Iron Lungs, Scattered Clouds, Schoolteacher, The Sedatives, Sexy Merlin, Shadowy Men on a Shadowy Planet, Shannon and the Clams, Sharp Ends, Shearing Pinx, Sheer Agony, Shipyards, Shitty Neighbours, Shooting Guns, Shotgun & Jaybird, Shotgun Jimmie, The Shrapnelles, Silver Dapple, Simply Saucer, Skin Flowers, Slim Twig, Slime Street, Sloan, Sonic Avenues, Sonic Boom, The Soupcans, Squish, Stalwart Sons, the Stand GT, Start Something, Steve Adamyk Band, The Stolen Minks, Stoopid Idiots, Strange Attractor, Strange Boys, Stressed Out, Student Teacher, Sun Arraw, Supermoon, Taylor Knox Band, Teen Liver, Teenanger, Teledrome, Tess Parks, Thee Oh Sees, The Thrashers, Timecopz, Times New Viking, Timmy\u2019s Organism, Tonetta, Tonstartssbandht, Topless Mongos, Tough Age, TR/ST, TUNS, TV Ghost, Tyvek, Ultimate Painting, Ultrathin, Uncle Bad Touch, Us Girls, The Valley Boys, VIDEO, Village, Voicemail, Warm Soda, Wax Mannequin, White Mystery, White Poppy, The White Wires, The Wicked Awesomes, WLMRT, The Wolf Note, Wolf Parade, Women, Woolworm, Wrong Hole, Wyrd Visions, X Ray Eyeballs, Yellow Teeth, Young Governor, Zacht Automaat, Zebrassieres".split(", ");
+const COMRADES = "Absolutely Free, Actual Water, AHNA, Aids Wolf, Alvvays, Ancient Shapes, Andy Boay, Apollo Ghosts, Atomic 7, Atomic Don, Audacity, Aunty Panty, Average Times, B-Lines, B.A. Johnston, Babysitter, Bad Naked, The Ballantynes, Bare Mutants, Bare Wires, Barreracudas, The Beaten Hearts, Beliefs, The Beverlys, The Bicycles, Bidini Band, Bile Sister, The Blind Shake, The Bonaduces, Bonnie Doon, Brat Kings, Brave Radar, Brazilian Money, Brews Willis, Bronx Cheerleader, The Browns, The Burning Hell, Burnt Ones, Caves, Caymans, Cellphone, Century Palm, Chad VanGaalen, Chains of Love, Chastity, Chico No Face, Cindy Lee, Concrete Hearts, Connosseurs of Porn, The Constantines, Cosmonauts, The Courtneys, Cousins, Cozy, Crocodile, Crosss, The Cry, The Cryptomaniacs, cub, D\u2019Eon, Damo Suzuki, Daniel Fred and Julie, Daniel Romano, Dany Laj and The Looks, Darcy Spindle, Davila 666, The Dead Beat, Dead Ghosts, Destroyer, Dirty Beaches, Disasterbators, Dog Day, Doomsquad, The Doozies, Dorothea Paas, Duchess Says, Ducks Ltd., Dumb, Duotang, Dusted, Each Other, Elevator, Elevator Through, Elevator to Hell, Ell V Gore, Elliot, Ellis, Energy Slime, Eric & The Happy Thoughts, Eric\u2019s Trip, The Evaporators, Extra Happy Ghost!!!, Faith Healer, The Famines, Far-Out Fangtooth, Favour, Feel Alright, Femme Accident, Femminielli, Feral Children, Fill Spectre, Fist City, Fiver, Fleshmoves, The Florals, The Forever, The Forks, Freak Heat Waves, Freelove Fenner, The Fresh and Onlys, Fresh Snow, Friendo, Fungi Girls, Fuzzy Numbers, Gal Gracen, The Gay, Gentleman Jesse and His Men, GOBBLE GOBBLE, Gold, The Gooeys, The Grand Pantrymen, Grave Babies, Growing Pains, Grown-Ups, Hag Face, Hank and Lilly, Haunted Souls, Heaven For Real, Henry H. Owings, Hi-Fives, High Rise II, The Highest Order, Hobo Cubes, Hollerado, Homostupids, HSY, Huevos Rancheros, Human Eye, Hunters, I-Spy, Ian Manhire, Islands, J. Sherri, James Leroy and the Giant, The James Leroy Power Trio, Jay Holy, JAZZ, Jeans Boots, The Jeremy Clarkson, JFM, Jil Peace, JLK, John Jerome and The Congregation, Jon McKiel, Juan Wauters, Julie Doiron, K-Holes, The Kamikazes, Kappa Chow, King Cobb Steelie, King Tuff, knitting, Korean Gut, KRANG, Kris Ellestad, Lab Coast, Lantern, Legato Vipers, Lets Go, Long Long Long, The Low Sizes, Lungbutter, Mac DeMarco, Makeout Videotape, Man Legs, Man Made Hill, Manic Attracts, Mavo, Meat Curtains, Mexican Slang, Mickey, Microdot, Miesha & The Spanks, The Mitts, The Moby Dicks, Mode Moderne, Modern Nature, Monomyth, Moon, Moonwood, Mothers Children, The Mutators, The Myelin Sheaths, Mystics, Nap Eyes, Necking, Needlecraft, Needles//Pins, Nervous Talk, New Town Animals, Noble Savages, Novillero, Nu Sensae, The Numerators, The Nymphets, OBN III, Odonis Odonis, Open Channels, The Organ, The Ostrich, Ought, Outdoor Minors, Outer Minds, Outtacontroller, P.S. I Love You, Painted Thin, Pale Lips, Pansy Division, Parquet Courts, Partner, PC Worship, Peace for Bombs, Peach Kelli Pop, Peelander Z, Personal and the Pizza, Pink Noise, Pink Wine, Pissed Jeans, Plastic Act, Play Guitar, Pleasure Leftists, Pop Crimes, Porter Hall, Pow Wows, Pregnancy Scares, Preoccupations, Priors, Private Lives, Propagandhi, Protruders, Pup, Quiet Loudly, Quilt, Radians, Rayon Beach, Red Fisher, Red Mass, Redd Kross, Renny Wilson, Rick White, Roky Erickson, Role Mach, The Sadies, Sam Coffey and the Iron Lungs, Scattered Clouds, Schoolteacher, The Sedatives, Sexy Merlin, Shadowy Men on a Shadowy Planet, Shannon and the Clams, Sharp Ends, Shearing Pinx, Sheer Agony, Shipyards, Shitty Neighbours, Shooting Guns, Shotgun & Jaybird, Shotgun Jimmie, The Shrapnelles, Silver Dapple, Simply Saucer, Skin Flowers, Slim Twig, Slime Street, Sloan, Sonic Avenues, Sonic Boom, The Soupcans, Squish, Stalwart Sons, the Stand GT, Start Something, Steve Adamyk Band, The Stolen Minks, Stoopid Idiots, Strange Attractor, Strange Boys, Stressed Out, Student Teacher, Sun Arraw, Supermoon, Taylor Knox Band, Teen Liver, Teenanger, Teledrome, Tess Parks, Thee Oh Sees, The Thrashers, Timecopz, Times New Viking, Timmy\u2019s Organism, Tonetta, Tonstartssbandht, Topless Mongos, Tough Age, TR/ST, TUNS, TV Ghost, Tyvek, Ultimate Painting, Ultrathin, Uncle Bad Touch, Us Girls, The Valley Boys, VIDEO, Village, Voicemail, Warm Soda, Wax Mannequin, White Mystery, White Poppy, The White Wires, The Wicked Awesomes, WLMRT, The Wolf Note, Wolf Parade, Women, Woolworm, Wrong Hole, Wyrd Visions, X Ray Eyeballs, Yellow Teeth, Young Governor, Zacht Automaat, Zebrassieres".split(", ");
 
 /* ─── VIDEOS ─── */
 
@@ -687,7 +687,7 @@ function EPK() {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="mt-6 mb-4 text-center"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-display uppercase tracking-wide leading-none">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading uppercase tracking-wide leading-none">
             <span className="text-white glitch-text hover:text-red transition-colors duration-300" data-text="THE KETAMINES">THE KETAMINES</span>
             <span className="text-red mx-2 sm:mx-3">/</span>
             <span className="text-red">BURNED OUT!</span>
@@ -716,7 +716,7 @@ function EPK() {
         <Divider />
 
         {/* ═══ ABOUT ═══ */}
-        <section id="about" className="py-24">
+        <section id="about" className="py-24 px-4 sm:px-6">
         <Reveal>
           <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">About</h2>
         </Reveal>
@@ -724,7 +724,7 @@ function EPK() {
         <div>
           {/* Album title */}
           <Reveal>
-            <p className="text-4xl sm:text-5xl md:text-7xl font-display uppercase leading-[0.95] text-center text-red mb-10">
+            <p className="text-4xl sm:text-5xl md:text-7xl font-heading uppercase leading-[0.95] text-center text-red mb-10">
               Burned Out!
             </p>
           </Reveal>
@@ -751,24 +751,24 @@ function EPK() {
 
           {/* Bio */}
           <Reveal>
-            <div className="space-y-5 mb-24">
-              <p className="text-sm sm:text-base leading-relaxed text-white text-left">
+            <div className="max-w-3xl mx-auto mb-24">
+              <p className="text-base sm:text-lg leading-[1.75] text-offwhite/80 text-left mb-6">
                 James Leroy and I have been making music together since 1996, when we did our first recording session in his basement on a borrowed 8-track cassette recorder. In the 30 years since (!) a lot has changed; we live across the country from each other, I work in design and James works on a farm, but we&rsquo;ve never stopped. Hundreds of dumb songs, mostly written and meticulously iterated on for months and months, mostly for our own entertainment. And then, sometimes we get the itch to put out records and get this thing rolling again, and so here we are. We finally have 10 songs we think people besides us might be interested in.
               </p>
 
-              <p className="text-sm sm:text-base leading-relaxed text-white text-left">
-                <em>Burned Out!</em> is our first long-player since 2013&rsquo;s <em>You Can&rsquo;t Serve Two Masters</em>. James and I initially bonded over a shared love of the Winnipeg political punk scene, and this might be our most overtly political record yet, but it&rsquo;s also a record about what it means to make art in an environment where art has been completely devalued.
+              <p className="text-base sm:text-lg leading-[1.75] text-offwhite/80 text-left mb-6">
+                <em className="text-white">Burned Out!</em> is our first long-player since 2013&rsquo;s <em className="text-white">You Can&rsquo;t Serve Two Masters</em>. James and I initially bonded over a shared love of the Winnipeg political punk scene, and this might be our most overtly political record yet, but it&rsquo;s also a record about what it means to make art in an environment where art has been completely devalued.
               </p>
 
-              <p className="text-sm sm:text-base leading-relaxed text-white text-left">
+              <p className="text-base sm:text-lg leading-[1.75] text-offwhite/50 text-left mb-6 border-l-2 border-red/30 pl-5">
                 Over the last four years, we&rsquo;ve lost so many of our comrades and bandmates: our first collaborator, Christopher Schultzen; Joni Sadler from CKUT, one of our champions in campus and community radio; friends and collaborators from other bands like Cody Prairie Chicken, Chris Reimer, and Phillip Tarr; friends who put us up in their homes like Brendo in Saskatoon. We continue in their honour.
               </p>
 
-              <p className="text-sm sm:text-base leading-relaxed text-white text-left">
+              <p className="text-base sm:text-lg leading-[1.75] text-offwhite/80 text-left mb-10">
                 We had a great initial run with the Ketamines: 7&quot;s on HoZac, Mint Records, Pleasence, Hosehead, Leaning Trees, and Odd Box in the UK; two well-received LPs. We toured extensively across North America thanks to the push from our friend Annie Southworth at Panache (rest in peace, Queen) and got to play some incredible shows. We opened for Roky Erikson, Sonic Boom, Damon and Naomi, Shadowy Men on a Shadowy Planet.
               </p>
 
-              <p className="text-base sm:text-lg leading-relaxed text-white text-left font-medium">
+              <p className="text-xl sm:text-3xl leading-snug text-white text-left font-heading uppercase tracking-wide">
                 This record is for the lifers, like us, who don&rsquo;t know how to quit.
               </p>
             </div>
@@ -856,7 +856,8 @@ function EPK() {
 
         {/* Associated Releases */}
         <Reveal>
-          <h3 className="text-lg sm:text-xl tracking-[0.25em] uppercase font-mono text-amber/70 mt-16 mb-8 text-center">Associated Releases</h3>
+          <h3 className="text-lg sm:text-xl tracking-[0.25em] uppercase font-mono text-amber/70 mt-16 mb-2 text-center">Associated Releases</h3>
+          <p className="text-xs tracking-[0.15em] font-mono text-offwhite/30 text-center mb-8">Other projects featuring PK Lawton</p>
         </Reveal>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6">
           {ASSOCIATED_RELEASES.map((album, i) => (
@@ -927,7 +928,7 @@ function EPK() {
         {/* ═══ PRESS ═══ */}
         <section id="press" className="py-24">
           <Reveal>
-            <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12 text-center">Press</h2>
+            <h2 className="text-3xl sm:text-5xl tracking-[0.15em] uppercase font-heading text-white/90 mb-12 text-center">Press</h2>
           </Reveal>
 
           {/* Outlet marquee — allowed to overflow container */}
@@ -936,7 +937,7 @@ function EPK() {
               {["PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "VICE", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "RAVEN SINGS THE BLUES", "NU WAVE BRAIN WAVE", "LIGHTS IN PAIRS", "HOZAC RECORDS",
                 "PITCHFORK", "EXCLAIM!", "POPMATTERS", "CONSEQUENCE OF SOUND", "VICE", "SLED ISLAND", "WEIRD CANADA", "STYROFOAM DRONE", "AUDIO AMMUNITION", "REVOLUTION ROCK", "FINEST KISS", "CiTR DISCORDER", "RAVEN SINGS THE BLUES", "NU WAVE BRAIN WAVE", "LIGHTS IN PAIRS", "HOZAC RECORDS"
               ].map((name, i) => (
-                <span key={i} className={`text-3xl sm:text-5xl font-display uppercase ${i % 3 === 0 ? "text-red/10" : i % 3 === 1 ? "text-cyan/8" : "text-white/6"}`}>{name}</span>
+                <span key={i} className={`text-3xl sm:text-5xl font-heading uppercase ${i % 3 === 0 ? "text-red/10" : i % 3 === 1 ? "text-cyan/8" : "text-white/6"}`}>{name}</span>
               ))}
             </div>
           </div>
@@ -999,6 +1000,10 @@ function EPK() {
             {VIDEOS.map((video, i) => (
               <Reveal key={video.vimeoId} delay={i * 0.1}>
                 <div className="group">
+                  <div className="mb-3">
+                    <div className="text-base sm:text-lg font-medium text-white">{video.title}</div>
+                    <div className="text-[10px] tracking-[0.2em] uppercase font-mono text-grey-mid mt-1">{video.subtitle}</div>
+                  </div>
                   <div className="relative aspect-video overflow-hidden border border-white/10 group-hover:border-red/50 transition-colors bg-black">
                     <iframe
                       src={`https://player.vimeo.com/video/${video.vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479&color=ff0000&title=0&byline=0&portrait=0`}
@@ -1007,10 +1012,6 @@ function EPK() {
                       className="absolute inset-0 w-full h-full"
                       title={video.title}
                     />
-                  </div>
-                  <div className="mt-3">
-                    <div className="text-base font-medium">{video.title}</div>
-                    <div className="text-xs font-mono text-grey-mid mt-1">{video.subtitle}</div>
                   </div>
                 </div>
               </Reveal>
@@ -1031,35 +1032,43 @@ function EPK() {
         <Divider />
 
         {/* ═══ CONTACT ═══ */}
-        <section id="contact" className="py-24 text-center">
-          <Reveal>
-            <h2 className="text-2xl sm:text-3xl tracking-[0.3em] uppercase font-mono text-grey-mid mb-12">Contact</h2>
-          </Reveal>
+        <section id="contact" className="relative py-32 text-center overflow-hidden">
+          {/* Subtle background shift to signal destination */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent" />
 
-          <Reveal delay={0.1}>
-            <div className="flex justify-center mb-12">
-              <div className="relative w-full max-w-md aspect-[2.5/1]">
-                <div className="absolute inset-0 bg-red/5 blur-3xl rounded-full" />
-                <Image src="/images/logos/black-metal-logo.png" alt="Ketamines" fill className="object-contain invert relative z-10" sizes="(max-width: 448px) 100vw, 448px" />
+          <div className="relative z-10">
+            <Reveal>
+              <h2 className="text-3xl sm:text-5xl tracking-[0.2em] uppercase font-heading text-white mb-4">Get In Touch</h2>
+              <p className="text-[11px] tracking-[0.35em] uppercase font-mono text-offwhite/40 mb-16">For booking and label inquiries</p>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="flex justify-center mb-16">
+                <div className="relative w-full max-w-sm aspect-[2.5/1]">
+                  <div className="absolute inset-0 bg-red/8 blur-[80px] rounded-full" />
+                  <Image src="/images/logos/black-metal-logo.png" alt="Ketamines" fill className="object-contain invert relative z-10" sizes="(max-width: 384px) 100vw, 384px" />
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
 
-          <Reveal delay={0.2}>
-            <p className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid mb-8">For booking and label inquiries</p>
-            <div className="flex flex-col items-center space-y-5 text-xl sm:text-2xl font-mono uppercase tracking-[0.15em]">
-              <ContactEmail />
-              <a href="https://ketamines.bandcamp.com" target="_blank" rel="noopener noreferrer" className="text-offwhite/60 hover:text-white transition-colors">
-                <ComesInGoesOutUnderline label="BANDCAMP" direction="right" />
-              </a>
-              <a href="https://www.discogs.com/artist/2376880-Ketamines" target="_blank" rel="noopener noreferrer" className="text-offwhite/60 hover:text-white transition-colors">
-                <ComesInGoesOutUnderline label="DISCOGS" direction="left" />
-              </a>
-              <a href="tel:+16472412575" className="text-offwhite/40 hover:text-white transition-colors text-base mt-4">
-                <GoesOutComesInUnderline label="647.241.2575" direction="left" />
-              </a>
-            </div>
-          </Reveal>
+            <Reveal delay={0.2}>
+              <div className="flex flex-col items-center space-y-6 font-mono uppercase tracking-[0.15em]">
+                <div className="text-3xl sm:text-4xl text-red hover:text-white transition-colors duration-300">
+                  <ContactEmail />
+                </div>
+                <div className="w-12 h-px bg-white/10 my-2" />
+                <a href="https://ketamines.bandcamp.com" target="_blank" rel="noopener noreferrer" className="text-lg sm:text-xl text-offwhite/50 hover:text-white transition-colors">
+                  <ComesInGoesOutUnderline label="BANDCAMP" direction="right" />
+                </a>
+                <a href="https://www.discogs.com/artist/2376880-Ketamines" target="_blank" rel="noopener noreferrer" className="text-lg sm:text-xl text-offwhite/50 hover:text-white transition-colors">
+                  <ComesInGoesOutUnderline label="DISCOGS" direction="left" />
+                </a>
+                <a href="tel:+16472412575" className="text-offwhite/30 hover:text-white transition-colors text-sm mt-6">
+                  <GoesOutComesInUnderline label="647.241.2575" direction="left" />
+                </a>
+              </div>
+            </Reveal>
+          </div>
         </section>
 
       </div>{/* end one-pager container */}

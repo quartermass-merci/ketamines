@@ -10,9 +10,9 @@
   --color-red: #ff0000;
   --color-amber: #d4a017;
   --color-cyan: #00e5ff;
-  --font-family-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
-  --font-family-display: "Anton", "Impact", sans-serif;
-  --font-family-body: "Space Grotesk", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
+  --font-heading: "Anton", "Impact", sans-serif;
+  --font-sans: "Space Grotesk", "Inter", sans-serif;
 }
 
 @font-face {
