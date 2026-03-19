@@ -784,7 +784,7 @@ function EPK() {
 
           {/* Fast facts — punk zine style */}
           <Reveal delay={0.2}>
-            <div className="mb-16 space-y-8">
+            <div className="mb-20 space-y-8">
               {/* Key facts as punchy lines */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 hover:-translate-y-0.5 transition-all duration-300">
@@ -809,7 +809,7 @@ function EPK() {
           </Reveal>
 
           {/* Comrades — 4-column layout */}
-          <Reveal className="mt-8">
+          <Reveal className="mt-12">
             <div className="border-t border-white/5 pt-8">
               <div className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid text-center mb-6">
                 Burned Out! was influenced by:
@@ -1004,7 +1004,7 @@ function EPK() {
           <Reveal>
             <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-12 text-center">Videos</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6">
             {VIDEOS.map((video, i) => (
               <Reveal key={video.vimeoId} delay={i * 0.1}>
                 <div className="group">
@@ -1040,7 +1040,7 @@ function EPK() {
         <Divider />
 
         {/* ═══ CONTACT ═══ */}
-        <section id="contact" className="relative py-32 text-center overflow-hidden">
+        <section id="contact" className="relative pt-32 pb-40 text-center overflow-hidden">
           {/* Subtle background shift to signal destination */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent" />
 
@@ -1060,18 +1060,18 @@ function EPK() {
             </Reveal>
 
             <Reveal delay={0.2}>
-              <div className="flex flex-col items-center space-y-6 font-mono uppercase tracking-[0.15em]">
+              <div className="flex flex-col items-center space-y-8 font-mono uppercase tracking-[0.15em]">
                 <div className="text-3xl sm:text-4xl text-red hover:text-white transition-colors duration-300">
                   <ContactEmail />
                 </div>
-                <div className="w-12 h-px bg-white/10 my-2" />
+                <div className="w-16 h-px bg-white/10" />
                 <a href="https://ketamines.bandcamp.com" target="_blank" rel="noopener noreferrer" className="text-lg sm:text-xl text-offwhite/50 hover:text-white transition-colors">
                   <ComesInGoesOutUnderline label="BANDCAMP" direction="right" />
                 </a>
                 <a href="https://www.discogs.com/artist/2376880-Ketamines" target="_blank" rel="noopener noreferrer" className="text-lg sm:text-xl text-offwhite/50 hover:text-white transition-colors">
                   <ComesInGoesOutUnderline label="DISCOGS" direction="left" />
                 </a>
-                <a href="tel:+16472412575" className="text-offwhite/30 hover:text-white transition-colors text-sm mt-6">
+                <a href="tel:+16472412575" className="text-offwhite/30 hover:text-white transition-colors text-sm mt-8">
                   <GoesOutComesInUnderline label="647.241.2575" direction="left" />
                 </a>
               </div>
