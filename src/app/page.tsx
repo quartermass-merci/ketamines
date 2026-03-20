@@ -1354,17 +1354,19 @@ export default function Page() {
               {/* Black base */}
               <div className="absolute inset-0 bg-black" />
 
-              {/* Main content — gets melted */}
+              {/* Main content — spins and fades during melt */}
               <motion.div
                 className="relative z-10 text-center"
                 style={unlockStage === "melt" ? { filter: "url(#melt)" } : {}}
                 initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-                animate={{
-                  opacity: [0, 1, 1, 1],
-                  scale: [0.5, 1.1, 1, unlockStage === "melt" ? 1.3 : 1],
-                  rotate: [- 10, 5, 0, unlockStage === "melt" ? 8 : 0],
-                }}
-                transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+                animate={unlockStage === "melt"
+                  ? { opacity: 0, scale: 0.1, rotate: 720 }
+                  : { opacity: [0, 1, 1], scale: [0.5, 1.1, 1], rotate: [-10, 5, 0] }
+                }
+                transition={unlockStage === "melt"
+                  ? { duration: 1.8, ease: [0.6, 0, 0.4, 1] }
+                  : { duration: 0.8, ease: [0.25, 1, 0.5, 1] }
+                }
               >
                 {/* BURNED OUT! */}
                 <div className="font-heading text-7xl sm:text-[8rem] md:text-[10rem] leading-[0.85] tracking-tight">
@@ -1405,13 +1407,13 @@ export default function Page() {
                 />
               ))}
 
-              {/* Expanding burn circle that reveals black underneath */}
+              {/* Whole overlay fades out during melt to reveal EPK */}
               {unlockStage === "melt" && (
                 <motion.div
                   className="absolute inset-0 z-30 bg-black"
-                  initial={{ clipPath: "circle(0% at 50% 50%)" }}
-                  animate={{ clipPath: "circle(100% at 50% 50%)" }}
-                  transition={{ duration: 1.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1.6, delay: 0.4, ease: "easeIn" }}
                 />
               )}
             </motion.div>
