@@ -1273,7 +1273,7 @@ function EPK() {
 
 export default function Page() {
   const [unlocked, setUnlocked] = useState(false);
-  const [unlockStage, setUnlockStage] = useState<"idle" | "granted" | "tear" | "done">("idle");
+  const [unlockStage, setUnlockStage] = useState<"idle" | "burned" | "melt" | "done">("idle");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -1284,97 +1284,135 @@ export default function Page() {
 
   const handleUnlock = () => {
     sessionStorage.setItem(SESSION_KEY, "true");
-    // Stage 1: flash "ACCESS GRANTED"
-    setUnlockStage("granted");
-    // Stage 2: tear apart
-    setTimeout(() => setUnlockStage("tear"), 1800);
-    // Stage 3: reveal EPK
-    setTimeout(() => { setUnlockStage("done"); setUnlocked(true); }, 3200);
+    setUnlockStage("burned");
+    setTimeout(() => setUnlockStage("melt"), 2200);
+    setTimeout(() => { setUnlockStage("done"); setUnlocked(true); }, 4200);
   };
 
   if (!unlocked) {
     return (
       <>
-        {/* Password gate — fades out when granted */}
+        {/* Password gate — fades when unlocked */}
         <div className={unlockStage !== "idle" ? "transition-opacity duration-500 opacity-0 pointer-events-none" : ""}>
           <PasswordGate onUnlock={handleUnlock} />
         </div>
 
-        {/* ACCESS GRANTED overlay */}
+        {/* BURNED OUT! psychedelic overlay */}
         <AnimatePresence>
-          {(unlockStage === "granted" || unlockStage === "tear") && (
+          {(unlockStage === "burned" || unlockStage === "melt") && (
             <motion.div
-              className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black"
+              className="fixed inset-0 z-[60] flex items-center justify-center overflow-hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.4 }}
             >
-              {/* Red flash pulse */}
+              {/* SVG melt filter */}
+              <svg className="absolute w-0 h-0">
+                <defs>
+                  <filter id="melt">
+                    <feTurbulence
+                      type="fractalNoise"
+                      baseFrequency="0.015"
+                      numOctaves="3"
+                      seed="2"
+                      result="noise"
+                    >
+                      <animate
+                        attributeName="baseFrequency"
+                        values="0.015;0.04;0.08"
+                        dur="2s"
+                        fill="freeze"
+                      />
+                    </feTurbulence>
+                    <feDisplacementMap
+                      in="SourceGraphic"
+                      in2="noise"
+                      scale="0"
+                      xChannelSelector="R"
+                      yChannelSelector="G"
+                    >
+                      <animate
+                        attributeName="scale"
+                        values="0;80;300"
+                        dur="2s"
+                        fill="freeze"
+                      />
+                    </feDisplacementMap>
+                  </filter>
+                </defs>
+              </svg>
+
+              {/* Psychedelic cycling background */}
               <motion.div
-                className="absolute inset-0 bg-red"
-                initial={{ opacity: 0.8 }}
-                animate={{ opacity: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="absolute inset-0 psychedelic-bg"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 0.6, 0.3, 0.5, 0] }}
+                transition={{ duration: 3.5, times: [0, 0.15, 0.4, 0.7, 1] }}
               />
 
-              {/* Scan line sweep */}
-              <motion.div
-                className="absolute left-0 right-0 h-px bg-white/60"
-                initial={{ top: "0%" }}
-                animate={{ top: "100%" }}
-                transition={{ duration: 1.2, ease: "linear", repeat: 1 }}
-              />
+              {/* Black base */}
+              <div className="absolute inset-0 bg-black" />
 
-              {/* ACCESS GRANTED text */}
+              {/* Main content — gets melted */}
               <motion.div
                 className="relative z-10 text-center"
-                initial={{ opacity: 0, scale: 1.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+                style={unlockStage === "melt" ? { filter: "url(#melt)" } : {}}
+                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+                animate={{
+                  opacity: [0, 1, 1, 1],
+                  scale: [0.5, 1.1, 1, unlockStage === "melt" ? 1.3 : 1],
+                  rotate: [- 10, 5, 0, unlockStage === "melt" ? 8 : 0],
+                }}
+                transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
               >
-                <div className="font-heading text-5xl sm:text-7xl md:text-8xl tracking-[0.15em] text-white uppercase">
-                  ACCESS
-                </div>
-                <div className="font-heading text-5xl sm:text-7xl md:text-8xl tracking-[0.15em] text-red uppercase">
-                  GRANTED
+                {/* BURNED OUT! */}
+                <div className="font-heading text-7xl sm:text-[8rem] md:text-[10rem] leading-[0.85] tracking-tight">
+                  <motion.span
+                    className="block text-white"
+                    animate={{ color: ["#ffffff", "#ff0000", "#00e5ff", "#d4a017", "#ff0000", "#ffffff"] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  >
+                    BURNED
+                  </motion.span>
+                  <motion.span
+                    className="block text-red"
+                    animate={{ color: ["#ff0000", "#00e5ff", "#d4a017", "#ffffff", "#ff0000"] }}
+                    transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
+                  >
+                    OUT!
+                  </motion.span>
                 </div>
               </motion.div>
 
-              {/* Horizontal glitch lines */}
-              <motion.div
-                className="absolute left-0 right-0 h-1 bg-red/50"
-                style={{ top: "30%" }}
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: [0, 1, 0], x: ["-100%", "0%", "100%"] }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              />
-              <motion.div
-                className="absolute left-0 right-0 h-0.5 bg-cyan/40"
-                style={{ top: "65%" }}
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: [0, 1, 0], x: ["100%", "0%", "-100%"] }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              />
+              {/* Drip streaks — vertical lines melting down */}
+              {unlockStage === "melt" && Array.from({ length: 12 }).map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute top-0 bg-gradient-to-b from-red via-cyan to-transparent"
+                  style={{
+                    left: `${8 + i * 8}%`,
+                    width: `${Math.random() * 4 + 2}px`,
+                    height: "100%",
+                  }}
+                  initial={{ y: "-100%", opacity: 0.8 }}
+                  animate={{ y: "100%", opacity: 0 }}
+                  transition={{
+                    duration: 1.5 + Math.random() * 0.8,
+                    delay: Math.random() * 0.4,
+                    ease: [0.4, 0, 0.2, 1],
+                  }}
+                />
+              ))}
 
-              {/* Tear apart transition */}
-              {unlockStage === "tear" && (
-                <>
-                  <motion.div
-                    className="absolute inset-0 bg-black z-20"
-                    style={{ clipPath: "inset(0 0 50% 0)" }}
-                    initial={{ y: 0 }}
-                    animate={{ y: "-100%" }}
-                    transition={{ duration: 1.2, ease: [0.7, 0, 0.3, 1] }}
-                  />
-                  <motion.div
-                    className="absolute inset-0 bg-black z-20"
-                    style={{ clipPath: "inset(50% 0 0 0)" }}
-                    initial={{ y: 0 }}
-                    animate={{ y: "100%" }}
-                    transition={{ duration: 1.2, ease: [0.7, 0, 0.3, 1] }}
-                  />
-                </>
+              {/* Expanding burn circle that reveals black underneath */}
+              {unlockStage === "melt" && (
+                <motion.div
+                  className="absolute inset-0 z-30 bg-black"
+                  initial={{ clipPath: "circle(0% at 50% 50%)" }}
+                  animate={{ clipPath: "circle(100% at 50% 50%)" }}
+                  transition={{ duration: 1.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                />
               )}
             </motion.div>
           )}

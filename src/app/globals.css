@@ -210,7 +210,21 @@ body {
 }
 
 /* CRT shutdown — cinematic password unlock */
-/* CRT unlock animation is now handled by React/framer-motion in page.tsx */
+/* Psychedelic unlock background */
+@keyframes psychedelic-cycle {
+  0% { background: radial-gradient(circle at 30% 40%, #ff0000, #000 60%); }
+  15% { background: radial-gradient(circle at 70% 30%, #00e5ff, #1a0030 60%); }
+  30% { background: radial-gradient(circle at 40% 70%, #d4a017, #001a00 60%); }
+  45% { background: radial-gradient(circle at 60% 50%, #ff00ff, #000 60%); }
+  60% { background: radial-gradient(circle at 30% 60%, #ff4400, #001a1a 60%); }
+  75% { background: radial-gradient(circle at 50% 30%, #00ff88, #1a0000 60%); }
+  90% { background: radial-gradient(circle at 70% 70%, #ff0000, #000 60%); }
+  100% { background: radial-gradient(circle at 30% 40%, #ff0000, #000 60%); }
+}
+
+.psychedelic-bg {
+  animation: psychedelic-cycle 2s linear infinite;
+}
 
 /* Smooth red glow pulse on playing state */
 @keyframes redPulse {
