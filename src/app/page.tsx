@@ -660,7 +660,7 @@ function Nav() {
         <div className="relative w-10 h-10 invert opacity-80 hover:opacity-100 transition-opacity hidden lg:block">
           <Image src="/images/logos/main-logo.jpg" alt="K" fill className="object-contain" sizes="40px" />
         </div>
-        <div className="flex gap-3 lg:gap-6 text-[9px] sm:text-[10px] tracking-[0.15em] lg:tracking-[0.2em] uppercase font-mono text-offwhite/60 w-full lg:w-auto justify-between lg:justify-end">
+        <div className="flex gap-3 lg:gap-8 text-[9px] sm:text-[10px] tracking-[0.15em] lg:tracking-[0.2em] uppercase font-mono text-offwhite/60 w-full lg:w-auto justify-between lg:justify-center">
           {[
             ["#music", "Music"],
             ["#about", "About"],
@@ -870,7 +870,7 @@ function EPK() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="mt-6 mb-4 text-center"
+          className="mt-8 mb-6 text-center"
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-heading uppercase tracking-wide leading-none">
             <span className="text-white glitch-text hover:text-red transition-colors duration-300" data-text="THE KETAMINES">THE KETAMINES</span>
@@ -886,7 +886,7 @@ function EPK() {
           </div>
         </motion.div>
 
-        <div className="mb-8" />
+        <div className="mb-12" />
 
         {/* ═══ PLAYER ═══ */}
         <motion.div
@@ -901,22 +901,22 @@ function EPK() {
         <Divider />
 
         {/* ═══ ABOUT ═══ */}
-        <section id="about" className="py-24 px-4 sm:px-6">
+        <section id="about" className="pt-32 pb-24 px-4 sm:px-6">
         <Reveal>
-          <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-12 text-center">About</h2>
+          <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-16 text-center">About</h2>
         </Reveal>
 
         <div>
           {/* Album title */}
           <Reveal>
-            <p className="text-4xl sm:text-5xl md:text-7xl font-heading uppercase leading-[0.95] text-center text-red mb-10">
+            <p className="text-4xl sm:text-5xl md:text-7xl font-heading uppercase leading-[0.95] text-center text-red mb-14">
               Burned Out!
             </p>
           </Reveal>
 
           {/* James & PK */}
           <Reveal delay={0.05}>
-            <div className="flex justify-center mb-12">
+            <div className="flex justify-center mb-16">
               <div className="border border-white/10">
                 <div className="relative w-full max-w-lg aspect-[4/3] overflow-hidden">
                   <Image
