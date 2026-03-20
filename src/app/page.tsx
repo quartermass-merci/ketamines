@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from "react"
 import Image from "next/image";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, useScroll } from "framer-motion";
 import { Play, Pause, SkipForward, SkipBack, Volume2, ExternalLink, ChevronDown } from "lucide-react";
-import { ImageGallery } from "@/components/ui/image-gallery";
+import { Carousel } from "@/components/ui/carousel";
 
 import { GoesOutComesInUnderline, ComesInGoesOutUnderline } from "@/components/ui/underline-animation";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
@@ -12,10 +12,29 @@ import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 
 /* ─── IMAGE MANIFESTS ─── */
 
-const ALL_PHOTOS = [
-  ...Array.from({ length: 52 }, (_, i) => `/images/live/live-${String(i + 1).padStart(2, "0")}.jpg`),
+/* Deterministic shuffle so order is random but stable across renders */
+function seededShuffle<T>(arr: T[], seed: number): T[] {
+  const a = [...arr];
+  let s = seed;
+  for (let i = a.length - 1; i > 0; i--) {
+    s = (s * 9301 + 49297) % 233280;
+    const j = Math.floor((s / 233280) * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const ALL_PHOTOS_RAW = [
+  ...Array.from({ length: 52 }, (_, i) => `/images/live/live-${String(i + 1).padStart(2, "0")}.jpg`)
+    .filter(p => p !== "/images/live/live-13.jpg"), // collage image — not suited for carousel
   ...Array.from({ length: 8 }, (_, i) => `/images/press/press-${String(i + 1).padStart(2, "0")}.jpg`),
 ];
+
+const PHOTO_SLIDES = seededShuffle(ALL_PHOTOS_RAW, 42).slice(0, 20).map((src) => ({
+  title: "",
+  button: "",
+  src,
+}));
 
 /* ─── TRACKLIST (from back cover) ─── */
 
@@ -1207,11 +1226,11 @@ function EPK() {
         <Divider />
 
         {/* ═══ PHOTOS ═══ */}
-        <section id="photos" className="py-24">
+        <section id="photos" className="pt-24 pb-32 overflow-hidden">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-12 text-center">Photos</h2>
           </Reveal>
-          <ImageGallery images={ALL_PHOTOS} />
+          <Carousel slides={PHOTO_SLIDES} />
         </section>
 
         <Divider />
