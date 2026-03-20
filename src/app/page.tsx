@@ -1273,7 +1273,7 @@ function EPK() {
 
 export default function Page() {
   const [unlocked, setUnlocked] = useState(false);
-  const [entering, setEntering] = useState(false);
+  const [unlockStage, setUnlockStage] = useState<"idle" | "granted" | "tear" | "done">("idle");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -1283,16 +1283,103 @@ export default function Page() {
   }, []);
 
   const handleUnlock = () => {
-    setEntering(true);
     sessionStorage.setItem(SESSION_KEY, "true");
-    setTimeout(() => setUnlocked(true), 3000);
+    // Stage 1: flash "ACCESS GRANTED"
+    setUnlockStage("granted");
+    // Stage 2: tear apart
+    setTimeout(() => setUnlockStage("tear"), 1800);
+    // Stage 3: reveal EPK
+    setTimeout(() => { setUnlockStage("done"); setUnlocked(true); }, 3200);
   };
 
   if (!unlocked) {
     return (
-      <div className={entering ? "crt-shutdown" : ""}>
-        <PasswordGate onUnlock={handleUnlock} />
-      </div>
+      <>
+        {/* Password gate — fades out when granted */}
+        <div className={unlockStage !== "idle" ? "transition-opacity duration-500 opacity-0 pointer-events-none" : ""}>
+          <PasswordGate onUnlock={handleUnlock} />
+        </div>
+
+        {/* ACCESS GRANTED overlay */}
+        <AnimatePresence>
+          {(unlockStage === "granted" || unlockStage === "tear") && (
+            <motion.div
+              className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Red flash pulse */}
+              <motion.div
+                className="absolute inset-0 bg-red"
+                initial={{ opacity: 0.8 }}
+                animate={{ opacity: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              />
+
+              {/* Scan line sweep */}
+              <motion.div
+                className="absolute left-0 right-0 h-px bg-white/60"
+                initial={{ top: "0%" }}
+                animate={{ top: "100%" }}
+                transition={{ duration: 1.2, ease: "linear", repeat: 1 }}
+              />
+
+              {/* ACCESS GRANTED text */}
+              <motion.div
+                className="relative z-10 text-center"
+                initial={{ opacity: 0, scale: 1.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+              >
+                <div className="font-heading text-5xl sm:text-7xl md:text-8xl tracking-[0.15em] text-white uppercase">
+                  ACCESS
+                </div>
+                <div className="font-heading text-5xl sm:text-7xl md:text-8xl tracking-[0.15em] text-red uppercase">
+                  GRANTED
+                </div>
+              </motion.div>
+
+              {/* Horizontal glitch lines */}
+              <motion.div
+                className="absolute left-0 right-0 h-1 bg-red/50"
+                style={{ top: "30%" }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: [0, 1, 0], x: ["-100%", "0%", "100%"] }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              />
+              <motion.div
+                className="absolute left-0 right-0 h-0.5 bg-cyan/40"
+                style={{ top: "65%" }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: [0, 1, 0], x: ["100%", "0%", "-100%"] }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+
+              {/* Tear apart transition */}
+              {unlockStage === "tear" && (
+                <>
+                  <motion.div
+                    className="absolute inset-0 bg-black z-20"
+                    style={{ clipPath: "inset(0 0 50% 0)" }}
+                    initial={{ y: 0 }}
+                    animate={{ y: "-100%" }}
+                    transition={{ duration: 1.2, ease: [0.7, 0, 0.3, 1] }}
+                  />
+                  <motion.div
+                    className="absolute inset-0 bg-black z-20"
+                    style={{ clipPath: "inset(50% 0 0 0)" }}
+                    initial={{ y: 0 }}
+                    animate={{ y: "100%" }}
+                    transition={{ duration: 1.2, ease: [0.7, 0, 0.3, 1] }}
+                  />
+                </>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </>
     );
   }
 
