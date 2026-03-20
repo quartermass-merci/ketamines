@@ -926,7 +926,7 @@ function EPK() {
         <Divider />
 
         {/* ═══ ABOUT ═══ */}
-        <section id="about" className="pt-32 pb-24" style={{ paddingLeft: "clamp(1rem, 5vw, 3rem)", paddingRight: "clamp(1rem, 5vw, 3rem)" }}>
+        <section id="about" className="pt-44 pb-24" style={{ paddingLeft: "clamp(1rem, 5vw, 3rem)", paddingRight: "clamp(1rem, 5vw, 3rem)" }}>
         <Reveal>
           <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-20 text-center">About</h2>
         </Reveal>
@@ -961,7 +961,7 @@ function EPK() {
 
           {/* Bio */}
           <Reveal>
-            <div className="max-w-3xl mb-24" style={{ margin: "0 auto" }}>
+            <div className="max-w-3xl mb-32" style={{ margin: "0 auto" }}>
               <p className="text-base sm:text-lg leading-[1.85] text-offwhite/80 text-left mb-8">
                 James Leroy and I have been making music together since 1996, when we did our first recording session in his basement on a borrowed 8-track cassette recorder. In the 30 years since (!) a lot has changed; we live across the country from each other, I work in design and James works on a farm, but we&rsquo;ve never stopped. Hundreds of dumb songs, mostly written and meticulously iterated on for months and months, mostly for our own entertainment. And then, sometimes we get the itch to put out records and get this thing rolling again, and so here we are. We finally have 10 songs we think people besides us might be interested in.
               </p>
@@ -986,7 +986,7 @@ function EPK() {
 
           {/* Fast facts — punk zine style */}
           <Reveal delay={0.2}>
-            <div className="mb-20 space-y-8">
+            <div className="mb-28 space-y-8">
               {/* Key facts as punchy lines */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="bg-white/[0.03] border border-white/5 rounded-sm p-5 hover:border-white/10 hover:-translate-y-0.5 transition-all duration-300">
@@ -1011,8 +1011,8 @@ function EPK() {
           </Reveal>
 
           {/* Comrades — 4-column layout */}
-          <Reveal className="mt-12">
-            <div className="border-t border-white/5 pt-8">
+          <Reveal className="mt-16">
+            <div className="border-t border-white/5 pt-12">
               <div className="text-xs tracking-[0.3em] uppercase font-mono text-grey-mid text-center mb-6">
                 Burned Out! was influenced by:
               </div>
