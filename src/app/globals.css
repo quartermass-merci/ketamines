@@ -210,25 +210,80 @@ body {
 }
 
 /* CRT shutdown — cinematic password unlock */
-@keyframes crt-off {
+/* Phase 1: glitch distortion */
+@keyframes crt-glitch {
   0% {
-    transform: scale(1);
-    filter: brightness(1) saturate(1);
-    opacity: 1;
+    transform: translate(0, 0) skewX(0deg);
+    filter: brightness(1) saturate(1) hue-rotate(0deg);
+    clip-path: inset(0 0 0 0);
+  }
+  10% {
+    transform: translate(-8px, 0) skewX(-2deg);
+    filter: brightness(1.5) saturate(2) hue-rotate(90deg);
+    clip-path: inset(0 0 0 0);
+  }
+  15% {
+    transform: translate(12px, 0) skewX(3deg);
+    filter: brightness(0.8) saturate(0.5) hue-rotate(-60deg);
   }
   20% {
-    transform: scale(1.02);
-    filter: brightness(4) saturate(0);
+    transform: translate(-4px, 2px) skewX(-1deg);
+    filter: brightness(2) saturate(3) hue-rotate(180deg);
   }
-  40% {
-    transform: scale(1, 0.005);
+  25% {
+    transform: translate(0, 0) skewX(0deg);
+    filter: brightness(1) saturate(1) hue-rotate(0deg);
+  }
+  35% {
+    transform: translate(6px, -1px) skewX(2deg);
+    filter: brightness(3) saturate(0) hue-rotate(0deg);
+    clip-path: inset(30% 0 40% 0);
+  }
+  38% {
+    transform: translate(-10px, 0) skewX(-4deg);
+    filter: brightness(0.5) saturate(5) hue-rotate(270deg);
+    clip-path: inset(0 0 0 0);
+  }
+  45% {
+    transform: translate(3px, 0) skewX(1deg);
+    filter: brightness(1.2) saturate(1);
+  }
+  50% {
+    transform: translate(0, 0);
+    filter: brightness(1) saturate(1);
+  }
+  /* Red flash */
+  55% {
+    transform: scale(1.01);
+    filter: brightness(6) saturate(3) hue-rotate(0deg);
+  }
+  60% {
+    transform: scale(1.02);
+    filter: brightness(8) saturate(0);
+  }
+  /* Hold bright */
+  65% {
+    transform: scale(1.02);
     filter: brightness(10) saturate(0);
     opacity: 1;
   }
-  70% {
-    transform: scale(1, 0.005);
-    filter: brightness(10) saturate(0);
-    opacity: 0.8;
+  /* Collapse to line */
+  75% {
+    transform: scale(1.2, 0.004);
+    filter: brightness(15) saturate(0);
+    opacity: 1;
+  }
+  /* Hold the line */
+  88% {
+    transform: scale(1.2, 0.004);
+    filter: brightness(12) saturate(0);
+    opacity: 0.9;
+  }
+  /* Pinch out */
+  95% {
+    transform: scale(0.01, 0.004);
+    filter: brightness(6);
+    opacity: 0.5;
   }
   100% {
     transform: scale(0, 0);
@@ -238,7 +293,7 @@ body {
 }
 
 .crt-shutdown {
-  animation: crt-off 1.2s cubic-bezier(0.2, 0, 0.8, 0.2) forwards;
+  animation: crt-glitch 2.8s cubic-bezier(0.1, 0, 0.7, 0.2) forwards;
   transform-origin: center center;
 }
 

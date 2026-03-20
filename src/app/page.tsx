@@ -1285,7 +1285,7 @@ export default function Page() {
   const handleUnlock = () => {
     setEntering(true);
     sessionStorage.setItem(SESSION_KEY, "true");
-    setTimeout(() => setUnlocked(true), 1400);
+    setTimeout(() => setUnlocked(true), 3000);
   };
 
   if (!unlocked) {
