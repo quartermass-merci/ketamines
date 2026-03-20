@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, useSc
 import { Play, Pause, SkipForward, SkipBack, Volume2, ExternalLink, ChevronDown } from "lucide-react";
 import { Carousel } from "@/components/ui/carousel";
 import { SpiralAnimation } from "@/components/ui/spiral-animation";
+import { SmokeBackground } from "@/components/ui/spooky-smoke-animation";
 
 import { GoesOutComesInUnderline, ComesInGoesOutUnderline } from "@/components/ui/underline-animation";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
@@ -391,7 +392,11 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
 
   return (
     <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50">
-      <div className={`relative flex flex-col items-center gap-10 ${shake ? "animate-shake" : ""}`}>
+      {/* Smoke background */}
+      <div className="absolute inset-0 opacity-40">
+        <SmokeBackground smokeColor="#FF0000" />
+      </div>
+      <div className={`relative z-10 flex flex-col items-center gap-10 ${shake ? "animate-shake" : ""}`}>
         <motion.div
           className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 invert"
           initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
