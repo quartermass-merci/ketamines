@@ -32,7 +32,7 @@ const ALL_PHOTOS_RAW = [
   ...Array.from({ length: 8 }, (_, i) => `/images/press/press-${String(i + 1).padStart(2, "0")}.jpg`),
 ];
 
-const PHOTO_SLIDES = seededShuffle(ALL_PHOTOS_RAW, 42).slice(0, 20).map((src) => ({
+const PHOTO_SLIDES = seededShuffle(ALL_PHOTOS_RAW, 42).map((src) => ({
   title: "",
   button: "",
   src,
@@ -926,22 +926,22 @@ function EPK() {
         <Divider />
 
         {/* ═══ ABOUT ═══ */}
-        <section id="about" className="pt-32 pb-24 px-4 sm:px-6">
+        <section id="about" className="pt-32 pb-24" style={{ paddingLeft: "clamp(1rem, 5vw, 3rem)", paddingRight: "clamp(1rem, 5vw, 3rem)" }}>
         <Reveal>
-          <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-16 text-center">About</h2>
+          <h2 className="text-3xl sm:text-4xl tracking-[0.15em] uppercase font-heading text-white/90 mb-20 text-center">About</h2>
         </Reveal>
 
         <div>
           {/* Album title */}
           <Reveal>
-            <p className="text-4xl sm:text-5xl md:text-7xl font-heading uppercase leading-[0.95] text-center text-red mb-14">
+            <p className="text-4xl sm:text-5xl md:text-7xl font-heading uppercase leading-[0.95] text-center text-red mb-16">
               Burned Out!
             </p>
           </Reveal>
 
           {/* James & PK */}
           <Reveal delay={0.05}>
-            <div className="flex justify-center mb-16">
+            <div className="flex justify-center mb-20">
               <div className="border border-white/10">
                 <div className="relative w-full max-w-lg aspect-[4/3] overflow-hidden">
                   <Image
@@ -961,20 +961,20 @@ function EPK() {
 
           {/* Bio */}
           <Reveal>
-            <div className="max-w-3xl mx-auto mb-24">
-              <p className="text-base sm:text-lg leading-[1.75] text-offwhite/80 text-left mb-6">
+            <div className="max-w-3xl mb-24" style={{ margin: "0 auto" }}>
+              <p className="text-base sm:text-lg leading-[1.85] text-offwhite/80 text-left mb-8">
                 James Leroy and I have been making music together since 1996, when we did our first recording session in his basement on a borrowed 8-track cassette recorder. In the 30 years since (!) a lot has changed; we live across the country from each other, I work in design and James works on a farm, but we&rsquo;ve never stopped. Hundreds of dumb songs, mostly written and meticulously iterated on for months and months, mostly for our own entertainment. And then, sometimes we get the itch to put out records and get this thing rolling again, and so here we are. We finally have 10 songs we think people besides us might be interested in.
               </p>
 
-              <p className="text-base sm:text-lg leading-[1.75] text-offwhite/80 text-left mb-6">
+              <p className="text-base sm:text-lg leading-[1.85] text-offwhite/80 text-left mb-8">
                 <em className="text-white">Burned Out!</em> is our first long-player since 2013&rsquo;s <em className="text-white">You Can&rsquo;t Serve Two Masters</em>. James and I initially bonded over a shared love of the Winnipeg political punk scene, and this might be our most overtly political record yet, but it&rsquo;s also a record about what it means to make art in an environment where art has been completely devalued.
               </p>
 
-              <p className="text-base sm:text-lg leading-[1.75] text-offwhite/50 text-left mb-6 border-l-2 border-red/30 pl-5">
+              <p className="text-base sm:text-lg leading-[1.85] text-offwhite/50 text-left mb-8 border-l-2 border-red/30 pl-5">
                 Over the last four years, we&rsquo;ve lost so many of our comrades and bandmates: our first collaborator, Christopher Schultzen; Joni Sadler from CKUT, one of our champions in campus and community radio; friends and collaborators from other bands like Cody Prairie Chicken, Chris Reimer, and Phillip Tarr; friends who put us up in their homes like Brendo in Saskatoon. We continue in their honour.
               </p>
 
-              <p className="text-base sm:text-lg leading-[1.75] text-offwhite/80 text-left mb-10">
+              <p className="text-base sm:text-lg leading-[1.85] text-offwhite/80 text-left mb-12">
                 We had a great initial run with the Ketamines: 7&quot;s on HoZac, Mint Records, Pleasence, Hosehead, Leaning Trees, and Odd Box in the UK; two well-received LPs. We toured extensively across North America thanks to the push from our friend Annie Southworth at Panache (rest in peace, Queen) and got to play some incredible shows. We opened for Roky Erikson, Sonic Boom, Damon and Naomi, Shadowy Men on a Shadowy Planet.
               </p>
 
