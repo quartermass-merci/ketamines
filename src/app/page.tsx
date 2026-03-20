@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring, useScroll } from "framer-motion";
 import { Play, Pause, SkipForward, SkipBack, Volume2, ExternalLink, ChevronDown } from "lucide-react";
 import { Carousel } from "@/components/ui/carousel";
+import { SpiralAnimation } from "@/components/ui/spiral-animation";
 
 import { GoesOutComesInUnderline, ComesInGoesOutUnderline } from "@/components/ui/underline-animation";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
@@ -1292,7 +1293,7 @@ function EPK() {
 
 export default function Page() {
   const [unlocked, setUnlocked] = useState(false);
-  const [unlockStage, setUnlockStage] = useState<"idle" | "burned" | "melt" | "done">("idle");
+  const [unlockStage, setUnlockStage] = useState<"idle" | "spiral" | "done">("idle");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -1303,138 +1304,53 @@ export default function Page() {
 
   const handleUnlock = () => {
     sessionStorage.setItem(SESSION_KEY, "true");
-    setUnlockStage("burned");
-    setTimeout(() => setUnlockStage("melt"), 2200);
-    setTimeout(() => { setUnlockStage("done"); setUnlocked(true); }, 4200);
+    setUnlockStage("spiral");
+    setTimeout(() => { setUnlockStage("done"); setUnlocked(true); }, 5000);
   };
 
   if (!unlocked) {
     return (
       <>
-        {/* Password gate — fades when unlocked */}
-        <div className={unlockStage !== "idle" ? "transition-opacity duration-500 opacity-0 pointer-events-none" : ""}>
+        {/* Password gate — fades when spiral starts */}
+        <div className={unlockStage !== "idle" ? "transition-opacity duration-700 opacity-0 pointer-events-none" : ""}>
           <PasswordGate onUnlock={handleUnlock} />
         </div>
 
-        {/* BURNED OUT! psychedelic overlay */}
+        {/* Spiral unlock animation */}
         <AnimatePresence>
-          {(unlockStage === "burned" || unlockStage === "melt") && (
+          {unlockStage === "spiral" && (
             <motion.div
-              className="fixed inset-0 z-[60] flex items-center justify-center overflow-hidden"
+              className="fixed inset-0 z-[60] overflow-hidden bg-black"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.6 }}
             >
-              {/* SVG melt filter */}
-              <svg className="absolute w-0 h-0">
-                <defs>
-                  <filter id="melt">
-                    <feTurbulence
-                      type="fractalNoise"
-                      baseFrequency="0.015"
-                      numOctaves="3"
-                      seed="2"
-                      result="noise"
-                    >
-                      <animate
-                        attributeName="baseFrequency"
-                        values="0.015;0.04;0.08"
-                        dur="2s"
-                        fill="freeze"
-                      />
-                    </feTurbulence>
-                    <feDisplacementMap
-                      in="SourceGraphic"
-                      in2="noise"
-                      scale="0"
-                      xChannelSelector="R"
-                      yChannelSelector="G"
-                    >
-                      <animate
-                        attributeName="scale"
-                        values="0;80;300"
-                        dur="2s"
-                        fill="freeze"
-                      />
-                    </feDisplacementMap>
-                  </filter>
-                </defs>
-              </svg>
+              {/* Spiral canvas */}
+              <div className="absolute inset-0">
+                <SpiralAnimation />
+              </div>
 
-              {/* Psychedelic cycling background */}
+              {/* BURNED OUT! text fades in over the spiral */}
               <motion.div
-                className="absolute inset-0 psychedelic-bg"
+                className="absolute inset-0 z-10 flex items-center justify-center"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 0.6, 0.3, 0.5, 0] }}
-                transition={{ duration: 3.5, times: [0, 0.15, 0.4, 0.7, 1] }}
-              />
-
-              {/* Black base */}
-              <div className="absolute inset-0 bg-black" />
-
-              {/* Main content — spins and fades during melt */}
-              <motion.div
-                className="relative z-10 text-center"
-                style={unlockStage === "melt" ? { filter: "url(#melt)" } : {}}
-                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-                animate={unlockStage === "melt"
-                  ? { opacity: 0, scale: 0.1, rotate: 720 }
-                  : { opacity: [0, 1, 1], scale: [0.5, 1.1, 1], rotate: [-10, 5, 0] }
-                }
-                transition={unlockStage === "melt"
-                  ? { duration: 1.8, ease: [0.6, 0, 0.4, 1] }
-                  : { duration: 0.8, ease: [0.25, 1, 0.5, 1] }
-                }
+                animate={{ opacity: [0, 0, 1, 1, 0] }}
+                transition={{ duration: 5, times: [0, 0.3, 0.45, 0.75, 1], ease: "easeInOut" }}
               >
-                {/* BURNED OUT! */}
-                <div className="font-heading text-7xl sm:text-[8rem] md:text-[10rem] leading-[0.85] tracking-tight">
-                  <motion.span
-                    className="block text-white"
-                    animate={{ color: ["#ffffff", "#ff0000", "#00e5ff", "#d4a017", "#ff0000", "#ffffff"] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  >
-                    BURNED
-                  </motion.span>
-                  <motion.span
-                    className="block text-red"
-                    animate={{ color: ["#ff0000", "#00e5ff", "#d4a017", "#ffffff", "#ff0000"] }}
-                    transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
-                  >
-                    OUT!
-                  </motion.span>
+                <div className="font-heading text-7xl sm:text-[8rem] md:text-[10rem] leading-[0.85] tracking-tight text-center">
+                  <span className="block text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">BURNED</span>
+                  <span className="block text-red drop-shadow-[0_0_30px_rgba(255,0,0,0.5)]">OUT!</span>
                 </div>
               </motion.div>
 
-              {/* Drip streaks — vertical lines melting down */}
-              {unlockStage === "melt" && Array.from({ length: 12 }).map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute top-0 bg-gradient-to-b from-red via-cyan to-transparent"
-                  style={{
-                    left: `${8 + i * 8}%`,
-                    width: `${Math.random() * 4 + 2}px`,
-                    height: "100%",
-                  }}
-                  initial={{ y: "-100%", opacity: 0.8 }}
-                  animate={{ y: "100%", opacity: 0 }}
-                  transition={{
-                    duration: 1.5 + Math.random() * 0.8,
-                    delay: Math.random() * 0.4,
-                    ease: [0.4, 0, 0.2, 1],
-                  }}
-                />
-              ))}
-
-              {/* Whole overlay fades out during melt to reveal EPK */}
-              {unlockStage === "melt" && (
-                <motion.div
-                  className="absolute inset-0 z-30 bg-black"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1.6, delay: 0.4, ease: "easeIn" }}
-                />
-              )}
+              {/* Final fade to black before EPK reveals */}
+              <motion.div
+                className="absolute inset-0 z-20 bg-black"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.2, delay: 3.8, ease: "easeIn" }}
+              />
             </motion.div>
           )}
         </AnimatePresence>
