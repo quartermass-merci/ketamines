@@ -970,10 +970,6 @@ function EPK() {
                 <em className="text-white">Burned Out!</em> is our first long-player since 2013&rsquo;s <em className="text-white">You Can&rsquo;t Serve Two Masters</em>. James and I initially bonded over a shared love of the Winnipeg political punk scene, and this might be our most overtly political record yet, but it&rsquo;s also a record about what it means to make art in an environment where art has been completely devalued.
               </p>
 
-              <p className="text-base sm:text-lg leading-[1.85] text-offwhite/50 text-left mb-8 border-l-2 border-red/30 pl-5">
-                Over the last four years, we&rsquo;ve lost so many of our comrades and bandmates: our first collaborator, Christopher Schultzen; Joni Sadler from CKUT, one of our champions in campus and community radio; friends and collaborators from other bands like Cody Prairie Chicken, Chris Reimer, and Phillip Tarr; friends who put us up in their homes like Brendo in Saskatoon. We continue in their honour.
-              </p>
-
               <p className="text-base sm:text-lg leading-[1.85] text-offwhite/80 text-left mb-12">
                 We had a great initial run with the Ketamines: 7&quot;s on HoZac, Mint Records, Pleasence, Hosehead, Leaning Trees, and Odd Box in the UK; two well-received LPs. We toured extensively across North America thanks to the push from our friend Annie Southworth at Panache (rest in peace, Queen) and got to play some incredible shows. We opened for Roky Erikson, Sonic Boom, Damon and Naomi, Shadowy Men on a Shadowy Planet.
               </p>
